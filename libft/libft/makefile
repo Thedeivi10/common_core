@@ -2,14 +2,14 @@
 NAME = libft.a
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c
+SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c
 
-SUBJ = $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(SUBJ)
-	ar rc $(NAME) $(SUBJ)
+$(NAME): $(OBJ)
+	ar rc $(NAME) $(OBJ)
 
 clean: 
-		rm -rf $(SUBJ)
+		rm -rf $(OBJ)

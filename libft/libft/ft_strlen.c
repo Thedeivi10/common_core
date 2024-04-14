@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/24 22:08:21 by davigome          #+#    #+#             */
-/*   Updated: 2024/02/29 22:16:51 by davigome         ###   ########.fr       */
+/*   Created: 2024/02/29 22:07:57 by davigome          #+#    #+#             */
+/*   Updated: 2024/02/29 22:15:26 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <stdio.h>
+size_t	ft_strlen(const char *s)
+{
+	size_t	contador;
 
-int		ft_isalpha(int c);
-int		ft_isdigit(int c);
-int		ft_isalnum(int c);
-int		ft_isascii(int c);
-int		ft_isprint(int c);
-size_t	ft_strlen(const char *s);
-
-#endif
+	contador = 0;
+	while (s[contador] != '\0')
+		contador++;
+	return (contador);
+}
