@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/20 09:53:08 by davigome          #+#    #+#             */
-/*   Updated: 2024/04/20 18:16:17 by davigome         ###   ########.fr       */
+/*   Created: 2024/04/20 18:18:23 by davigome          #+#    #+#             */
+/*   Updated: 2024/04/20 20:16:08 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
+	size_t	i;
+	size_t	dst_len;
 	size_t	src_len;
 
+	i = 0;
+	dst_len = ft_strlen(dst);
 	src_len = ft_strlen(src);
-	if (dstsize == (size_t)0)
-		return (src_len);
-	if (src_len >= dstsize)
+	if (dstsize <= dst_len)
 	{
-		ft_memmove(dst, src, dstsize - 1);
-		dst[dstsize - 1] = '\0';
+		dst_len = dstsize;
+		return (dstsize + src_len);
 	}
-	else
-		ft_memmove(dst, src, src_len + 1);
-	return (src_len);
+	while (src[i] != '\0' && dst_len + i < dstsize - 1)
+	{
+		dst[dst_len + i] = src[i];
+		i++;
+	}
+	dst[dst_len + i] = '\0';
+	return (dst_len + src_len);
 }
