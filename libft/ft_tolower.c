@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 09:54:02 by davigome          #+#    #+#             */
-/*   Updated: 2024/04/21 09:55:51 by davigome         ###   ########.fr       */
+/*   Updated: 2024/04/21 11:02:17 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ft_tolower(int c)
 {
 	if (ft_isalpha(c))
 	{
-		if (c >= 97 && c <= 122)
+		if (c >= 'A' && c <= 'Z')
 		{
 			return (c + 32);
 		}
