@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 12:06:49 by davigome          #+#    #+#             */
-/*   Updated: 2024/04/21 13:19:58 by davigome         ###   ########.fr       */
+/*   Updated: 2024/04/21 13:52:03 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	}
 	if (i < n)
-		return ((unsigned char)s1[i] - s2[i]);
+		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 	return (0);
 }

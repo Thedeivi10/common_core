@@ -1,3 +1,4 @@
 *.sw
 *.pdf
 *.md
+.vscode
