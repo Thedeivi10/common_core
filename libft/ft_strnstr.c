@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static size_t	round(const char *haystack, const char *needle, size_t len,
+static size_t	cycle(const char *haystack, const char *needle, size_t len,
 		size_t i)
 {
 	size_t	j;
@@ -36,7 +36,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	while (haystack[i] && i < len)
 	{
 		ub = (char *)&haystack[i];
-		if (round(haystack, needle, len, i) == ft_strlen(needle))
+		if (cycle(haystack, needle, len, i) == ft_strlen(needle))
 			return (ub);
 		i++;
 	}
