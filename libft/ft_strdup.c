@@ -1,46 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 09:46:29 by davigome          #+#    #+#             */
-/*   Updated: 2024/04/23 23:17:50 by davigome         ###   ########.fr       */
+/*   Created: 2024/04/23 23:33:43 by davigome          #+#    #+#             */
+/*   Updated: 2024/04/23 23:47:57 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+char	*ft_strdup(const char *s1)
 {
+	char	*dst;
 	size_t	cont;
-	int		number;
-	int		neg;
 
 	cont = 0;
-	number = 0;
-	neg = 1;
-	while (isspace(str[cont]))
-		cont++;
-	if (str[cont] == '-' || str[cont] == '+')
+	dst = malloc(ft_strlen(s1) +1);
+	if (!dst)
+		return (0);
+	while (s1[cont])
 	{
-		if (str[cont] == '-')
-			neg = -1;
+		dst[cont] = s1[cont];
 		cont++;
 	}
-	while (ft_isdigit(str[cont]))
-	{
-		number = number * 10 + (str[cont] - 48);
-		cont++;
-	}
-	number = neg * number;
-	return (number);
+	dst[cont] = 0;
+	return (dst);
 }
-/*int main()
-{
-	char e= 'e';
-	printf("%d",ft_atoi((e + "1").c_str());
-	printf("%d",atoi((e + "1").c_str());
-	return 0;
-}*/
