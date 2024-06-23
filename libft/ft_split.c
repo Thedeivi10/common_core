@@ -5,63 +5,91 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/28 08:51:11 by davigome          #+#    #+#             */
-/*   Updated: 2024/04/29 07:51:09 by davigome         ###   ########.fr       */
+/*   Created: 2024/04/29 07:53:38 by davigome          #+#    #+#             */
+/*   Updated: 2024/04/29 16:41:47 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**ft_split(char conts *s, char c)
+static int count_words(char const *s, char c)
 {
-	int	*characters;
-	int	row;
-	int	j;
-	int i;
-	char **arrays;
-	row = 0;
-	i = -1;
-	if (!s || !c)
-		return NULL
-	characters[row] = 0;
-	while(s[++i])
-	{
-		characters[row]++;
-		if (s[i] == c)
-		{
-			row++;
-			characters[row] = 0;
-		}
-	}
-	arrays= (char **)malloc(row * sizeof(char *));
-	if (!arrays)
-		return (0);
-	i = -1;
-	while (++i < row)
-	{
-		arrays[i] = (char *)malloc(characters[i] * sizeof(char));
-		if (!arrays[i])
-		{
-			while (0 < i)
-			{
-				free(arrays[i])
-				i--;
-				return (0);
-			}
-		}
-	}
-	i = -1;
-	int k;
-	k = -1;
-	j = 0;
-	while (s[++i])
-	{
-		k = -1;
-		while (characters[j] > ++k)
-			arrays[j][k] = s[i];
-		arrays[j][k] = 0;
-		j++;
-	}
-	arrays[j][0] = 0;
-	return (arrays);
+    int count;
+    int in_word;
+
+    count = 0;
+    in_word = 0;
+
+    while (*s)
+    {
+        if (*s == c)
+            in_word = 0;
+        else if (!in_word)
+        {
+            in_word = 1;
+            count++;
+        }
+        s++;
+    }
+    return count;
 }
+
+static char *next_word(char const *s, char c)
+{
+    while (*s && *s == c)
+        s++;
+    return (char *)s;
+}
+
+static char *end_of_word(char const *s, char c)
+{
+    while (*s && *s != c)
+        s++;
+    return (char *)s;
+}
+
+char **ft_split(char const *s, char c)
+{
+    int word_count;
+    char **result;
+    int i;
+    char *end;
+
+    if (!s)
+        return NULL;
+    word_count = count_words(s, c);
+    result = (char **)malloc((word_count + 1) * sizeof(char *));
+    if (!result)
+        return NULL;
+    i = 0;
+    while (i < word_count)
+    {
+        s = next_word(s, c);
+        end = end_of_word(s, c);
+        result[i] = ft_substr(s, 0, end - s);
+        if (!result[i])
+        {
+            while (i >= 0)
+                free(result[i--]);
+            free(result);
+            return NULL;
+        }
+        s = end;
+        i++;
+    }
+    result[word_count] = NULL;
+    return result;
+}
+
+/* int main(void)
+{
+	char **words = ft_split("      split       this for   me  !       ", ' ');
+    if (words) {
+        int i = 0;
+        while (words[i]) {
+            printf("%s\n", words[i]);
+            i++;
+        }
+        free(words);
+}
+} */
