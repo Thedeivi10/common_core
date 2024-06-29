@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/26 23:10:09 by davigome          #+#    #+#              #
-#    Updated: 2024/06/27 19:51:35 by davigome         ###   ########.fr        #
+#    Updated: 2024/06/29 23:23:19 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ clean:
 		rm -rf $(OBJS) $(BONUS_OBJS) $(OBJS)
 
 clean: 
-		rm -rf $(OBJ)
+		rm -rf $(OBJ) $(BONUS_OBJS)
 
 fclean: clean
 	rm -rf $(NAME)
