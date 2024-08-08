@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/30 22:58:58 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/07 02:05:10 by davigome         ###   ########.fr       */
+/*   Created: 2024/04/21 13:27:04 by davigome          #+#    #+#             */
+/*   Updated: 2024/04/21 15:18:53 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
-# include "libft/libft.h"
+void	*ft_memchr(const void *s, int c, size_t n)
+{
+	unsigned char	*str;
+	size_t			cont;
 
-int	ft_printf(const char *format, ...);
-int	ft_putchar(char c);
-int	ft_putstring(char *string);
-int	ft_putnumbr_signed(int n);
-int	ft_putpointer(unsigned long p);
-int	ft_putunsigned(unsigned int n);
-int	ft_puthexadecimal(unsigned int n, const char format);
-
-#endif
+	cont = 0;
+	str = (unsigned char *)s;
+	while (cont < n)
+	{
+		if (str[cont] == (unsigned char)c)
+			return ((void *)&str[cont]);
+		cont++;
+	}
+	return (NULL);
+}

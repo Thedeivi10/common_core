@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/30 22:58:58 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/07 02:05:10 by davigome         ###   ########.fr       */
+/*   Created: 2024/06/27 17:23:12 by davigome          #+#    #+#             */
+/*   Updated: 2024/06/27 17:37:06 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
-# include "libft/libft.h"
+int	ft_lstsize(t_list *lst)
+{
+	int		i;
 
-int	ft_printf(const char *format, ...);
-int	ft_putchar(char c);
-int	ft_putstring(char *string);
-int	ft_putnumbr_signed(int n);
-int	ft_putpointer(unsigned long p);
-int	ft_putunsigned(unsigned int n);
-int	ft_puthexadecimal(unsigned int n, const char format);
-
-#endif
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}

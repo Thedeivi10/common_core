@@ -1,28 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/30 22:58:58 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/07 02:05:10 by davigome         ###   ########.fr       */
+/*   Created: 2024/06/25 20:32:57 by davigome          #+#    #+#             */
+/*   Updated: 2024/06/26 10:12:48 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
-# include "libft/libft.h"
+static void	write_digit(int n, int fd)
+{
+	char	c;
 
-int	ft_printf(const char *format, ...);
-int	ft_putchar(char c);
-int	ft_putstring(char *string);
-int	ft_putnumbr_signed(int n);
-int	ft_putpointer(unsigned long p);
-int	ft_putunsigned(unsigned int n);
-int	ft_puthexadecimal(unsigned int n, const char format);
+	c = '0' + n;
+	write(fd, &c, 1);
+}
 
-#endif
+void	ft_putnbr_fd(int n, int fd)
+{
+	if (n == -2147483648)
+		write(fd, "-2147483648", 11);
+	else
+	{
+		if (n < 0)
+		{
+			write(fd, "-", 1);
+			n = -n;
+		}
+		if (n > 9)
+			ft_putnbr_fd(n / 10, fd);
+		write_digit(n % 10, fd);
+	}
+}
+
+/* int main (void)
+{
+	ft_putnbr_fd(4, 4);
+	return 0;
+} */

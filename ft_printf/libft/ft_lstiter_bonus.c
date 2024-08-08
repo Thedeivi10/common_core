@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/30 22:58:58 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/07 02:05:10 by davigome         ###   ########.fr       */
+/*   Created: 2024/06/27 19:41:32 by davigome          #+#    #+#             */
+/*   Updated: 2024/06/27 19:44:07 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
-# include "libft/libft.h"
+void	ft_lstiter(t_list *lst, void (*f)(void *))
+{
+	t_list	*now;
 
-int	ft_printf(const char *format, ...);
-int	ft_putchar(char c);
-int	ft_putstring(char *string);
-int	ft_putnumbr_signed(int n);
-int	ft_putpointer(unsigned long p);
-int	ft_putunsigned(unsigned int n);
-int	ft_puthexadecimal(unsigned int n, const char format);
-
-#endif
+	now = lst;
+	while (now)
+	{
+		f(now->content);
+		now = now->next;
+	}
+}

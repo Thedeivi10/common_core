@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/30 22:58:58 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/07 02:05:10 by davigome         ###   ########.fr       */
+/*   Created: 2024/06/25 16:29:59 by davigome          #+#    #+#             */
+/*   Updated: 2024/06/25 16:41:21 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdarg.h>
-# include "libft/libft.h"
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	char			*result;
+	unsigned int	i;
 
-int	ft_printf(const char *format, ...);
-int	ft_putchar(char c);
-int	ft_putstring(char *string);
-int	ft_putnumbr_signed(int n);
-int	ft_putpointer(unsigned long p);
-int	ft_putunsigned(unsigned int n);
-int	ft_puthexadecimal(unsigned int n, const char format);
-
-#endif
+	i = 0;
+	if (!s)
+		return (NULL);
+	result = malloc(ft_strlen(s) + 1);
+	if (!result)
+		return (NULL);
+	while (i < (unsigned int)ft_strlen(s))
+	{
+		result[i] = f(i, s[i]);
+		i++;
+	}
+	result [i] = '\0';
+	return (result);
+}

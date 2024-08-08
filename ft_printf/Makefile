@@ -6,15 +6,46 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/30 23:11:57 by davigome          #+#    #+#              #
-#    Updated: 2024/07/01 09:14:24 by davigome         ###   ########.fr        #
+#    Updated: 2024/08/07 02:06:35 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
-CC = gcc
+
+CC = cc
+AR = ar rcs
+RM = rm -rf
+CP = cp
 CFLAGS = -Wall -Wextra -Werror
 
+LIBFT = ./libft/libft.a
+LIBFTDIR = ./libft
+
+FUNCDIR = ./functions
+PRINTF_SRCS = ft_printf.c ft_putchar.c ft_putstring.c ft_putnumbr_signed.c ft_putpointer.c ft_putunsigned.c\
+ft_puthexadecimal.c
+OBJS = $(PRINTF_SRCS:.c=.o)
+
+all: $(NAME)
+
+$(NAME): $(LIBFT) $(OBJS)
+	$(CP) $(LIBFT) $(NAME)
+	@$(AR) $(NAME) $(OBJS)
+
+$(LIBFT): $(LIBFTDIR)
+	@$(MAKE) -C $(LIBFTDIR)
+
+%.o: $(FUNCDIR)/%.c
+	@$(CC) $(CFLAGS) -c $< -o $@ -I ../libft
+
+clean:
+	@$(MAKE) clean -C $(LIBFTDIR)
+	@$(RM) $(OBJS)
+
 fclean: clean
-	rm -rf $(NAME)
+	@$(MAKE) fclean -C $(LIBFTDIR)
+	@$(RM) $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re 
