@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 01:13:27 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/07 01:41:13 by davigome         ###   ########.fr       */
+/*   Updated: 2024/08/08 21:53:28 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ static int	ft_count(unsigned int n)
 
 static void	ft_printnumber(unsigned int n)
 {
-	char c;
+	char	c;
 
 	if (n > 9)
 		ft_printnumber(n / 10);
 	n = n % 10;
 	c = n + '0';
-	write (1, &c, 1);	
+	write (1, &c, 1);
 }
 
 int	ft_putunsigned(unsigned int n)

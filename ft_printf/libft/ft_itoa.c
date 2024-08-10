@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 15:15:02 by davigome          #+#    #+#             */
-/*   Updated: 2024/06/25 15:43:57 by davigome         ###   ########.fr       */
+/*   Updated: 2024/08/08 22:58:29 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static char	*special(int n)
 		result[0] = '0';
 		result[1] = '\0';
 	}
-	else if (n == -2147483648)
+	else
 	{
 		result = malloc(12);
 		result[0] = '-';

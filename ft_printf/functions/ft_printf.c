@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 06:35:15 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/07 08:15:02 by davigome         ###   ########.fr       */
+/*   Updated: 2024/08/11 00:17:05 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,7 @@ int	ft_printf(const char *format, ...)
 /* int main()
 {
 	ft_printf("Hola que tal estas %c o estas %c \n", 'b', 'm');
-	ft_printf("Hola, %s.\n", NULL);
-	printf("Hola, %s.\n", NULL);
+	
 	ft_printf( "%d\n", -2147483647);
 	printf( "%d\n", -2147483647);
 	return (0);

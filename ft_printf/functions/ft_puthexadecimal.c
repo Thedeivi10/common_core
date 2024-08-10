@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 01:46:06 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/07 07:43:20 by davigome         ###   ########.fr       */
+/*   Updated: 2024/08/08 21:54:41 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	ft_count(unsigned int n)
 }
 
 int	ft_puthexadecimal(unsigned int n, const char format)
- {
+{
 	int	len;
 
 	len = 0;
@@ -59,4 +59,4 @@ int	ft_puthexadecimal(unsigned int n, const char format)
 		len = ft_count(n);
 	}
 	return (len);
- }
+}
