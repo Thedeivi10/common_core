@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 01:13:28 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/11 17:49:10 by davigome         ###   ########.fr       */
+/*   Updated: 2024/08/12 17:24:48 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 #define GET_NEXT_LINE_H
 
 #include <fcntl.h>
-# include <stdlib.h>
-# include <unistd.h>
+#include <stdlib.h>
+#include <unistd.h>
 
+#ifndef BUFFER_SIZE 
+#define BUFFER_SIZE 42
+#endif
 
 #endif

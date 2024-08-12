@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 01:12:07 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/11 01:21:49 by davigome         ###   ########.fr       */
+/*   Updated: 2024/08/12 17:32:46 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,9 @@
 
 char	*get_next_line(int fd)
 {
+	char	buf[BUFFER_SIZE];
+	int		fd;
+	
+
 	return (NULL);
 }
