@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/30 23:11:57 by davigome          #+#    #+#              #
-#    Updated: 2024/08/08 23:14:08 by davigome         ###   ########.fr        #
+#    Updated: 2024/08/12 16:50:21 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ CC = cc
 AR = ar rcs
 RM = rm -rf
 CP = cp
-CFLAGS = -Wall -Wextra -Werror
+#-fPIC is used to ensure that the shared code is position-independent, meaning 
+#it can be loaded anywhere in memory without the need to modify the .text section.
+CFLAGS = -Wall -Wextra -Werror -fPIC 
 
 LIBFT = ./libft/libft.a
 LIBFTDIR = ./libft
