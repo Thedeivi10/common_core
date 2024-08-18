@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/18 09:24:20 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/18 10:08:27 by davigome         ###   ########.fr       */
+/*   Created: 2024/08/18 10:34:23 by davigome          #+#    #+#             */
+/*   Updated: 2024/08/18 11:18:21 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <stdio.h>
 
 char	*ft_clean(char *str)
@@ -93,48 +93,64 @@ char	*ft_out(char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	*str;
+	static char	*str[4096];
 	char		*out;
 
-	if (BUFFER_SIZE <= 0 || fd < 0 || read(fd, 0, 0) == -1)
+	if (BUFFER_SIZE <= 0 || fd < 0)
 	{
-		free(str);
-		str = NULL;
+		free(str[fd]);
+		str[fd] = NULL;
 		return (NULL);
 	}
-	str = ft_join(fd, str);
-	if (!str)
+	str[fd] = ft_join(fd, str[fd]);
+	if (!str[fd])
 		return (NULL);
-	out = ft_out(str);
-	str = ft_clean(str);
+	out = ft_out(str[fd]);
+	str[fd] = ft_clean(str[fd]);
 	return (out);
 }
 
-/* int main(int ac, char **av) {
+/* int main(int ac, char **av)
+{
     int fd;
     char *line;
+	int	i;
 
-    if (ac == 2) {
-        fd = open(av[1], O_RDONLY);
-        if (fd == -1) {
-            printf("%s\n", av[1]);
-            return 0;
-        } else {
-            line = get_next_line(fd);
-            while (line) {
-                printf("%s", line);
-                free(line);
-                line = get_next_line(fd);
-            }
-            close(fd);
-        }
-    } else {
-        line = get_next_line(0);  // 0 es stdin
-        while (line) {
-            printf("%s", line);
-            free(line);
-            line = get_next_line(0);
-        }
-    }
+	i = 1;
+	
+	while (av[i])
+	{
+	    if (av[i])
+		{
+	        fd = open(av[i], O_RDONLY);
+	        if (fd == -1)
+			{
+	            printf("%s\n", av[i]);
+	            return 0;
+	        }
+				else
+			{
+	            line = get_next_line(fd);
+	            while (line)
+				{
+	                printf("%s\n", line);
+	                free(line);
+	                line = get_next_line(fd);
+	            }
+	            close(fd);
+	        }
+	    }
+		if (fd == 0)
+		{
+	        line = get_next_line(0);
+	        while (line) 
+			{
+	            printf("%s", line);
+            	free(line);
+        	    line = get_next_line(0);
+    	    }
+	    }
+		i++;
+	}
     return 0;
 } */

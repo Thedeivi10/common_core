@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 13:12:15 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/18 09:56:06 by davigome         ###   ########.fr       */
+/*   Created: 2024/08/18 10:33:02 by davigome          #+#    #+#             */
+/*   Updated: 2024/08/18 10:33:13 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "get_next_line_bonus.h"
 
-/*Nombre de función
-ft_strjoin
-Prototipo char *ft_strjoin(char const *s1, char const *s2);
-Archivos a entregar
--
-Parámetros s1: La primera string.
-s2: La string a añadir a ’s1’.
-Valor devuelto La nueva string.
-NULL si falla la reserva de memoria.
-Funciones autorizadas
-malloc
-Descripción Reserva (con malloc(3)) y devuelve una nueva
-string, formada por la concatenación de ’s1’ y
-’s2’.*/
-char	*ft_strjoin(char const *s1, char const *s2)
+size_t	ft_strlen(char *s)
+{
+	size_t	contador;
+
+	contador = 0;
+	while (s[contador] != '\0')
+		contador++;
+	return (contador);
+}
+
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*dst;
 	int		i;
@@ -34,8 +30,13 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	i = -1;
 	j = -1;
-	if (!s1 && !s2)
-		return (0);
+	if (!s1)
+	{
+		s1 = (char *)malloc(sizeof(char) * 1);
+		s1[0] = '\0';
+	}
+	if (!s2)
+		return (NULL);
 	dst = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
 	if (!dst)
 		return (0);
@@ -44,5 +45,32 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (s2[++j])
 		dst[i + j] = s2[j];
 	dst [i + j] = 0;
+	free(s1);
 	return (dst);
+}
+
+char	*ft_strchr(char *s, int c)
+{
+	int			cont;
+	const char	*aux;
+
+	cont = 0;
+	if (!s)
+		return (0);
+	c = (char)c;
+	if (c == '\0')
+	{
+		aux = &s[ft_strlen(s)];
+		return ((char *)aux);
+	}
+	while (s[cont] != '\0')
+	{
+		if (s[cont] == c)
+		{
+			aux = &s[cont];
+			return ((char *)aux);
+		}
+		cont++;
+	}
+	return (NULL);
 }
