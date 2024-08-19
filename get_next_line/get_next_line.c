@@ -6,12 +6,12 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 09:24:20 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/18 10:08:27 by davigome         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:43:00 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
+//#include <stdio.h>
 
 char	*ft_clean(char *str)
 {
@@ -96,7 +96,7 @@ char	*get_next_line(int fd)
 	static char	*str;
 	char		*out;
 
-	if (BUFFER_SIZE <= 0 || fd < 0 || read(fd, 0, 0) == -1)
+	if (BUFFER_SIZE <= 0 || fd < 0)
 	{
 		free(str);
 		str = NULL;
@@ -129,7 +129,7 @@ char	*get_next_line(int fd)
             close(fd);
         }
     } else {
-        line = get_next_line(0);  // 0 es stdin
+        line = get_next_line(0);  
         while (line) {
             printf("%s", line);
             free(line);
@@ -137,4 +137,5 @@ char	*get_next_line(int fd)
         }
     }
     return 0;
-} */
+}
+ */

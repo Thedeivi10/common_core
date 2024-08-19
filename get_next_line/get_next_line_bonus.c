@@ -6,12 +6,12 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 10:34:23 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/18 11:18:21 by davigome         ###   ########.fr       */
+/*   Updated: 2024/08/19 15:03:40 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-#include <stdio.h>
+//#include <stdio.h>
 
 char	*ft_clean(char *str)
 {
@@ -109,6 +109,48 @@ char	*get_next_line(int fd)
 	str[fd] = ft_clean(str[fd]);
 	return (out);
 }
+
+/* int main(int ac, char **av)
+{
+    int fd1;
+	int fd2;
+	int fd3;
+    char *line1;
+	char *line2;
+	char *line3;
+	int	i;
+
+	i = 1;
+	fd1 = open(av[1], O_RDONLY); 
+	fd2 = open(av[2], O_RDONLY);
+	fd3 = open(av[3], O_RDONLY);
+	line1 = get_next_line(fd1);
+	line2 = get_next_line(fd2);
+	line3 = get_next_line(fd3);
+	while (line1 || line2 || line3)
+	{
+//	        fd = open(av[i], O_RDONLY);
+	        if (line1)
+			{
+	            printf("%s", line1);
+				line1 = get_next_line(fd1);
+	        }
+	        if (line2)
+			{
+	            printf("%s", line2);
+				line2 = get_next_line(fd2);
+	        }
+	    	if (line3)
+			{
+	            printf("%s", line3);
+				line3 = get_next_line(fd3);
+	        }
+	}
+	close (fd1);
+	close (fd3);
+	close (fd2);
+    return 0;
+} */
 
 /* int main(int ac, char **av)
 {
