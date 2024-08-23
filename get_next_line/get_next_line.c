@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 09:24:20 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/19 17:43:00 by davigome         ###   ########.fr       */
+/*   Updated: 2024/08/21 09:25:55 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	*get_next_line(int fd)
 	static char	*str;
 	char		*out;
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
+	if (BUFFER_SIZE <= 0 || fd < 0 || read(fd,0,0) == )
 	{
 		free(str);
 		str = NULL;
@@ -114,23 +114,30 @@ char	*get_next_line(int fd)
     int fd;
     char *line;
 
-    if (ac == 2) {
+    if (ac == 2) 
+	{
         fd = open(av[1], O_RDONLY);
-        if (fd == -1) {
+        if (fd == -1) 
+		{
             printf("%s\n", av[1]);
             return 0;
-        } else {
+        } else 
+		{
             line = get_next_line(fd);
-            while (line) {
+            while (line) 
+			{
                 printf("%s", line);
                 free(line);
                 line = get_next_line(fd);
             }
             close(fd);
         }
-    } else {
+    } 
+	else 
+	{
         line = get_next_line(0);  
-        while (line) {
+        while (line) 
+		{
             printf("%s", line);
             free(line);
             line = get_next_line(0);
