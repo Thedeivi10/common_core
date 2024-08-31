@@ -23,7 +23,6 @@ int *ft_range (int start, int end)
 			i++;
 			start++;
 		}
-	       	ls [i] = '\0';
 	}
 	else
 	{
@@ -41,7 +40,6 @@ int *ft_range (int start, int end)
                         i++;
                         start--;
                 }
-                ls [i] = '\0';
 	}	
 		return ls;
 

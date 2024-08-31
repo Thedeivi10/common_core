@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 09:24:20 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/21 09:25:55 by davigome         ###   ########.fr       */
+/*   Updated: 2024/08/31 16:36:08 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ char	*get_next_line(int fd)
 	static char	*str;
 	char		*out;
 
-	if (BUFFER_SIZE <= 0 || fd < 0 || read(fd,0,0) == )
+	if (BUFFER_SIZE <= 0 || fd < 0)
 	{
 		free(str);
 		str = NULL;
