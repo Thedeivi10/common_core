@@ -47,7 +47,3 @@ void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 		ft_list_remove_if(&cur->next, data_ref, cmp);
 	}
 }
-int main ()
-{
-	write (1, "\n",1);
-}

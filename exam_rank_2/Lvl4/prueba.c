@@ -1,38 +1,29 @@
+#include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
-typedef struct    s_list
+int main(int argc, char **argv)
 {
-    struct s_list *next;
-    int          data;
-}                 t_list;
-
-void write_word(char *start, char *end)
-{
-	while(start < end)
+	int i;
+	int number;
+	if(argc == 2)
 	{
-		write(1, start , 1);
-		start++;
-	}
-}
-
-int main (int argc, char **argv)
-{
-	char *str;
-	char *start;
-	char *end;
-	if (argc > 1)
-	{
-		str = argv[1];
-		while (*str == 32 || *str == 9)
-			str++;
-		start = str;
-		while (*str && *str != 32 && *str != 9)
-			str++;
-		end = str;
-		while(*str)
+		number = atoi(argv[1]);
+		i = 2;
+		if (number == 1)
+			printf("1");
+		while(number >= i)
 		{
-			while (str)
+			if(number % i == 0)
+			{
+				printf("%d",i);
+				if (number == i)
+					break;
+				printf("*");
+				number /= i;
+				i = 1;
+			}
+			i++;
 		}
 	}
-	write (1, "\n" , 1);
+	printf("\n");
 }
