@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/15 21:33:55 by davigome          #+#    #+#              #
-#    Updated: 2024/11/27 12:53:12 by davigome         ###   ########.fr        #
+#    Updated: 2024/11/27 19:32:35 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ SRC_FILES		= so_long.c \
 					ft_start_map.c \
 					ft_free.c \
 					ft_init_mlx.c \
+					ft_moves.c \
 					ft_images.c
 
 SRC_BONUS_FILES = so_long_bonus.c

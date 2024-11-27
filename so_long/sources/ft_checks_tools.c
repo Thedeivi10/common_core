@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:15:03 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/27 08:24:57 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/27 21:14:52 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ int	ft_checks(char *map, t_map *game)
 	i = 0;
 	if (ft_check_ber(map) == FAILURE)
 		i++;
-	if (ft_check_NO(game,'E') == FAILURE)
+	if (ft_check_no(game,'E') == FAILURE)
 		i++;
-	if (ft_check_NO(game, 'C') == FAILURE)
+	if (ft_check_no(game, 'C') == FAILURE)
 		i++;
-	if (ft_check_NO(game, 'P') == FAILURE)
+	if (ft_check_no(game, 'P') == FAILURE)
 		i++;
 	if (ft_More(game, 'E') == FAILURE)
 		i++;
@@ -31,9 +31,9 @@ int	ft_checks(char *map, t_map *game)
 		i++;
 	if (ft_invalid_char(game) == FAILURE)
 		i++;
-	if (ft_NO_Rec(game) == FAILURE)
+	if (ft_no_rec(game) == FAILURE)
 		i++;
-	if (ft_NO_surrounded(game) == FAILURE)
+	if (ft_no_surrounded(game) == FAILURE)
 		i++;
 	if (ft_valid_path(game) == FAILURE)
 		i++;
@@ -46,11 +46,11 @@ void	ft_write_check(char *map,t_map *game)
 {
 	if (ft_check_ber(map) == FAILURE)
 		ft_printf(E_FILENAME);
-	if (ft_check_NO(game,'E') == FAILURE)
+	if (ft_check_no(game,'E') == FAILURE)
 		ft_printf(E_NO_EXIT);
-	if (ft_check_NO(game, 'C') == FAILURE)
+	if (ft_check_no(game, 'C') == FAILURE)
 		ft_printf(E_NO_OBJ);
-	if (ft_check_NO(game, 'P') == FAILURE)
+	if (ft_check_no(game, 'P') == FAILURE)
 		ft_printf(E_NO_INIT);
 	if (ft_More(game, 'E') == FAILURE)
 		ft_printf(E_MORE_EXIT);
@@ -58,9 +58,9 @@ void	ft_write_check(char *map,t_map *game)
 		ft_printf(E_MORE_INIT);
 	if (ft_invalid_char(game) == FAILURE)
 		ft_printf(E_CHAR);
-	if (ft_NO_Rec(game) == FAILURE)
+	if (ft_no_rec(game) == FAILURE)
 		ft_printf(E_NO_RECTAN);
-	if (ft_NO_surrounded(game) == FAILURE)
+	if (ft_no_surrounded(game) == FAILURE)
 		ft_printf(E_NO_BLOCK);
 	if (ft_valid_path(game) == FAILURE)
 		ft_printf(E_NO_PATH);
@@ -79,7 +79,7 @@ int	ft_check_ber(char *map)
 	return (SUCCESS);
 }
 
-int	ft_check_NO(t_map *game, char c)
+int	ft_check_no(t_map *game, char c)
 {
 	int		i;
 	int		j;
@@ -96,6 +96,8 @@ int	ft_check_NO(t_map *game, char c)
 					j++;
 				game->start.x = j;
 				game->start.y = i;
+				game->player.position.x = j;
+				game->player.position.y = i;
 			}
 			return (SUCCESS);
 		}

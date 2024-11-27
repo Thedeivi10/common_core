@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 20:15:29 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/26 22:55:34 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/27 22:56:47 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	ft_free_map(t_map	*game)
 	int		i;
 
 	i = 0;
-	if(!game)
-		return;
-	if(game->grid[i])
+	if (game->grid[i])
 	{
 		while (i < game->size.height)
 		{

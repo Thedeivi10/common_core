@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:28:29 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/27 12:56:14 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/27 23:06:17 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ int	main(int argc, char **argv)
 			return (FAILURE);
 		}
 	}
-	ft_init_mlx(game);
-	ft_load_textures(game);
-	ft_render_map(game);
-	mlx_loop(game->mlx);
-	mlx_terminate(game->mlx);
-	ft_free_map(game);
+	ft_start(game);
 	return (SUCCESS);
 }

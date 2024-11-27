@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:29:28 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/27 12:54:27 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/27 23:06:58 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,13 +98,13 @@ typedef struct s_map
 int		ft_checks(char *map, t_map *game);
 void	ft_write_check(char *map,t_map *game);
 int		ft_check_ber(char *map);
-int		ft_check_NO(t_map *game, char c);
+int		ft_check_no(t_map *game, char c);
 int		ft_More(t_map *game, char c);
 
 // FT_CHECKS_TOOLS_2.C //
 int		ft_invalid_char(t_map *game);
-int		ft_NO_Rec(t_map *game);
-int		ft_NO_surrounded(t_map *game);
+int		ft_no_rec(t_map *game);
+int		ft_no_surrounded(t_map *game);
 int 	ft_valid_path(t_map *game);
 void	ft_cont_collectables(t_map *game);
 
@@ -124,10 +124,17 @@ int		ft_count_lines(char *map,t_map *game);
 
 // FT_INIT_MLX.C //
 void	ft_init_mlx(t_map	*game);
+void	ft_start(t_map *game);
 
+// FT_MOVES.C //
+void	ft_key_hook(mlx_key_data_t keydata, void *param);
+void	ft_move_player(t_map *game, int x, int y);
+void	ft_finish(t_map *game);
 // FT_IMAGES.C //
 void	ft_load_textures(t_map *game);
+void	ft_load_textures_2(t_map *game);
 void	ft_render_map(t_map *game);
+void	ft_render_background(t_map *game);
 
 // FT_FREE.C //
 void	ft_free_map(t_map	*game);

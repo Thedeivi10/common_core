@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 19:04:00 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/27 00:22:15 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/27 20:50:40 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_invalid_char(t_map *game)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -35,66 +35,67 @@ int	ft_invalid_char(t_map *game)
 	return (SUCCESS);
 }
 
-int	ft_NO_Rec(t_map *game)
+int	ft_no_rec(t_map *game)
 {
 	int	i;
-	
+
 	i = 0;
 	if (!game || !game->grid || !game->grid[0])
 		return (FAILURE);
 	game->size.width = ft_strlen(game->grid[i]);
 	while (game->grid[i])
 	{
-		if(game->size.width != (int)ft_strlen(game->grid[i]))
+		if (game->size.width != (int)ft_strlen(game->grid[i]))
 			return (FAILURE);
 		i++;
 	}
 	return (SUCCESS);
 }
 
-int	ft_NO_surrounded(t_map *game)
+int	ft_no_surrounded(t_map *game)
 {
-	int i;
-	int height;
-	int j;
+	int	i;
+	int	height;
+	int	j;
 
 	j = 0;
 	i = 0;
-	height = 0;
-	while(game->grid[i])
+	while (game->grid[i])
 		i++;
 	height = i;
 	game->size.height = height;
 	i = 0;
-	while(game->grid[0][j] != '\0' && game->grid[0][j] != '\n')
-		if(game->grid[0][j++] != '1')
+	while (game->grid[0][j] != '\0' && game->grid[0][j] != '\n')
+		if (game->grid[0][j++] != '1')
 			return (FAILURE);
 	j = 0;
-	while(game->grid[height - 1][j] != '\0' && game->grid[height - 1][j] != '\n')
-		if(game->grid[height - 1][j++] != '1')
+	while (game->grid[height - 1][j] != '\0'
+		&& game->grid[height - 1][j] != '\n')
+		if (game->grid[height - 1][j++] != '1')
 			return (FAILURE);
 	j = 0;
-	while(++j < height)
-		if(game->grid[j][0] != '1' || game->grid[j][ft_strlen(game->grid[j]) - 2] != '1')
+	while (++j < height)
+		if (game->grid[j][0] != '1' ||
+		game->grid[j][ft_strlen(game->grid[j]) - 1] != '1')
 			return (FAILURE);
 	return (SUCCESS);
 }
 
 void	ft_cont_collectables(t_map *game)
 {
-	int i;
-	int j;
-	int cont;
+	int	i;
+	int	j;
+	int	cont;
 
 	i = 0;
 	j = 0;
 	cont = 0;
-	while(game->grid[i])
+	while (game->grid[i])
 	{
 		j = 0;
-		while(game->grid[i][j])
+		while (game->grid[i][j])
 		{
-			if(game->grid[i][j] == 'C')
+			if (game->grid[i][j] == 'C')
 				cont++;
 			j++;
 		}
@@ -103,16 +104,16 @@ void	ft_cont_collectables(t_map *game)
 	game->collectibles = cont;
 }
 
-int ft_valid_path(t_map *game)
+int	ft_valid_path(t_map *game)
 {
 	char	**cpy;
-	int 	i;
+	int		i;
 
 	i = -1;
 	cpy = ft_cpy_matrix(game->grid);
 	ft_cont_collectables(game);
 	ft_check_path(cpy, game, game->start);
-	while(cpy[++i])
+	while (cpy[++i])
 		free(cpy[i]);
 	free(cpy);
 	if (game->collectibles == 0 && game->exit_reach == 0)
