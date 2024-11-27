@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 08:13:12 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/27 19:40:46 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/27 23:25:20 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ t_map	*ft_read_map(char *map, t_map *game)
 		ft_printf("Error:\n Could not open te file properly.\n");
 		exit(FAILURE);
 	}
-	game->grid = malloc(sizeof(char *)*ft_count_lines(map, game) + 1);
+	game->grid = malloc(sizeof(char *) * (ft_count_lines(map, game) + 1));
 	if (!game->grid)
 	{
 		ft_printf("Error:\nCould not allocate memory for grid.\n");
@@ -64,7 +64,6 @@ t_map	*ft_read_map(char *map, t_map *game)
 	line = get_next_line(fd);
 	while (line)
 	{
-		game->grid[i] = ft_strdup(line);
 		if (line[ft_strlen(line) - 1] == '\n')
 			game->grid[i] = ft_substr(line, 0, ft_strlen(line) - 1);
 		else
