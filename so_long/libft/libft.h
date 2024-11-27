@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 22:08:21 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/17 08:42:10 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/23 21:09:10 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <stdarg.h>
 
 # ifndef BUFFER_SIZE
-#	define BUFFER_SIZE 42
+#  define BUFFER_SIZE 42
 # endif
 
 int		ft_isalpha(int c);
@@ -76,13 +76,13 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 // PRINT_F FUCTIONS //
-int	ft_printf(const char *format, ...);
-int	ft_putchar(char c);
-int	ft_putstring(char *string);
-int	ft_putnumbr_signed(int n);
-int	ft_putpointer(unsigned long p);
-int	ft_putunsigned(unsigned int n);
-int	ft_puthexadecimal(unsigned int n, const char format);
+int		ft_printf(const char *format, ...);
+int		ft_putchar(char c);
+int		ft_putstring(char *string);
+int		ft_putnumbr_signed(int n);
+int		ft_putpointer(unsigned long p);
+int		ft_putunsigned(unsigned int n);
+int		ft_puthexadecimal(unsigned int n, const char format);
 
 // GET_NEXT_LINE FUNCTIONS //
 

@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_cheks_tools                                     :+:      :+:    :+:   */
+/*   ft_init_mlx.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/23 08:15:03 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/23 11:48:39 by davigome         ###   ########.fr       */
+/*   Created: 2024/11/27 11:31:20 by davigome          #+#    #+#             */
+/*   Updated: 2024/11/27 11:46:41 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	ft_checks(char *map)
+void	ft_init_mlx(t_map	*game)
 {
-	int i;
-
-	i = 0;
-	if (ft_check_be())
+	game->mlx = mlx_init(game->size.width * TILE_SIZE,
+						 game->size.height * TILE_SIZE, TITRE, true);
+	if (!game->mlx)
+	{
+		ft_printf("Error:\nCould not init MLX42");
+		exit(ERROR);
+	}
 }
-

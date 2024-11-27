@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/15 21:33:55 by davigome          #+#    #+#              #
-#    Updated: 2024/11/22 19:51:54 by davigome         ###   ########.fr        #
+#    Updated: 2024/11/27 12:53:12 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,18 +14,33 @@ NAME		= so_long
 BONUS_NAME	= so_long_bonus
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra
+CFLAGS		= -Wall -Werror -Wextra -g
 MLX42		= ./MLX42
 LIBFT		= ./libft
 INCLUDES	= -I$(MLX42)/include -I$(LIBFT)/include -Iincludes
 LIBS		= -L$(MLX42)/build/MLX42/lib -lmlx42 -lglfw -ldl -lm -lpthread -L$(LIBFT) -lft
+
+# Colores
+RED = \033[31m
+GREEN = \033[32m
+YELLOW = \033[33m
+BLUE = \033[34m
+RESET = \033[0m
 
 SRC_DIR			= ./sources
 SRC_BONUS_DIR	= ./sources_bonus
 OBJ_DIR			= ./obj
 OBJ_BONUS_DIR	= ./obj_bonus
 
-SRC_FILES		= so_long.c
+SRC_FILES		= so_long.c \
+					ft_checks_tools.c \
+					ft_checks_tools_2.c \
+					ft_checks_tools_3.c \
+					ft_tools.c \
+					ft_start_map.c \
+					ft_free.c \
+					ft_init_mlx.c \
+					ft_images.c
 
 SRC_BONUS_FILES = so_long_bonus.c
 
@@ -40,21 +55,16 @@ $(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.cc
 	@mkdir -p $(OBJ_BONUS_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(NAME): $(LIBFT)/libft.a $(MLX42)/lib/libmlx42.a $(OBJS)
+$(NAME): $(LIBFT)/libft.a $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS)
+	@echo "$(GREEN)Executable for so_long launched successfully!$(RESET)"
 
-$(BONUS_NAME): $(LIBFT)/libft.a $(MLX42)/lib/libmlx42.a $(OBJS_BONUS)
+$(BONUS_NAME): $(LIBFT)/libft.a  $(OBJS_BONUS)
 	@$(CFLAGS) -o $(BONUS_NAME) $(OBJS_BONUS) $(LIBS)
+	@echo "$(GREEN)Bonus for so_long launched successfully!$(RESET)"
 
 $(LIBFT)/libft.a:
 	@$(MAKE) -C $(LIBFT)
-
-$(MLX42)/lib/libmlx42.a:
-	@echo "Compilando MLX42..."
-	@mkdir -p $(MLX42)/lib
-	@mkdir -p $(MLX42)/build
-	@cmake -B $(MLX42)/build $(MLX42) -DCMAKE_ARCHIVE_OUTPUT_DIRECTORY=$(MLX42)/lib
-	@cmake --build $(MLX42)/build
 	
 all:$(NAME)
 
