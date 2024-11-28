@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_moves.c                                         :+:      :+:    :+:   */
+/*   ft_moves_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:36:53 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/28 10:32:27 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:35:00 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 void	ft_key_hook(mlx_key_data_t keydata, void *param)
 {
@@ -53,6 +53,7 @@ void	ft_move_player(t_map *game, int x, int y)
 			new_x * 64, new_y * 64);
 		mlx_image_to_window(game->mlx, game->images.player,
 			new_x * 64, new_y * 64);
+		ft_print_move(game);
 		game->player.position.x = new_x;
 		game->player.position.y = new_y;
 	}
@@ -65,4 +66,15 @@ void	ft_finish(t_map *game)
 	ft_free_map(game);
 	mlx_terminate(game->mlx);
 	exit(SUCCESS);
+}
+
+void	ft_print_move(t_map *game)
+{
+	char	*line;
+
+	line = ft_itoa(game->player.moves);
+	line = ft_strjoin("Move: ", line);
+
+	mlx_put_string(game->mlx, line, 0, 0);
+	free(line);
 }

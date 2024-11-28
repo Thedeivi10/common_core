@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/20 11:29:28 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/28 10:39:41 by davigome         ###   ########.fr       */
+/*   Created: 2024/11/28 16:13:29 by davigome          #+#    #+#             */
+/*   Updated: 2024/11/28 16:15:57 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include <fcntl.h>
 # include <unistd.h>
@@ -20,8 +20,8 @@
 # include "../libft/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 
-# define NAME "so_long"
-# define TITRE "So Long"
+# define NAME "so_long_bonus"
+# define TITRE "So Long Bonus"
 
 # define TILE_SIZE 64
 # define IMG_SIZE 48
@@ -130,6 +130,7 @@ void	ft_start(t_map *game);
 void	ft_key_hook(mlx_key_data_t keydata, void *param);
 void	ft_move_player(t_map *game, int x, int y);
 void	ft_finish(t_map *game);
+void	ft_print_move(t_map *game);
 // FT_IMAGES.C //
 void	ft_load_textures(t_map *game);
 void	ft_load_textures_2(t_map *game);

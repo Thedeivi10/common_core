@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_checks_tools.c                                  :+:      :+:    :+:   */
+/*   ft_checks_tools_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:15:03 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/28 10:41:13 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:26:54 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 int	ft_checks(char *map, t_map *game)
 {

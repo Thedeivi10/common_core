@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/15 21:33:55 by davigome          #+#    #+#              #
-#    Updated: 2024/11/27 19:32:35 by davigome         ###   ########.fr        #
+#    Updated: 2024/11/28 16:30:06 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,16 @@ SRC_FILES		= so_long.c \
 					ft_moves.c \
 					ft_images.c
 
-SRC_BONUS_FILES = so_long_bonus.c
+SRC_BONUS_FILES = so_long_bonus.c \
+					ft_checks_tools_bonus.c \
+					ft_checks_tools_2_bonus.c \
+					ft_checks_tools_3_bonus.c \
+					ft_tools_bonus.c \
+					ft_start_map_bonus.c \
+					ft_free_bonus.c \
+					ft_init_mlx_bonus.c \
+					ft_moves_bonus.c \
+					ft_images_bonus.c
 
 OBJS				= $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 OBJS_BONUS			= $(addprefix $(OBJ_BONUS_DIR)/, $(SRC_BONUS_FILES:.c=.o))
@@ -52,7 +61,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.cc
+$(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c
 	@mkdir -p $(OBJ_BONUS_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
@@ -61,7 +70,7 @@ $(NAME): $(LIBFT)/libft.a $(OBJS)
 	@echo "$(GREEN)Executable for so_long launched successfully!$(RESET)"
 
 $(BONUS_NAME): $(LIBFT)/libft.a  $(OBJS_BONUS)
-	@$(CFLAGS) -o $(BONUS_NAME) $(OBJS_BONUS) $(LIBS)
+	@$(CC) $(CFLAGS) -o $(BONUS_NAME) $(OBJS_BONUS) $(LIBS)
 	@echo "$(GREEN)Bonus for so_long launched successfully!$(RESET)"
 
 $(LIBFT)/libft.a:

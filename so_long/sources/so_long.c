@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:28:29 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/27 23:06:17 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/28 10:24:06 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 		if (ft_checks(argv[1], game) >= 1)
 		{
 			ft_printf("Error:\n");
-			ft_write_check(argv[1],game);
+			ft_write_check(argv[1], game);
 			return (FAILURE);
 		}
 	}

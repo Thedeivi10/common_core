@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_start_map.c                                     :+:      :+:    :+:   */
+/*   ft_start_map_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 08:13:12 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/28 10:51:41 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/28 16:27:15 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "../includes/so_long_bonus.h"
 
 t_map	*ft_map(char *map, t_map *game)
 {
