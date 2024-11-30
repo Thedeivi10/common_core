@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:13:29 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/28 16:15:57 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/29 23:35:46 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_images
 	mlx_image_t	*floor;
 	mlx_image_t	*collectibles;
 	mlx_image_t	*exit;
+	mlx_image_t	*enemy;
 }			t_images;
 typedef struct s_map
 {
@@ -93,10 +94,9 @@ typedef struct s_map
 	t_images	images;			//TEXTURES AND IMAGES
 }			t_map;
 
-
 // FT_CHECKS_TOOLS.C //
 int		ft_checks(char *map, t_map *game);
-void	ft_write_check(char *map,t_map *game);
+void	ft_write_check(char *map, t_map *game);
 int		ft_check_ber(char *map);
 int		ft_check_no(t_map *game, char c);
 int		ft_more(t_map *game, char c);
@@ -105,12 +105,12 @@ int		ft_more(t_map *game, char c);
 int		ft_invalid_char(t_map *game);
 int		ft_no_rec(t_map *game);
 int		ft_no_surrounded(t_map *game);
-int 	ft_valid_path(t_map *game);
+int		ft_valid_path(t_map *game);
 void	ft_cont_collectables(t_map *game);
 
 // FT_CHECK.TOOLS_3.C //
-void		ft_check_path(char **cpy,t_map *game, t_coord now);
-int			ft_jump(t_map *game);
+void	ft_check_path(char **cpy, t_map *game, t_coord now);
+int		ft_jump(t_map *game);
 
 // FT_TOOLS.C //
 char	**ft_cpy_matrix(char **src);
@@ -120,7 +120,7 @@ t_map	*ft_map(char *map, t_map *game);
 t_map	*ft_init_map(t_map *game);
 t_map	*ft_read_map(char *map, t_map *game);
 void	ft_read_2(int fd, char *line, t_map *game);
-int		ft_count_lines(char *map,t_map *game);
+int		ft_count_lines(char *map, t_map *game);
 
 // FT_INIT_MLX.C //
 void	ft_init_mlx(t_map	*game);
@@ -130,6 +130,7 @@ void	ft_start(t_map *game);
 void	ft_key_hook(mlx_key_data_t keydata, void *param);
 void	ft_move_player(t_map *game, int x, int y);
 void	ft_finish(t_map *game);
+void	ft_lose(t_map *game);
 void	ft_print_move(t_map *game);
 // FT_IMAGES.C //
 void	ft_load_textures(t_map *game);

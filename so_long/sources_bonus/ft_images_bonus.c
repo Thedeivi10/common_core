@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:15:48 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/28 16:26:25 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/29 23:40:18 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_load_textures(t_map *game)
 		exit(ERROR);
 	game->images.player = mlx_texture_to_image(game->mlx, texture);
 	mlx_delete_texture(texture);
-	texture = mlx_load_png("images/wall.png");
+	texture = mlx_load_png("images/wall_2.png");
 	if (!texture)
 		exit(ERROR);
 	game->images.wall = mlx_texture_to_image(game->mlx, texture);
@@ -48,6 +48,11 @@ void	ft_load_textures_2(t_map *game)
 		exit(ERROR);
 	game->images.floor = mlx_texture_to_image(game->mlx, texture);
 	mlx_delete_texture(texture);
+	texture = mlx_load_png("images/mihawk.png");
+	if (!texture)
+		exit(ERROR);
+	game->images.enemy = mlx_texture_to_image(game->mlx, texture);
+	mlx_delete_texture(texture);
 }
 
 void	ft_render_map(t_map *game)
@@ -72,6 +77,9 @@ void	ft_render_map(t_map *game)
 			if (game->grid[y][x] == 'P')
 				mlx_image_to_window(game->mlx, game->images.player,
 					x * 64, y * 64);
+			if (game->grid[y][x] == 'X')
+				mlx_image_to_window(game->mlx, game->images.enemy,
+					x * 64, y * 64);
 		}
 	}
 }
@@ -95,8 +103,9 @@ void	ft_render_background(t_map *game)
 		x = -1;
 		while (game->grid[y][++x])
 		{
-			if (game->grid[y][x] == '1')	
-				mlx_image_to_window(game->mlx, game->images.wall, x * 64, y * 64);
+			if (game->grid[y][x] == '1')
+				mlx_image_to_window(game->mlx, game->images.wall,
+					x * 64, y * 64);
 		}
 	}
 	ft_print_move(game);

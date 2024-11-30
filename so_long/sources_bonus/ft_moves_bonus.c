@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:36:53 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/28 16:35:00 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/29 23:38:28 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	ft_move_player(t_map *game, int x, int y)
 	new_y = game->player.position.y + y;
 	if (game->grid[new_y][new_x] == 'E' && game->collectibles <= 0)
 		ft_finish(game);
+	if (game->grid[new_y][new_x] == 'X')
+		ft_lose(game);
 	if (game->grid[new_y][new_x] != '1' && game->grid[new_y][new_x] != 'E')
 	{
 		game->player.moves++;
@@ -68,13 +70,23 @@ void	ft_finish(t_map *game)
 	exit(SUCCESS);
 }
 
+void	ft_lose(t_map *game)
+{
+	system("clear");
+	ft_printf("YOU LOSE :(.\n");
+	ft_free_map(game);
+	mlx_terminate(game->mlx);
+	exit(SUCCESS);
+}
+
 void	ft_print_move(t_map *game)
 {
 	char	*line;
 
 	line = ft_itoa(game->player.moves);
 	line = ft_strjoin("Move: ", line);
-
+	mlx_image_to_window(game->mlx, game->images.wall, 0, 0);
+	mlx_image_to_window(game->mlx, game->images.wall, 64, 0);
 	mlx_put_string(game->mlx, line, 0, 0);
 	free(line);
 }

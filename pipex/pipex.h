@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                       :+:      :+:    :+:   */
+/*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/25 21:26:45 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/17 08:51:20 by davigome         ###   ########.fr       */
+/*   Created: 2024/11/28 23:21:12 by davigome          #+#    #+#             */
+/*   Updated: 2024/11/28 23:23:07 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PIPEX_H
+# define PIPEX_H
 
-int	ft_putchar(char c)
-{
-	write(1, &c, 1);
-	return (1);
-}
+# include <unistd.h>
+
+#endif

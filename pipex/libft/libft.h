@@ -6,18 +6,22 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 22:08:21 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/18 21:24:06 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/23 21:09:10 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <ctype.h>
+# include <fcntl.h>
 # include <stdarg.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
@@ -71,14 +75,21 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
-// FT_PRINTF FUNCTIONS //
+// PRINT_F FUCTIONS //
+int		ft_printf(const char *format, ...);
+int		ft_putchar(char c);
+int		ft_putstring(char *string);
+int		ft_putnumbr_signed(int n);
+int		ft_putpointer(unsigned long p);
+int		ft_putunsigned(unsigned int n);
+int		ft_puthexadecimal(unsigned int n, const char format);
 
-int	ft_printf(const char *format, ...);
-int	ft_putchar(char c);
-int	ft_putstring(char *string);
-int	ft_putnumbr_signed(int n);
-int	ft_putpointer(unsigned long p);
-int	ft_putunsigned(unsigned int n);
-int	ft_puthexadecimal(unsigned int n, const char format);
+// GET_NEXT_LINE FUNCTIONS //
+
+char	*get_next_line(int fd);
+char	*ft_strchr_g(char *s, int c);
+char	*ft_strjoin_g(char *s1, char *s2);
+size_t	ft_strlen_g(char *s);
+char	*ft_clean(char *str);
 
 #endif

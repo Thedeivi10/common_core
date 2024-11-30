@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:11:51 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/28 16:26:50 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:18:21 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	ft_check_path(char **cpy, t_map *game, t_coord now)
 	if (now.x < 0 || now.y < 0
 		|| now.y >= game->size.height || now.x >= game->size.width)
 		return ;
-	if (cpy[now.y][now.x] == '1' || cpy[now.y][now.x] == 'V')
+	if (cpy[now.y][now.x] == '1' || cpy[now.y][now.x] == 'V'
+		|| cpy[now.y][now.x] == 'X')
 		return ;
 	if (cpy[now.y][now.x] == 'C')
 		game->collectibles--;

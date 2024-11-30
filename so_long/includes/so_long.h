@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 11:29:28 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/28 10:39:41 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/29 23:37:13 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,9 @@ typedef struct s_map
 	t_images	images;			//TEXTURES AND IMAGES
 }			t_map;
 
-
 // FT_CHECKS_TOOLS.C //
 int		ft_checks(char *map, t_map *game);
-void	ft_write_check(char *map,t_map *game);
+void	ft_write_check(char *map, t_map *game);
 int		ft_check_ber(char *map);
 int		ft_check_no(t_map *game, char c);
 int		ft_more(t_map *game, char c);
@@ -105,12 +104,12 @@ int		ft_more(t_map *game, char c);
 int		ft_invalid_char(t_map *game);
 int		ft_no_rec(t_map *game);
 int		ft_no_surrounded(t_map *game);
-int 	ft_valid_path(t_map *game);
+int		ft_valid_path(t_map *game);
 void	ft_cont_collectables(t_map *game);
 
 // FT_CHECK.TOOLS_3.C //
-void		ft_check_path(char **cpy,t_map *game, t_coord now);
-int			ft_jump(t_map *game);
+void	ft_check_path(char **cpy, t_map *game, t_coord now);
+int		ft_jump(t_map *game);
 
 // FT_TOOLS.C //
 char	**ft_cpy_matrix(char **src);
@@ -120,7 +119,7 @@ t_map	*ft_map(char *map, t_map *game);
 t_map	*ft_init_map(t_map *game);
 t_map	*ft_read_map(char *map, t_map *game);
 void	ft_read_2(int fd, char *line, t_map *game);
-int		ft_count_lines(char *map,t_map *game);
+int		ft_count_lines(char *map, t_map *game);
 
 // FT_INIT_MLX.C //
 void	ft_init_mlx(t_map	*game);

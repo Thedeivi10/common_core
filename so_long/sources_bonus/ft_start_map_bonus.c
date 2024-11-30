@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 08:13:12 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/28 16:27:15 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/28 19:23:51 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ void	ft_read_2(int fd, char *line, t_map *game)
 	i = 0;
 	while (line)
 	{
-		if (line[ft_strlen(line) - 1] == '\n')
+		if (line[0] == '\n')
+			game->grid[i] = "\n";
+		else if (line[ft_strlen(line) - 1] == '\n' )
 			game->grid[i] = ft_substr(line, 0, ft_strlen(line) - 1);
 		else
 			game->grid[i] = ft_strdup(line);

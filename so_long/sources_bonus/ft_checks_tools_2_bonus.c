@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 19:04:00 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/28 16:26:45 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:16:41 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_invalid_char(t_map *game)
 		{
 			if (game->grid[i][j] != 'P' && game->grid[i][j] != '0'
 				&& game->grid[i][j] != '1' && game->grid[i][j] != 'E'
-				&& game->grid[i][j] != 'C')
+				&& game->grid[i][j] != 'C' && game->grid[i][j] != 'X')
 				return (FAILURE);
 			j++;
 		}
