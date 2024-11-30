@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 12:15:48 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/27 22:53:40 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:41:03 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,35 +18,48 @@ void	ft_load_textures(t_map *game)
 
 	texture = mlx_load_png("images/luffy.png");
 	if (!texture)
+	{
+		mlx_terminate(game->mlx);
 		exit(ERROR);
+	}
 	game->images.player = mlx_texture_to_image(game->mlx, texture);
 	mlx_delete_texture(texture);
 	texture = mlx_load_png("images/wall.png");
 	if (!texture)
+	{
+		mlx_terminate(game->mlx);
 		exit(ERROR);
+	}
 	game->images.wall = mlx_texture_to_image(game->mlx, texture);
 	mlx_delete_texture(texture);
+	ft_load_textures_2(game, texture);
+}
+
+void	ft_load_textures_2(t_map *game, mlx_texture_t *texture)
+{
 	texture = mlx_load_png("images/zoro_chibi.png");
 	if (!texture)
+	{
+		mlx_terminate(game->mlx);
 		exit(ERROR);
+	}
 	game->images.collectibles = mlx_texture_to_image(game->mlx, texture);
+	mlx_delete_texture(texture);
+	texture = mlx_load_png("images/floor.png");
+	if (!texture)
+	{
+		mlx_terminate(game->mlx);
+		exit(ERROR);
+	}
+	game->images.floor = mlx_texture_to_image(game->mlx, texture);
 	mlx_delete_texture(texture);
 	texture = mlx_load_png("images/zoro.png");
 	if (!texture)
+	{
+		mlx_terminate(game->mlx);
 		exit(ERROR);
+	}
 	game->images.exit = mlx_texture_to_image(game->mlx, texture);
-	mlx_delete_texture(texture);
-	ft_load_textures_2(game);
-}
-
-void	ft_load_textures_2(t_map *game)
-{
-	mlx_texture_t	*texture;
-
-	texture = mlx_load_png("images/floor.png");
-	if (!texture)
-		exit(ERROR);
-	game->images.floor = mlx_texture_to_image(game->mlx, texture);
 	mlx_delete_texture(texture);
 }
 

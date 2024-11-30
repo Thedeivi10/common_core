@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 08:15:03 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/28 10:41:13 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:15:10 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,34 @@ int	ft_checks(char *map, t_map *game)
 	i = 0;
 	if (ft_check_ber(map) == FAILURE)
 		i++;
+	if (ft_jump(game) == FAILURE)
+		ft_write_check(map, game);
 	if (ft_check_no(game, 'E') == FAILURE
 		|| ft_check_no(game, 'C') == FAILURE
 		|| ft_check_no(game, 'P') == FAILURE)
 		i++;
-	if (ft_more(game, 'E') == FAILURE)
+	if (ft_more(game, 'E') == FAILURE
+		|| ft_more(game, 'P') == FAILURE
+		|| ft_invalid_char(game) == FAILURE)
 		i++;
-	if (ft_more(game, 'P') == FAILURE)
-		i++;
-	if (ft_invalid_char(game) == FAILURE)
-		i++;
-	if (ft_no_rec(game) == FAILURE)
-		i++;
-	if (ft_no_surrounded(game) == FAILURE)
-		i++;
+	if (ft_no_rec(game) == FAILURE
+		|| ft_no_surrounded(game) == FAILURE)
+	{
+		ft_printf(E_NO_BLOCK);
+		exit(FAILURE);
+	}
 	if (ft_valid_path(game) == FAILURE)
-		i++;
-	if (ft_jump(game) == FAILURE)
 		i++;
 	return (i);
 }
 
 void	ft_write_check(char *map, t_map *game)
 {
+	if (ft_jump(game) == FAILURE)
+	{
+		ft_printf(E_EMPTYLINE);
+		exit(FAILURE);
+	}
 	if (ft_check_ber(map) == FAILURE)
 		ft_printf(E_FILENAME);
 	if (ft_check_no(game, 'E') == FAILURE)
@@ -56,14 +61,8 @@ void	ft_write_check(char *map, t_map *game)
 		ft_printf(E_MORE_INIT);
 	if (ft_invalid_char(game) == FAILURE)
 		ft_printf(E_CHAR);
-	if (ft_no_rec(game) == FAILURE)
-		ft_printf(E_NO_RECTAN);
-	if (ft_no_surrounded(game) == FAILURE)
-		ft_printf(E_NO_BLOCK);
 	if (ft_valid_path(game) == FAILURE)
 		ft_printf(E_NO_PATH);
-	if (ft_jump(game) == FAILURE)
-		ft_printf(E_EMPTYLINE);
 }
 
 int	ft_check_ber(char *map)

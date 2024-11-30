@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 16:13:29 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/29 23:35:46 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:50:16 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define E_NO_OBJ "The map does not have any collectible objects.\n"
 # define E_MORE_INIT "The map has two or more starting points.\n"
 # define E_MORE_EXIT "The map has two or more exits.\n"
-# define E_NO_RECTAN "The map is not rectangular.\n"
-# define E_NO_BLOCK "The map is not surrounded by walls.\n"
+# define E_NO_BLOCK "The map is not surrounded by walls or\
+ the map is not rectangular. \n"
 # define E_NO_PATH "There is no valid path in the map.\n"
 # define E_CHAR "The map contains invalid characters.\n"
 # define E_PLAYER "The map must contain one player.\n"
@@ -134,7 +134,8 @@ void	ft_lose(t_map *game);
 void	ft_print_move(t_map *game);
 // FT_IMAGES.C //
 void	ft_load_textures(t_map *game);
-void	ft_load_textures_2(t_map *game);
+void	ft_load_textures_2(t_map *game, mlx_texture_t *texture);
+void	ft_load_textures_3(t_map *game, mlx_texture_t *texture);
 void	ft_render_map(t_map *game);
 void	ft_render_background(t_map *game);
 

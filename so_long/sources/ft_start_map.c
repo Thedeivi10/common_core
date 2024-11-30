@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/24 08:13:12 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/28 10:51:41 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/30 14:41:44 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,11 @@ t_map	*ft_read_map(char *map, t_map *game)
 		exit(ERROR);
 	}
 	line = get_next_line(fd);
+	if (!line)
+	{
+		ft_printf("The map is empty\n");
+		exit(FAILURE);
+	}
 	ft_read_2(fd, line, game);
 	close(fd);
 	return (game);
@@ -72,7 +77,9 @@ void	ft_read_2(int fd, char *line, t_map *game)
 	i = 0;
 	while (line)
 	{
-		if (line[ft_strlen(line) - 1] == '\n')
+		if (line[0] == '\n')
+			game->grid[i] = "\n";
+		else if (line[ft_strlen(line) - 1] == '\n' )
 			game->grid[i] = ft_substr(line, 0, ft_strlen(line) - 1);
 		else
 			game->grid[i] = ft_strdup(line);

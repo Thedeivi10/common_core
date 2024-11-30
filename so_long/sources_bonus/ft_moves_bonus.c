@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/27 16:36:53 by davigome          #+#    #+#             */
-/*   Updated: 2024/11/29 23:38:28 by davigome         ###   ########.fr       */
+/*   Updated: 2024/11/30 16:52:36 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	ft_move_player(t_map *game, int x, int y)
 
 void	ft_finish(t_map *game)
 {
-	system("clear");
 	ft_printf("YOU WIN!\n");
 	ft_free_map(game);
 	mlx_terminate(game->mlx);
@@ -72,7 +71,6 @@ void	ft_finish(t_map *game)
 
 void	ft_lose(t_map *game)
 {
-	system("clear");
 	ft_printf("YOU LOSE :(.\n");
 	ft_free_map(game);
 	mlx_terminate(game->mlx);
