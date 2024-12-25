@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:12:15 by davigome          #+#    #+#             */
-/*   Updated: 2024/08/18 09:56:06 by davigome         ###   ########.fr       */
+/*   Updated: 2024/12/24 15:23:55 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ malloc
 Descripción Reserva (con malloc(3)) y devuelve una nueva
 string, formada por la concatenación de ’s1’ y
 ’s2’.*/
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*dst;
 	int		i;
