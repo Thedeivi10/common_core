@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:18:02 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/29 13:40:15 by davigome         ###   ########.fr       */
+/*   Updated: 2024/12/29 15:45:30 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ long long	ft_atoi_long(const char *str);
 
 // FT_START.C //
 void	ft_two_values(t_nums *nums);
+void	ft_three_values(t_nums *nums);
 void	ft_select_algorithm(t_nums *nums);
+void	ft_more_values(t_nums *nums);
 
 # endif

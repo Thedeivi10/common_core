@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 11:20:47 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/29 12:50:04 by davigome         ###   ########.fr       */
+/*   Updated: 2024/12/29 17:07:26 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,20 @@ long long	ft_atoi_long(const char *str)
 	}
 	number = neg * number;
 	return (number);
+}
+
+t_stack	*ft_first_value(t_nums *nums)
+{
+	t_stack *new;
+
+	new = malloc(sizeof(t_stack));
+	if (!new)
+	{
+		ft_printf("Error\n");
+		ft_free_nums(nums);
+		exit(1);
+	}
+	new->value = nums->list[0];
+	new->next = NULL;
+	return (new);
 }
