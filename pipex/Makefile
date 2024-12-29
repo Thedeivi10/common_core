@@ -6,12 +6,12 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/18 17:49:39 by davigome          #+#    #+#              #
-#    Updated: 2024/12/28 20:05:44 by davigome         ###   ########.fr        #
+#    Updated: 2024/12/29 19:26:12 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
-BONUS_NAME = pipex_bonus
+#BONUS_NAME = pipex_bonus
 
 CC = gcc -g
 CFLAGS = -Wall  -Wextra -Werror

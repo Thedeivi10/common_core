@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 11:20:47 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/29 17:07:26 by davigome         ###   ########.fr       */
+/*   Updated: 2024/12/29 20:54:43 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ long long	ft_atoi_long(const char *str)
 	return (number);
 }
 
-t_stack	*ft_first_value(t_nums *nums)
+t_stack	*ft_newlst_value(t_nums *nums)
 {
 	t_stack *new;
 
@@ -60,3 +60,4 @@ t_stack	*ft_first_value(t_nums *nums)
 	new->next = NULL;
 	return (new);
 }
+

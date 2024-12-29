@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:18:02 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/29 15:45:30 by davigome         ###   ########.fr       */
+/*   Updated: 2024/12/29 20:55:18 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,26 @@ typedef struct	s_nums
 }	t_nums;
 
 // FT_CHECKS.C //
-void	ft_checks(char **argv, t_nums *nums);
-void	ft_alloc_mem_values(char **argv, t_nums *nums);
-void	ft_cpy_values(char **argv, t_nums *nums);
-void	ft_check_sign_digit(t_nums *nums);
-void	ft_not_digit(t_nums *nums);
-void	ft_atoi_list_and_max_min(t_nums *nums);
-void	ft_check_reps(t_nums *nums);
-void	ft_check_sort(t_nums *nums);
+void		ft_checks(char **argv, t_nums *nums);
+void		ft_alloc_mem_values(char **argv, t_nums *nums);
+void		ft_cpy_values(char **argv, t_nums *nums);
+void		ft_check_sign_digit(t_nums *nums);
+void		ft_not_digit(t_nums *nums);
+void		ft_atoi_list_and_max_min(t_nums *nums);
+void		ft_check_reps(t_nums *nums);
+void		ft_check_sort(t_nums *nums);
 
 // FT_FREES.C //
-void	ft_free_nums(t_nums *nums);
+void		ft_free_nums(t_nums *nums);
 
 // FT_UTILS.C //
 long long	ft_atoi_long(const char *str);
+t_stack		*ft_newlst_value(t_nums *nums);
 
 // FT_START.C //
-void	ft_two_values(t_nums *nums);
-void	ft_three_values(t_nums *nums);
-void	ft_select_algorithm(t_nums *nums);
-void	ft_more_values(t_nums *nums);
+void		ft_two_values(t_nums *nums);
+void		ft_three_values(t_nums *nums);
+void		ft_select_algorithm(t_nums *nums);
+void		ft_more_values(t_nums *nums);
 
 # endif

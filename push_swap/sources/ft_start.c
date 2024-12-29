@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 13:34:24 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/29 17:01:52 by davigome         ###   ########.fr       */
+/*   Updated: 2024/12/29 21:17:41 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,11 @@ void	ft_more_values(t_nums *nums)
 
 void	ft_values_to_stack_a(t_stack **stack_a, t_nums *nums)
 {
-	*stack_a = ft_first_value(nums);
+	t_stack	*temp;
+	int		i;
+
+	i = 0;
+	*stack_a = ft_newlst_value(nums);
+	while (++i < nums->)
 }
 
