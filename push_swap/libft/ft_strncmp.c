@@ -1,36 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_frees.c                                         :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 14:40:01 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/28 11:47:23 by davigome         ###   ########.fr       */
+/*   Created: 2024/04/21 12:06:49 by davigome          #+#    #+#             */
+/*   Updated: 2024/04/21 13:52:03 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "libft.h"
 
-void	ft_free(t_pipex *pipex)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
+	size_t	i;
 
-	i = -1;
-	while (pipex->path[++i])
-		free(pipex->path[i]);
-	free(pipex->here);
-	free(pipex->path);
-	free(pipex->pipes);
-	free(pipex);
-}
-
-void	ft_free_matrix(char	**matrix)
-{
-	int	i;
-
-	i = -1;
-	while (matrix[++i])
-		free(matrix[i]);
-	free(matrix);
+	i = 0;
+	while (s1[i] != '\0' && s2[i] != '\0' && i < n)
+	{
+		if ((unsigned char)s1[i] != (unsigned char)s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	if (i < n)
+		return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (0);
 }

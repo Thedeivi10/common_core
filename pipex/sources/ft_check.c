@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 17:26:09 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/25 11:03:01 by davigome         ###   ########.fr       */
+/*   Updated: 2024/12/28 11:54:17 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	ft_check(char **argv, int argc, t_pipex *pipex, char **envp)
 
 void	ft_check_narg(char **argv, int argc)
 {
-	if (argc < 5)
+	if (argc != 5)
 	{
 		ft_printf("Your pipe has not the correct structure\n");
 		exit(1);
 	}
-	if (ft_strncmp(argv[1], "here_doc",ft_strlen("here_doc")) == 0)
+	if (ft_strncmp(argv[1], "here_doc", ft_strlen("here_doc")) == 0)
 	{
 		if (argc < 6)
 		{
@@ -40,7 +40,7 @@ void	ft_check_read(char **argv)
 {
 	int	fd;
 
-	if (ft_strncmp(argv[1], "here_doc",ft_strlen("here_doc")) != 0)
+	if (ft_strncmp(argv[1], "here_doc", ft_strlen("here_doc")) != 0)
 	{
 		fd = open(argv[1], O_RDONLY);
 		if (fd == -1)
@@ -54,60 +54,46 @@ void	ft_check_read(char **argv)
 
 void	ft_check_cmds(char **argv, int argc, t_pipex *pipex, char **envp)
 {
-	char	*line;
-	int		i;
-	int		flag;
+	int		*flag;
 	int		j;
 
 	j = 2;
 	ft_get_path(pipex, envp);
-	while(j < argc - 1)
+	flag = malloc(sizeof(int) * 1);
+	while (j < argc - 1)
 	{
-		i = -1;
-		flag = 0;
-		while(pipex->path[++i])
-		{
-			line = ft_strjoin(pipex->path[i], "/");
-			line = ft_strjoin_g(line, argv[j]);
-			if (access(line, X_OK) == 0)
-			{
-				flag = 1;
-				free(line);
-				break;
-			}
-			free(line);
-		}
-		if (flag == 0)
-			break;
+		ft_check_cmds_2(argv, pipex, flag, j);
+		if (*flag == 0)
+			break ;
 		j++;
 	}
-//	ft_free(pipex);
-	if (flag == 0)
+	if (*flag == 0)
 	{
 		ft_printf("Some command does not exists or works\n");
+		free(flag);
 		exit(1);
 	}
 }
 
-void	ft_init_pipex(t_pipex *pipex)
+void	ft_check_cmds_2(char **argv, t_pipex *pipex, int *flag, int j)
 {
-	pipex->here = NULL;
-	pipex->pipex = NULL;
-	pipex->path = NULL;
-}
+	char	**command;
+	int		i;
+	char	*line;
 
-void	ft_get_path(t_pipex *pipex, char **envp)
-{
-	int i;
-
-	i = 0;
-	while (envp[i])
+	i = -1;
+	*flag = 0;
+	command = ft_split(argv[j], ' ');
+	while (pipex->path[++i])
 	{
-		if (ft_strncmp(envp[i], "PATH=", ft_strlen("PATH=")) == 0)
+		line = ft_strjoin(pipex->path[i], "/");
+		line = ft_strjoin_g(line, command[0]);
+		if (access(line, X_OK) == 0)
 		{
-			pipex->path = ft_split(envp[i] + 5, ':');
-			break;
+			*flag = 1;
+			free(line);
+			break ;
 		}
-		i++;
+		free(line);
 	}
 }

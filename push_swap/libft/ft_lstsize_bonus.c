@@ -1,36 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_frees.c                                         :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 14:40:01 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/28 11:47:23 by davigome         ###   ########.fr       */
+/*   Created: 2024/06/27 17:23:12 by davigome          #+#    #+#             */
+/*   Updated: 2024/06/27 17:37:06 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "libft.h"
 
-void	ft_free(t_pipex *pipex)
+int	ft_lstsize(t_list *lst)
 {
-	int	i;
+	int		i;
 
-	i = -1;
-	while (pipex->path[++i])
-		free(pipex->path[i]);
-	free(pipex->here);
-	free(pipex->path);
-	free(pipex->pipes);
-	free(pipex);
-}
-
-void	ft_free_matrix(char	**matrix)
-{
-	int	i;
-
-	i = -1;
-	while (matrix[++i])
-		free(matrix[i]);
-	free(matrix);
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }

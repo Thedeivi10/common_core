@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_frees.c                                         :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 14:40:01 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/28 11:47:23 by davigome         ###   ########.fr       */
+/*   Created: 2024/12/28 20:06:55 by davigome          #+#    #+#             */
+/*   Updated: 2024/12/29 13:33:42 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "../push_swap.h"
 
-void	ft_free(t_pipex *pipex)
+int	main(int argc, char **argv)
 {
-	int	i;
+	t_nums	*nums;
 
-	i = -1;
-	while (pipex->path[++i])
-		free(pipex->path[i]);
-	free(pipex->here);
-	free(pipex->path);
-	free(pipex->pipes);
-	free(pipex);
-}
-
-void	ft_free_matrix(char	**matrix)
-{
-	int	i;
-
-	i = -1;
-	while (matrix[++i])
-		free(matrix[i]);
-	free(matrix);
+	if (argc <= 2)
+		exit(0);
+	nums = malloc(sizeof(nums));
+	if (!nums)
+	{
+		ft_printf("Errors, could not be able to allocates nums memory at the beggining");
+		exit(1);
+	}
+//	stack_a = malloc(sizeof(t_stack));
+	ft_checks(argv, nums);
+	ft_select_algorithm(nums);
+	return (0);
 }

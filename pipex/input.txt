@@ -1,0 +1,2 @@
+Esto es una prueba de pipex.
+Aquí probamos dos comandos simples.

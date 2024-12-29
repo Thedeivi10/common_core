@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_frees.c                                         :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 14:40:01 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/28 11:47:23 by davigome         ###   ########.fr       */
+/*   Created: 2024/04/23 23:33:43 by davigome          #+#    #+#             */
+/*   Updated: 2024/04/23 23:47:57 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "libft.h"
 
-void	ft_free(t_pipex *pipex)
+char	*ft_strdup(const char *s1)
 {
-	int	i;
+	char	*dst;
+	size_t	cont;
 
-	i = -1;
-	while (pipex->path[++i])
-		free(pipex->path[i]);
-	free(pipex->here);
-	free(pipex->path);
-	free(pipex->pipes);
-	free(pipex);
-}
-
-void	ft_free_matrix(char	**matrix)
-{
-	int	i;
-
-	i = -1;
-	while (matrix[++i])
-		free(matrix[i]);
-	free(matrix);
+	cont = 0;
+	dst = malloc(ft_strlen(s1) +1);
+	if (!dst)
+		return (0);
+	while (s1[cont])
+	{
+		dst[cont] = s1[cont];
+		cont++;
+	}
+	dst[cont] = 0;
+	return (dst);
 }

@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_frees.c                                         :+:      :+:    :+:   */
+/*   ft_start.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 14:40:01 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/28 11:47:23 by davigome         ###   ########.fr       */
+/*   Created: 2024/12/29 13:34:24 by davigome          #+#    #+#             */
+/*   Updated: 2024/12/29 13:39:27 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
-
-void	ft_free(t_pipex *pipex)
+#include "../push_swap.h"
+void	ft_select_algorithm(t_nums *nums)
 {
-	int	i;
-
-	i = -1;
-	while (pipex->path[++i])
-		free(pipex->path[i]);
-	free(pipex->here);
-	free(pipex->path);
-	free(pipex->pipes);
-	free(pipex);
+	if (nums->num_of_values == 2)
+		ft_two_values(nums);
 }
 
-void	ft_free_matrix(char	**matrix)
+void	ft_two_values(t_nums *nums)
 {
-	int	i;
-
-	i = -1;
-	while (matrix[++i])
-		free(matrix[i]);
-	free(matrix);
+	ft_printf("sa\n");
+	ft_free_nums(nums);
+	exit(0);
 }

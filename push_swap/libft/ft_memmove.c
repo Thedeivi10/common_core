@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_frees.c                                         :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 14:40:01 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/28 11:47:23 by davigome         ###   ########.fr       */
+/*   Created: 2024/04/19 10:58:38 by davigome          #+#    #+#             */
+/*   Updated: 2024/04/19 12:57:58 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "libft.h"
 
-void	ft_free(t_pipex *pipex)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int	i;
+	unsigned char		*destiny;
+	unsigned const char	*origin;
 
-	i = -1;
-	while (pipex->path[++i])
-		free(pipex->path[i]);
-	free(pipex->here);
-	free(pipex->path);
-	free(pipex->pipes);
-	free(pipex);
-}
-
-void	ft_free_matrix(char	**matrix)
-{
-	int	i;
-
-	i = -1;
-	while (matrix[++i])
-		free(matrix[i]);
-	free(matrix);
+	destiny = (unsigned char *) dst;
+	origin = (unsigned const char *) src;
+	if (dst == (void *)0 && src == (void *)0)
+		return (0);
+	if (destiny < origin)
+		ft_memcpy(dst, src, len);
+	if (destiny > origin)
+		while (0 < len--)
+			destiny[len] = origin[len];
+	return (dst);
 }

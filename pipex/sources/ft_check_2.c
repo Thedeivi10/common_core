@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_frees.c                                         :+:      :+:    :+:   */
+/*   ft_check_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 14:40:01 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/28 11:47:23 by davigome         ###   ########.fr       */
+/*   Created: 2024/12/28 11:47:47 by davigome          #+#    #+#             */
+/*   Updated: 2024/12/28 11:51:15 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../pipex.h"
 
-void	ft_free(t_pipex *pipex)
+void	ft_init_pipex(t_pipex *pipex)
 {
-	int	i;
-
-	i = -1;
-	while (pipex->path[++i])
-		free(pipex->path[i]);
-	free(pipex->here);
-	free(pipex->path);
-	free(pipex->pipes);
-	free(pipex);
+	pipex->here = NULL;
+	pipex->pipes = NULL;
+	pipex->path = NULL;
 }
 
-void	ft_free_matrix(char	**matrix)
+void	ft_get_path(t_pipex *pipex, char **envp)
 {
 	int	i;
 
-	i = -1;
-	while (matrix[++i])
-		free(matrix[i]);
-	free(matrix);
+	i = 0;
+	while (envp[i])
+	{
+		if (ft_strncmp(envp[i], "PATH=", ft_strlen("PATH=")) == 0)
+		{
+			pipex->path = ft_split(envp[i] + 5, ':');
+			break ;
+		}
+		i++;
+	}
 }

@@ -6,12 +6,12 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/18 17:49:39 by davigome          #+#    #+#              #
-#    Updated: 2024/12/28 20:05:44 by davigome         ###   ########.fr        #
+#    Updated: 2024/12/29 13:34:35 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = pipex
-BONUS_NAME = pipex_bonus
+NAME = push_swap
+BONUS_NAME = push_swap_bonus
 
 CC = gcc -g
 CFLAGS = -Wall  -Wextra -Werror
@@ -31,10 +31,11 @@ SRC_BONUS_DIR	= ./sources_bonus
 OBJ_DIR			= ./obj
 OBJ_BONUS_DIR	= ./obj_bonus
 
-SRC_FILES		= pipex.c \
-					ft_check.c \
-					ft_check_2.c \
+SRC_FILES		= push_swap.c \
+					ft_checks.c \
 					ft_frees.c \
+					ft_utils.c \
+					ft_start.c \
 
 SRC_BONUS_FILES = 
 

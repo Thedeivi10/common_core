@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_frees.c                                         :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 14:40:01 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/28 11:47:23 by davigome         ###   ########.fr       */
+/*   Created: 2024/04/21 13:47:05 by davigome          #+#    #+#             */
+/*   Updated: 2024/04/21 15:15:12 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "libft.h"
 
-void	ft_free(t_pipex *pipex)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	i;
+	unsigned char	*aux1;
+	unsigned char	*aux2;
+	size_t			cont;
 
-	i = -1;
-	while (pipex->path[++i])
-		free(pipex->path[i]);
-	free(pipex->here);
-	free(pipex->path);
-	free(pipex->pipes);
-	free(pipex);
-}
-
-void	ft_free_matrix(char	**matrix)
-{
-	int	i;
-
-	i = -1;
-	while (matrix[++i])
-		free(matrix[i]);
-	free(matrix);
+	cont = 0;
+	aux1 = (unsigned char *)s1;
+	aux2 = (unsigned char *)s2;
+	while (cont < n)
+	{
+		if (aux1[cont] != aux2[cont])
+			return (aux1[cont] - aux2[cont]);
+		cont++;
+	}
+	return (0);
 }

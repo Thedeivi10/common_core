@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_frees.c                                         :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 14:40:01 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/28 11:47:23 by davigome         ###   ########.fr       */
+/*   Created: 2024/04/21 09:57:06 by davigome          #+#    #+#             */
+/*   Updated: 2024/04/21 13:03:24 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "libft.h"
 
-void	ft_free(t_pipex *pipex)
+char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	int			cont;
+	const char	*aux;
 
-	i = -1;
-	while (pipex->path[++i])
-		free(pipex->path[i]);
-	free(pipex->here);
-	free(pipex->path);
-	free(pipex->pipes);
-	free(pipex);
-}
-
-void	ft_free_matrix(char	**matrix)
-{
-	int	i;
-
-	i = -1;
-	while (matrix[++i])
-		free(matrix[i]);
-	free(matrix);
+	cont = 0;
+	c = (char)c;
+	if (c == '\0')
+	{
+		aux = &s[ft_strlen(s)];
+		return ((char *)aux);
+	}
+	while (s[cont] != '\0')
+	{
+		if (s[cont] == c)
+		{
+			aux = &s[cont];
+			return ((char *)aux);
+		}
+		cont++;
+	}
+	return (NULL);
 }

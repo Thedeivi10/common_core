@@ -1,36 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_frees.c                                         :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 14:40:01 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/28 11:47:23 by davigome         ###   ########.fr       */
+/*   Created: 2024/04/20 09:53:08 by davigome          #+#    #+#             */
+/*   Updated: 2024/04/20 18:16:17 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "libft.h"
 
-void	ft_free(t_pipex *pipex)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	int	i;
+	size_t	src_len;
 
-	i = -1;
-	while (pipex->path[++i])
-		free(pipex->path[i]);
-	free(pipex->here);
-	free(pipex->path);
-	free(pipex->pipes);
-	free(pipex);
-}
-
-void	ft_free_matrix(char	**matrix)
-{
-	int	i;
-
-	i = -1;
-	while (matrix[++i])
-		free(matrix[i]);
-	free(matrix);
+	src_len = ft_strlen(src);
+	if (dstsize == (size_t)0)
+		return (src_len);
+	if (src_len >= dstsize)
+	{
+		ft_memmove(dst, src, dstsize - 1);
+		dst[dstsize - 1] = '\0';
+	}
+	else
+		ft_memmove(dst, src, src_len + 1);
+	return (src_len);
 }

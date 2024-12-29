@@ -1,36 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_frees.c                                         :+:      :+:    :+:   */
+/*   ft_putstring.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/24 14:40:01 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/28 11:47:23 by davigome         ###   ########.fr       */
+/*   Created: 2024/07/26 06:23:22 by davigome          #+#    #+#             */
+/*   Updated: 2024/11/17 08:51:35 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "libft.h"
 
-void	ft_free(t_pipex *pipex)
+static size_t	ftstrlen(const char *s)
 {
-	int	i;
+	size_t	contador;
 
-	i = -1;
-	while (pipex->path[++i])
-		free(pipex->path[i]);
-	free(pipex->here);
-	free(pipex->path);
-	free(pipex->pipes);
-	free(pipex);
+	contador = 0;
+	while (s[contador] != '\0')
+		contador++;
+	return (contador);
 }
 
-void	ft_free_matrix(char	**matrix)
+static void	ftputstr_fd(char *s, int fd)
 {
 	int	i;
 
-	i = -1;
-	while (matrix[++i])
-		free(matrix[i]);
-	free(matrix);
+	i = 0;
+	while (i < (int)ftstrlen(s))
+		write(fd, &s[i++], 1);
+}
+
+int	ft_putstring(char *string)
+{
+	if (!string)
+	{
+		write(1, "(null)", 6);
+		return (6);
+	}
+	ftputstr_fd(string, 1);
+	return (ftstrlen(string));
 }
