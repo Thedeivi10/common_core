@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 13:34:24 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/29 21:17:41 by davigome         ###   ########.fr       */
+/*   Updated: 2024/12/30 11:56:48 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_select_algorithm(t_nums *nums)
 		ft_two_values(nums);
 	if (nums->num_of_values == 3)
 		ft_three_values(nums);
-	else 
-		ft_more_values(nums);
+/* 	else 
+		ft_more_values(nums); */
 }
 
 void	ft_two_values(t_nums *nums)
@@ -44,7 +44,7 @@ void	ft_three_values(t_nums *nums)
 	exit(0);
 }
 
-void	ft_more_values(t_nums *nums)
+/* void	ft_more_values(t_nums *nums)
 {
 	t_stack	**stack_a;
 	t_stack **stack_b;
@@ -60,5 +60,5 @@ void	ft_values_to_stack_a(t_stack **stack_a, t_nums *nums)
 	i = 0;
 	*stack_a = ft_newlst_value(nums);
 	while (++i < nums->)
-}
+} */
 

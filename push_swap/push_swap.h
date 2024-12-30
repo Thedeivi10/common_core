@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:18:02 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/29 20:55:18 by davigome         ###   ########.fr       */
+/*   Updated: 2024/12/30 12:11:47 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void		ft_not_digit(t_nums *nums);
 void		ft_atoi_list_and_max_min(t_nums *nums);
 void		ft_check_reps(t_nums *nums);
 void		ft_check_sort(t_nums *nums);
+void		ft_nothing_after_sign(t_nums *nums);
+void		ft_more_sign(t_nums *nums);
 
 // FT_FREES.C //
 void		ft_free_nums(t_nums *nums);

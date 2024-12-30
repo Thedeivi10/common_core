@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:06:55 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/29 13:33:42 by davigome         ###   ########.fr       */
+/*   Updated: 2024/12/30 11:57:22 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_nums	*nums;
 
-	if (argc <= 2)
+	if (argc <= 1)
 		exit(0);
 	nums = malloc(sizeof(nums));
 	if (!nums)

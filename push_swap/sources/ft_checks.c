@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:10:03 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/29 13:41:20 by davigome         ###   ########.fr       */
+/*   Updated: 2024/12/30 12:11:09 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,9 @@ void	ft_check_sign_digit(t_nums *nums)
 		if (nums->values[i][j] == '+' || nums->values[i][j] == '-')
 			j++;
 		if (nums->values[i][j] == '+' || nums->values[i][j] == '-')
-		{
-			ft_printf("One or more values have more than one sign\n");
-			ft_free_nums(nums);
-			exit(1);
-		}
+			ft_more_sign(nums);
+		if (nums->values[i][j] == '\0')
+			ft_nothing_after_sign(nums);
 		while (nums->values[i][j] != '\0')
 		{
 			if (!ft_isdigit(nums->values[i][j]))
@@ -99,6 +97,20 @@ void	ft_check_sign_digit(t_nums *nums)
 			j++;
 		}
 	}
+}
+
+void	ft_nothing_after_sign(t_nums *nums)
+{
+	ft_printf("There is sign and no int after it\n");
+	ft_free_nums(nums);
+	exit(1);
+}
+
+void	ft_more_sign(t_nums *nums)
+{
+	ft_printf("One or more values have more than one sign\n");
+	ft_free_nums(nums);
+	exit(1);
 }
 
 void	ft_not_digit(t_nums *nums)
