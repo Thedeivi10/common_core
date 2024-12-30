@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/18 17:49:39 by davigome          #+#    #+#              #
-#    Updated: 2024/12/29 19:26:12 by davigome         ###   ########.fr        #
+#    Updated: 2024/12/30 16:02:38 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,6 +69,7 @@ clean:
 	@$(RM) -r $(OBJ_DIR) $(OBJ_BONUS_DIR)
 
 fclean: clean
+	@$(MAKE) -C $(LIBFT) fclean
 	@$(RM) $(NAME) $(BONUS_NAME)
 
 re: fclean all
