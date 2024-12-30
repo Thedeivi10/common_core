@@ -6,12 +6,12 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/26 23:10:09 by davigome          #+#    #+#              #
-#    Updated: 2024/12/29 11:40:35 by davigome         ###   ########.fr        #
+#    Updated: 2024/12/30 15:58:42 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
  
 SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c\
