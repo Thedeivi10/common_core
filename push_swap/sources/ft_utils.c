@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 11:20:47 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/29 20:54:43 by davigome         ###   ########.fr       */
+/*   Updated: 2024/12/30 18:46:31 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ long long	ft_atoi_long(const char *str)
 	return (number);
 }
 
-t_stack	*ft_newlst_value(t_nums *nums)
+t_stack	*ft_newlst_value(t_nums *nums, int i)
 {
 	t_stack *new;
 
@@ -56,8 +56,46 @@ t_stack	*ft_newlst_value(t_nums *nums)
 		ft_free_nums(nums);
 		exit(1);
 	}
-	new->value = nums->list[0];
+	new->value = nums->list[i];
 	new->next = NULL;
 	return (new);
 }
 
+void	ft_addback_lst(t_stack	**stack, t_stack *new)
+{
+	t_stack	*now;
+
+	if (*stack == NULL)
+	{
+		*stack = new;
+	}
+	else
+	{
+		now = *stack;
+		while (now->next)
+			now = now->next;
+		now->next = new;
+	}
+}
+
+void	ft_sort(t_nums *nums)
+{
+	int i;
+	int j;
+	int aux;
+	
+	i = -1;
+	while (++i < nums->num_of_values)
+	{
+		j = -1;
+		while (++j < nums->num_of_values)
+		{
+			if (nums->list[i] < nums->list[j])
+			{
+				aux = nums->list[i];
+				nums->list[i] = nums->list[j];
+				nums->list[j] = aux;
+			}
+		}
+	}
+}

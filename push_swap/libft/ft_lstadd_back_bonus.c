@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 17:54:26 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/29 17:39:04 by davigome         ###   ########.fr       */
+/*   Updated: 2024/12/30 17:23:02 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	else
 	{
 		now = *lst;
-		while (now -> next)
+		while (now-> next)
 			now = now-> next;
-		now -> next = new;
+		now-> next = new;
 	}
 }

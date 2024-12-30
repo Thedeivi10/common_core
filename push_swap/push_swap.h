@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:18:02 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/30 12:11:47 by davigome         ###   ########.fr       */
+/*   Updated: 2024/12/30 17:46:06 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,16 @@ void		ft_free_nums(t_nums *nums);
 
 // FT_UTILS.C //
 long long	ft_atoi_long(const char *str);
-t_stack		*ft_newlst_value(t_nums *nums);
+t_stack		*ft_newlst_value(t_nums *nums, int i);
+void		ft_addback_lst(t_stack	**stack, t_stack *new);
+void		ft_sort(t_nums *nums);
 
 // FT_START.C //
 void		ft_two_values(t_nums *nums);
 void		ft_three_values(t_nums *nums);
 void		ft_select_algorithm(t_nums *nums);
 void		ft_more_values(t_nums *nums);
+void		ft_values_to_stack_a(t_stack **stack_a, t_nums *nums);
+void		ft_index_to_stack_a(/* t_stack **stack_a,  */t_nums *nums);
 
 # endif
