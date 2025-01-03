@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/18 17:49:39 by davigome          #+#    #+#              #
-#    Updated: 2024/12/30 21:41:32 by davigome         ###   ########.fr        #
+#    Updated: 2025/01/03 23:35:21 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,10 +33,16 @@ OBJ_BONUS_DIR	= ./obj_bonus
 
 SRC_FILES		= push_swap.c \
 					ft_checks.c \
+					ft_checks_2.c \
 					ft_frees.c \
 					ft_utils.c \
+					ft_utils_2.c \
+					ft_utils_3.c \
 					ft_start.c \
+					ft_start_2.c \
+					ft_start_3.c \
 					ft_moves.c \
+					ft_moves_2.c
 
 SRC_BONUS_FILES = 
 
