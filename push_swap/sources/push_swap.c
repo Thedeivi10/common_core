@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:06:55 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/30 11:57:22 by davigome         ###   ########.fr       */
+/*   Updated: 2024/12/30 15:38:35 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	main(int argc, char **argv)
 	nums = malloc(sizeof(nums));
 	if (!nums)
 	{
-		ft_printf("Errors, could not be able to allocates nums memory at the beggining");
-		exit(1);
+		ft_printf("Error\n");
+		exit(2);
 	}
 //	stack_a = malloc(sizeof(t_stack));
 	ft_checks(argv, nums);

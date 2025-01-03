@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:10:03 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/30 12:11:09 by davigome         ###   ########.fr       */
+/*   Updated: 2024/12/30 15:37:46 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	ft_alloc_mem_values(char **argv, t_nums *nums)
 	if (!nums->values)
 	{
 		ft_free_nums(nums);
-		ft_printf("Error, could not allocate memory");
-		exit (1);
+		ft_printf("Error\n");
+		exit (2);
 	}
 }
 
@@ -101,23 +101,23 @@ void	ft_check_sign_digit(t_nums *nums)
 
 void	ft_nothing_after_sign(t_nums *nums)
 {
-	ft_printf("There is sign and no int after it\n");
+	ft_printf("Error\n");
 	ft_free_nums(nums);
-	exit(1);
+	exit(2);
 }
 
 void	ft_more_sign(t_nums *nums)
 {
-	ft_printf("One or more values have more than one sign\n");
+	ft_printf("Error\n");
 	ft_free_nums(nums);
-	exit(1);
+	exit(2);
 }
 
 void	ft_not_digit(t_nums *nums)
 {
-	ft_printf("One or more values are not digits\n");
+	ft_printf("Error\n");
 	ft_free_nums(nums);
-	exit(1);
+	exit(2);
 }
 
 void	ft_atoi_list_and_max_min(t_nums *nums)
@@ -129,9 +129,9 @@ void	ft_atoi_list_and_max_min(t_nums *nums)
 	{
 		if(ft_atoi_long(nums->values[i]) > 2147483647 || ft_atoi_long(nums->values[i]) < -2147483648)
 		{
-			ft_printf("Error: number bigger or smaller than MAX or MIN integer\n");
+			ft_printf("Error\n");
 			ft_free_nums(nums);
-			exit(1);
+			exit(2);
 		}
 		else
 			nums->list[i] = ft_atoi(nums->values[i]);
@@ -159,9 +159,9 @@ void	ft_check_reps(t_nums *nums)
 		}
 		if (reps > 1)
 		{
-			ft_printf("There is the same value two or more times\n");
+			ft_printf("Error\n");
 			ft_free_nums(nums);
-			exit(1);
+			exit(2);
 		}
 	}
 }

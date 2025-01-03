@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/18 17:49:39 by davigome          #+#    #+#              #
-#    Updated: 2024/12/30 15:56:13 by davigome         ###   ########.fr        #
+#    Updated: 2024/12/30 21:41:32 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRC_FILES		= push_swap.c \
 					ft_frees.c \
 					ft_utils.c \
 					ft_start.c \
+					ft_moves.c \
 
 SRC_BONUS_FILES = 
 

@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 09:46:29 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/29 11:18:33 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/02 01:18:52 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	space(const char *str, int cont)
 
 int	ft_atoi(const char *str)
 {
-	size_t			cont;
+	size_t	cont;
 	int		number;
 	int		neg;
 
