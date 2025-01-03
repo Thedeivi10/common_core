@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 21:36:17 by davigome          #+#    #+#             */
-/*   Updated: 2025/01/03 22:05:49 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/03 22:36:23 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	ft_rb(t_stack **stack_b)
 {
 	ft_ra(stack_b);
 }
+
 void	ft_rra(t_stack **stack_a)
 {
 	t_stack	*temp;
@@ -78,6 +79,7 @@ void	ft_pa(t_stack **stack_a, t_stack **stack_b)
 {
 	ft_pb(stack_b, stack_a);
 }
+
 void	ft_moves(t_stack **stack_a, t_stack **stack_b, int move)
 {
 	if (move == 1)
@@ -123,3 +125,4 @@ void	ft_moves(t_stack **stack_a, t_stack **stack_b, int move)
 		ft_rra(stack_a);
 	}
 }
+

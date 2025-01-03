@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 11:20:47 by davigome          #+#    #+#             */
-/*   Updated: 2025/01/03 22:05:37 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/03 22:35:42 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,18 +136,18 @@ void	ft_calculate_pos(t_stack **stack)
 	}
 }
 
-void	ft_target_pos(t_stack **stack_a, t_stack **stack_b)
+void	ft_initialize_positions(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack	*temp_a;
-	t_stack	*temp_b;
-	int		temp_max;
-	int		min_index;
-	int		pos_min;
-	int		pos_max;
-
 	ft_calculate_pos(stack_a);
 	ft_calculate_pos(stack_b);
-	temp_b = *stack_b;
+}
+
+int	ft_find_min_position(t_stack **stack_a)
+{
+	t_stack	*temp_a;
+	int		min_index;
+	int		pos_min;
+
 	temp_a = *stack_a;
 	min_index = temp_a->index;
 	pos_min = temp_a->pos;
@@ -160,31 +160,48 @@ void	ft_target_pos(t_stack **stack_a, t_stack **stack_b)
 		}
 		temp_a = temp_a->next;
 	}
+	return (pos_min);
+}
+
+void	ft_update_target(t_stack **stack_a, t_stack *temp_b, int pos_min)
+{
+	t_stack	*temp_a;
+	int		temp_max;
+	int		pos_max;
+
+	temp_a = *stack_a;
+	temp_max = -1;
+	while (temp_a)
+	{
+		if (temp_max == -1 && temp_a->index > temp_b->index)
+		{
+			temp_max = temp_a->index;
+			pos_max = temp_a->pos;
+		}
+		if (temp_a->index > temp_b->index && temp_a->index < temp_max)
+		{
+			temp_max = temp_a->index;
+			pos_max = temp_a->pos;
+		}
+		temp_a = temp_a->next;
+	}
+	if (temp_max == -1)
+		temp_b->target_pos = pos_min;
+	else
+		temp_b->target_pos = pos_max;
+}
+
+void	ft_target_pos(t_stack **stack_a, t_stack **stack_b)
+{
+	t_stack	*temp_b;
+	int		pos_min;
+
+	ft_initialize_positions(stack_a, stack_b);
+	pos_min = ft_find_min_position(stack_a);
+	temp_b = *stack_b;
 	while (temp_b)
 	{
-		temp_a = *stack_a;
-		temp_max = -1;
-		while (temp_a)
-		{
-			if (temp_max == -1)
-			{
-				if (temp_a->index > temp_b->index)
-				{
-					temp_max = temp_a->index;
-					pos_max = temp_a->pos;
-				}
-			}
-			if (temp_a->index > temp_b->index && temp_a->index < temp_max)
-			{
-				temp_max = temp_a->index;
-				pos_max = temp_a->pos;
-			}
-			temp_a = temp_a->next;
-		}
-		if (temp_max == -1)
-			temp_b->target_pos = pos_min;
-		else
-			temp_b->target_pos = pos_max;
+		ft_update_target(stack_a, temp_b, pos_min);
 		temp_b = temp_b->next;
 	}
 }
@@ -210,9 +227,9 @@ void	ft_calculate_cost(t_stack **stack_a, t_stack **stack_b)
 
 int	ft_the_cheap(t_stack **stack_b)
 {
-	t_stack *temp;
-	int cheap;
-	int prize;
+	t_stack	*temp;
+	int		cheap;
+	int		prize;
 
 	temp = *stack_b;
 	prize = abs(temp->cost_a) + abs(temp->cost_b);

@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 13:34:24 by davigome          #+#    #+#             */
-/*   Updated: 2025/01/03 22:04:51 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/03 22:25:38 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,22 +42,22 @@ void	ft_three_values(t_nums *nums)
 	exit(0);
 }
 
-void	ft_more_values(t_nums *nums)
+void	ft_initialize_stacks(t_stack ***stack_a, t_stack ***stack_b,
+		t_nums *nums)
 {
-	t_stack	**stack_a;
-	t_stack	**stack_b;
+	*stack_a = malloc(sizeof(t_stack *));
+	**stack_a = NULL;
+	*stack_b = malloc(sizeof(t_stack *));
+	**stack_b = NULL;
+	ft_values_to_stack_a(*stack_a, nums);
+	ft_index_to_stack_a(*stack_a, nums);
+}
+
+void	ft_move_cheap_to_stack_a(t_stack **stack_a, t_stack **stack_b)
+{
 	t_stack	*temp;
 	int		cheap;
 
-	stack_a = malloc(sizeof(t_stack *));
-	*stack_a = NULL;
-	stack_b = malloc(sizeof(t_stack *));
-	*stack_b = NULL;
-	ft_values_to_stack_a(stack_a, nums);
-	ft_index_to_stack_a(stack_a, nums);
-	ft_tostackb_vague(stack_a, stack_b, nums);
-	ft_target_pos(stack_a, stack_b);
-	ft_calculate_cost(stack_a, stack_b);
 	temp = *stack_b;
 	while (temp)
 	{
@@ -68,43 +68,66 @@ void	ft_more_values(t_nums *nums)
 				break ;
 			temp = temp->next;
 		}
-		while (temp->cost_a > 0 && temp->cost_b > 0)
-		{
-			ft_moves(stack_a, stack_b, 5);
-			temp->cost_a--;
-			temp->cost_b--;
-		}
-		while (temp->cost_a < 0 && temp->cost_b < 0)
-		{
-			ft_moves(stack_a, stack_b, 8);
-			temp->cost_a++;
-			temp->cost_b++;
-		}
-		while (temp->cost_a > 0)
-		{
-			ft_moves(stack_a, stack_b, 3);
-			temp->cost_a--;
-		}
-		while (temp->cost_a < 0)
-		{
-			ft_moves(stack_a, stack_b, 6);
-			temp->cost_a++;
-		}
-		while (temp->cost_b > 0)
-		{
-			ft_moves(stack_a, stack_b, 4);
-			temp->cost_b--;
-		}
-		while (temp->cost_b < 0)
-		{
-			ft_moves(stack_a, stack_b, 7);
-			++(temp->cost_b);
-		}
+		ft_handle_costs(stack_a, stack_b, temp);
 		ft_moves(stack_a, stack_b, 2);
 		ft_target_pos(stack_a, stack_b);
 		ft_calculate_cost(stack_a, stack_b);
 		temp = *stack_b;
 	}
+}
+
+void	ft_handle_costs(t_stack **stack_a, t_stack **stack_b, t_stack *temp)
+{
+	while (temp->cost_a > 0 && temp->cost_b > 0)
+	{
+		ft_moves(stack_a, stack_b, 5);
+		temp->cost_a--;
+		temp->cost_b--;
+	}
+	while (temp->cost_a < 0 && temp->cost_b < 0)
+	{
+		ft_moves(stack_a, stack_b, 8);
+		temp->cost_a++;
+		temp->cost_b++;
+	}
+	ft_handle_individual_costs(stack_a, stack_b, temp);
+}
+
+void	ft_handle_individual_costs(t_stack **stack_a, t_stack **stack_b,
+		t_stack *temp)
+{
+	while (temp->cost_a > 0)
+	{
+		ft_moves(stack_a, stack_b, 3);
+		temp->cost_a--;
+	}
+	while (temp->cost_a < 0)
+	{
+		ft_moves(stack_a, stack_b, 6);
+		temp->cost_a++;
+	}
+	while (temp->cost_b > 0)
+	{
+		ft_moves(stack_a, stack_b, 4);
+		temp->cost_b--;
+	}
+	while (temp->cost_b < 0)
+	{
+		ft_moves(stack_a, stack_b, 7);
+		++(temp->cost_b);
+	}
+}
+
+void	ft_more_values(t_nums *nums)
+{
+	t_stack	**stack_a;
+	t_stack	**stack_b;
+
+	ft_initialize_stacks(&stack_a, &stack_b, nums);
+	ft_tostackb_vague(stack_a, stack_b, nums);
+	ft_target_pos(stack_a, stack_b);
+	ft_calculate_cost(stack_a, stack_b);
+	ft_move_cheap_to_stack_a(stack_a, stack_b);
 	ft_rotate_order(stack_a, stack_b);
 }
 

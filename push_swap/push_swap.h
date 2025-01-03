@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:18:02 by davigome          #+#    #+#             */
-/*   Updated: 2025/01/03 22:08:00 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/03 22:32:14 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ void				ft_sort(t_nums *nums);
 int					ft_size_lst(t_stack **stack);
 void				ft_addfront_lst(t_stack **stack, t_stack *new);
 void				ft_calculate_pos(t_stack **stack);
+void				ft_initialize_positions(t_stack **stack_a,
+						t_stack **stack_b);
+int					ft_find_min_position(t_stack **stack_a);
+void				ft_update_target(t_stack **stack_a, t_stack *temp_b,
+						int pos_min);
+
 void				ft_target_pos(t_stack **stack_a, t_stack **stack_b);
 void				ft_calculate_cost(t_stack **stack_a, t_stack **stack_b);
 int					ft_the_cheap(t_stack **stack_b);
@@ -65,6 +71,14 @@ void				ft_two_values(t_nums *nums);
 void				ft_three_values(t_nums *nums);
 void				ft_select_algorithm(t_nums *nums);
 void				ft_more_values(t_nums *nums);
+void				ft_initialize_stacks(t_stack ***stack_a, t_stack ***stack_b,
+						t_nums *nums);
+void				ft_move_cheap_to_stack_a(t_stack **stack_a,
+						t_stack **stack_b);
+void				ft_handle_costs(t_stack **stack_a, t_stack **stack_b,
+						t_stack *temp);
+void				ft_handle_individual_costs(t_stack **stack_a,
+						t_stack **stack_b, t_stack *temp);
 void				ft_values_to_stack_a(t_stack **stack_a, t_nums *nums);
 void				ft_index_to_stack_a(t_stack **stack_a, t_nums *nums);
 void				ft_sort_three(t_stack **stack);
