@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 11:20:47 by davigome          #+#    #+#             */
-/*   Updated: 2025/01/03 14:43:11 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/03 22:05:37 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ static int	space(const char *str, int cont)
 
 long long	ft_atoi_long(const char *str)
 {
-	size_t			cont;
-	long long		number;
-	int				neg;
+	size_t		cont;
+	long long	number;
+	int			neg;
 
 	cont = 0;
 	number = 0;
@@ -47,7 +47,7 @@ long long	ft_atoi_long(const char *str)
 
 t_stack	*ft_newlst_value(t_nums *nums, int i)
 {
-	t_stack *new;
+	t_stack	*new;
 
 	new = malloc(sizeof(t_stack));
 	if (!new)
@@ -61,7 +61,7 @@ t_stack	*ft_newlst_value(t_nums *nums, int i)
 	return (new);
 }
 
-void	ft_addback_lst(t_stack	**stack, t_stack *new)
+void	ft_addback_lst(t_stack **stack, t_stack *new)
 {
 	t_stack	*now;
 
@@ -80,10 +80,10 @@ void	ft_addback_lst(t_stack	**stack, t_stack *new)
 
 void	ft_sort(t_nums *nums)
 {
-	int i;
-	int j;
-	int aux;
-	
+	int	i;
+	int	j;
+	int	aux;
+
 	i = -1;
 	while (++i < nums->num_of_values)
 	{
@@ -100,14 +100,13 @@ void	ft_sort(t_nums *nums)
 	}
 }
 
-int		ft_size_lst(t_stack **stack)
+int	ft_size_lst(t_stack **stack)
 {
 	t_stack	*temp;
-	int i;
+	int		i;
 
 	i = 0;
 	temp = *stack;
-
 	while (temp)
 	{
 		i++;
@@ -129,7 +128,7 @@ void	ft_calculate_pos(t_stack **stack)
 
 	i = 0;
 	temp = *stack;
-	while(temp)
+	while (temp)
 	{
 		temp->pos = i;
 		i++;
@@ -192,7 +191,7 @@ void	ft_target_pos(t_stack **stack_a, t_stack **stack_b)
 
 void	ft_calculate_cost(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *temp_b;
+	t_stack	*temp_b;
 
 	temp_b = *stack_b;
 	while (temp_b)
@@ -209,12 +208,12 @@ void	ft_calculate_cost(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-int		ft_the_cheap(t_stack **stack_b)
+int	ft_the_cheap(t_stack **stack_b)
 {
 	t_stack *temp;
-	int		cheap;
-	int		prize;
-	
+	int cheap;
+	int prize;
+
 	temp = *stack_b;
 	prize = abs(temp->cost_a) + abs(temp->cost_b);
 	cheap = temp->value;

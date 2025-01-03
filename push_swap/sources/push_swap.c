@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:06:55 by davigome          #+#    #+#             */
-/*   Updated: 2024/12/30 15:38:35 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/03 21:54:45 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ int	main(int argc, char **argv)
 	nums = malloc(sizeof(nums));
 	if (!nums)
 	{
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 		exit(2);
 	}
-//	stack_a = malloc(sizeof(t_stack));
 	ft_checks(argv, nums);
 	ft_select_algorithm(nums);
 	return (0);

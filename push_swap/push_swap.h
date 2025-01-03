@@ -6,80 +6,81 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:18:02 by davigome          #+#    #+#             */
-/*   Updated: 2025/01/03 11:48:50 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/03 22:08:00 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "libft/libft.h"
+# include "libft/libft.h"
 
-typedef struct	s_stack
+typedef struct s_stack
 {
-	int				value;		//The integer we must sort
-	int				index;		//Its index in the list of all values that must be sorted
-	int				pos;		//Its current position in its stack
-	int				target_pos; //For elements in stack B, the target position in stack A where it should be
-	int				cost_a;		//How many actions it would cost to rotate stack A so that the element at the target position gets to the top of stack A
-	int				cost_b;		//How many actions it would cost to rotate stack B so that this element gets to the top of stack B
-	struct	s_stack	*next;		//Pointer to the next element in the list.
-}	t_stack;
+	int				value;
+	int				index;
+	int				pos;
+	int				target_pos;
+	int				cost_a;
+	int				cost_b;
+	struct s_stack	*next;
+}					t_stack;
 
-typedef struct	s_nums
+typedef struct s_nums
 {
-	char			**values;	//Here we are going to 
-	int				num_of_values;	//It's ussefull to allocate memory and save the values
+	char			**values;
+	int				num_of_values;
 	int				*list;
-}	t_nums;
+}					t_nums;
 
 // FT_CHECKS.C //
-void		ft_checks(char **argv, t_nums *nums);
-void		ft_alloc_mem_values(char **argv, t_nums *nums);
-void		ft_cpy_values(char **argv, t_nums *nums);
-void		ft_check_sign_digit(t_nums *nums);
-void		ft_not_digit(t_nums *nums);
-void		ft_atoi_list_and_max_min(t_nums *nums);
-void		ft_check_reps(t_nums *nums);
-void		ft_check_sort(t_nums *nums);
-void		ft_nothing_after_sign(t_nums *nums);
-void		ft_more_sign(t_nums *nums);
+void				ft_checks(char **argv, t_nums *nums);
+void				ft_alloc_mem_values(char **argv, t_nums *nums);
+void				ft_cpy_values(char **argv, t_nums *nums);
+void				ft_check_sign_digit(t_nums *nums);
+void				ft_not_digit(t_nums *nums);
+void				ft_atoi_list_and_max_min(t_nums *nums);
+void				ft_check_reps(t_nums *nums);
+void				ft_check_sort(t_nums *nums);
+void				ft_nothing_after_sign(t_nums *nums);
+void				ft_more_sign(t_nums *nums);
 
 // FT_FREES.C //
-void		ft_free_nums(t_nums *nums);
+void				ft_free_nums(t_nums *nums);
 
 // FT_UTILS.C //
-long long	ft_atoi_long(const char *str);
-t_stack		*ft_newlst_value(t_nums *nums, int i);
-void		ft_addback_lst(t_stack	**stack, t_stack *new);
-void		ft_sort(t_nums *nums);
-int			ft_size_lst(t_stack **stack);
-void		ft_addfront_lst(t_stack **stack, t_stack *new);
-void		ft_calculate_pos(t_stack **stack);
-void		ft_target_pos(t_stack **stack_a, t_stack **stack_b);
-void		ft_calculate_cost(t_stack **stack_a, t_stack **stack_b);
-int			ft_the_cheap(t_stack **stack_b);
+long long			ft_atoi_long(const char *str);
+t_stack				*ft_newlst_value(t_nums *nums, int i);
+void				ft_addback_lst(t_stack **stack, t_stack *new);
+void				ft_sort(t_nums *nums);
+int					ft_size_lst(t_stack **stack);
+void				ft_addfront_lst(t_stack **stack, t_stack *new);
+void				ft_calculate_pos(t_stack **stack);
+void				ft_target_pos(t_stack **stack_a, t_stack **stack_b);
+void				ft_calculate_cost(t_stack **stack_a, t_stack **stack_b);
+int					ft_the_cheap(t_stack **stack_b);
 
 // FT_START.C //
-void		ft_two_values(t_nums *nums);
-void		ft_three_values(t_nums *nums);
-void		ft_select_algorithm(t_nums *nums);
-void		ft_more_values(t_nums *nums);
-void		ft_values_to_stack_a(t_stack **stack_a, t_nums *nums);
-void		ft_index_to_stack_a(t_stack **stack_a, t_nums *nums);
-void		ft_sort_three(t_stack **stack);
-void		ft_tostackb_vague(t_stack **stack_a, t_stack **stack_b, t_nums *nums);
-void		ft_tostackb_vague_2(t_stack **stack_a, t_stack **stack_b);
-void		ft_rotate_order(t_stack **stack_a, t_stack **stack_b);
+void				ft_two_values(t_nums *nums);
+void				ft_three_values(t_nums *nums);
+void				ft_select_algorithm(t_nums *nums);
+void				ft_more_values(t_nums *nums);
+void				ft_values_to_stack_a(t_stack **stack_a, t_nums *nums);
+void				ft_index_to_stack_a(t_stack **stack_a, t_nums *nums);
+void				ft_sort_three(t_stack **stack);
+void				ft_tostackb_vague(t_stack **stack_a, t_stack **stack_b,
+						t_nums *nums);
+void				ft_tostackb_vague_2(t_stack **stack_a, t_stack **stack_b);
+void				ft_rotate_order(t_stack **stack_a, t_stack **stack_b);
 
 // FT_MOVES.C //
-void		ft_ra(t_stack **stack_a);
-void		ft_rb(t_stack **stack_b);
-void		ft_rra(t_stack **stack_a);
-void		ft_rrb(t_stack **stack_b);
-void		ft_sa(t_stack **stack_a);
-void		ft_pb(t_stack **stack_a, t_stack **stack_b);
-void		ft_pa(t_stack **stack_a, t_stack **stack_b);
-void		ft_moves(t_stack **stack_a, t_stack **stack_b, char *move);
+void				ft_ra(t_stack **stack_a);
+void				ft_rb(t_stack **stack_b);
+void				ft_rra(t_stack **stack_a);
+void				ft_rrb(t_stack **stack_b);
+void				ft_sa(t_stack **stack_a);
+void				ft_pb(t_stack **stack_a, t_stack **stack_b);
+void				ft_pa(t_stack **stack_a, t_stack **stack_b);
+void				ft_moves(t_stack **stack_a, t_stack **stack_b, int move);
 
-# endif
+#endif

@@ -6,18 +6,19 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 13:34:24 by davigome          #+#    #+#             */
-/*   Updated: 2025/01/03 14:54:16 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/03 22:04:51 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
 void	ft_select_algorithm(t_nums *nums)
 {
 	if (nums->num_of_values == 2)
 		ft_two_values(nums);
 	if (nums->num_of_values == 3)
 		ft_three_values(nums);
-	else 
+	else
 		ft_more_values(nums);
 }
 
@@ -37,14 +38,16 @@ void	ft_three_values(t_nums *nums)
 	ft_values_to_stack_a(stack_a, nums);
 	ft_index_to_stack_a(stack_a, nums);
 	ft_sort_three(stack_a);
-	ft_free_nums(nums); 
+	ft_free_nums(nums);
 	exit(0);
 }
 
 void	ft_more_values(t_nums *nums)
 {
 	t_stack	**stack_a;
-	t_stack **stack_b;
+	t_stack	**stack_b;
+	t_stack	*temp;
+	int		cheap;
 
 	stack_a = malloc(sizeof(t_stack *));
 	*stack_a = NULL;
@@ -55,10 +58,7 @@ void	ft_more_values(t_nums *nums)
 	ft_tostackb_vague(stack_a, stack_b, nums);
 	ft_target_pos(stack_a, stack_b);
 	ft_calculate_cost(stack_a, stack_b);
-	t_stack *temp;
 	temp = *stack_b;
-	int cheap;
-	int aux;
 	while (temp)
 	{
 		cheap = ft_the_cheap(stack_b);
@@ -68,73 +68,44 @@ void	ft_more_values(t_nums *nums)
 				break ;
 			temp = temp->next;
 		}
-		aux = temp->value;
-		if (aux != cheap)
-			ft_printf("no son iguales");
 		while (temp->cost_a > 0 && temp->cost_b > 0)
 		{
-			ft_moves(stack_a, stack_b, "rr");
-			--(temp->cost_a);
-			--(temp->cost_b);
+			ft_moves(stack_a, stack_b, 5);
+			temp->cost_a--;
+			temp->cost_b--;
 		}
 		while (temp->cost_a < 0 && temp->cost_b < 0)
 		{
-			ft_moves(stack_a, stack_b, "rrr");
-			++(temp->cost_a);
-			++(temp->cost_b);
+			ft_moves(stack_a, stack_b, 8);
+			temp->cost_a++;
+			temp->cost_b++;
 		}
 		while (temp->cost_a > 0)
 		{
-			ft_moves(stack_a, stack_b, "ra");
-			--(temp->cost_a);
+			ft_moves(stack_a, stack_b, 3);
+			temp->cost_a--;
 		}
 		while (temp->cost_a < 0)
 		{
-			ft_moves(stack_a, stack_b, "rra");
-			++(temp->cost_a);
+			ft_moves(stack_a, stack_b, 6);
+			temp->cost_a++;
 		}
 		while (temp->cost_b > 0)
 		{
-			ft_moves(stack_a, stack_b, "rb");
-			--(temp->cost_b);
+			ft_moves(stack_a, stack_b, 4);
+			temp->cost_b--;
 		}
 		while (temp->cost_b < 0)
 		{
-			ft_moves(stack_a, stack_b, "rrb");
+			ft_moves(stack_a, stack_b, 7);
 			++(temp->cost_b);
 		}
-		ft_moves(stack_a, stack_b , "pa");
-		ft_target_pos(stack_a,stack_b);
+		ft_moves(stack_a, stack_b, 2);
+		ft_target_pos(stack_a, stack_b);
 		ft_calculate_cost(stack_a, stack_b);
-		temp = *stack_a;
-		while(temp)
-		{
-			ft_printf("%i\n",temp->value);
-			temp = temp->next;
-		}
-		ft_printf("\n\n\n");
-		temp = *stack_b;
-		while(temp)
-		{
-			ft_printf("%i con cost_a %i y cost_b %i y pos %i\n",temp->value, temp->cost_a, temp->cost_b, temp->pos);
-			temp = temp->next;
-		}
 		temp = *stack_b;
 	}
-//	ft_rotate_order(stack_a, stack_b);
-	/* temp = *stack_a;
-	while(temp)
-	{
-		ft_printf("%i\n",temp->value);
-		temp = temp->next;
-	}
-	ft_printf("\n\n\n");
-	temp = *stack_b;
-	while(temp)
-	{
-		ft_printf("%i con cost_a %i y cost_b %i\n",temp->value, temp->cost_a, temp->cost_b);
-		temp = temp->next;
-	}	 */
+	ft_rotate_order(stack_a, stack_b);
 }
 
 void	ft_values_to_stack_a(t_stack **stack_a, t_nums *nums)
@@ -148,12 +119,12 @@ void	ft_values_to_stack_a(t_stack **stack_a, t_nums *nums)
 		temp = ft_newlst_value(nums, i);
 		ft_addback_lst(stack_a, temp);
 	}
-} 
+}
 
 void	ft_index_to_stack_a(t_stack **stack_a, t_nums *nums)
 {
-	int i ;
-	t_stack *temp;
+	int		i;
+	t_stack	*temp;
 
 	ft_sort(nums);
 	temp = *stack_a;
@@ -166,7 +137,7 @@ void	ft_index_to_stack_a(t_stack **stack_a, t_nums *nums)
 			{
 				temp->index = i + 1;
 				temp = temp->next;
-				break;
+				break ;
 			}
 		}
 	}
@@ -183,14 +154,14 @@ void	ft_sort_three(t_stack **stack)
 	t_stack	*temp;
 
 	temp = *stack;
-	if (temp->index > temp->next->index &&
-		temp->index > temp->next->next->index)
+	if (temp->index > temp->next->index
+		&& temp->index > temp->next->next->index)
 	{
 		ft_ra(stack);
 		ft_printf("ra\n");
 	}
-	else if(temp->next->index > temp->index &&
-		temp->next->index > temp->next->next->index)
+	else if (temp->next->index > temp->index
+		&& temp->next->index > temp->next->next->index)
 	{
 		ft_rra(stack);
 		ft_printf("rra\n");
@@ -211,14 +182,14 @@ void	ft_tostackb_vague(t_stack **stack_a, t_stack **stack_b, t_nums *nums)
 
 	i = 0;
 	temp = *stack_a;
-	while(temp)
+	while (temp)
 	{
 		if (temp->index < nums->num_of_values / 2)
 		{
 			j = -1;
 			while (++j < i)
-				ft_moves(stack_a, stack_b, "ra");
-			ft_moves(stack_a, stack_b, "pb");
+				ft_moves(stack_a, stack_b, 3);
+			ft_moves(stack_a, stack_b, 1);
 			temp = *stack_a;
 			i = 0;
 		}
@@ -234,11 +205,11 @@ void	ft_tostackb_vague(t_stack **stack_a, t_stack **stack_b, t_nums *nums)
 void	ft_tostackb_vague_2(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*temp;
-	
+
 	temp = *stack_a;
-	while(temp->next->next->next)
+	while (temp->next->next->next)
 	{
-		ft_moves(stack_a, stack_b, "pb");
+		ft_moves(stack_a, stack_b, 1);
 		temp = *stack_a;
 	}
 	ft_sort_three(stack_a);
@@ -246,7 +217,7 @@ void	ft_tostackb_vague_2(t_stack **stack_a, t_stack **stack_b)
 
 void	ft_rotate_order(t_stack **stack_a, t_stack **stack_b)
 {
-	t_stack *temp;
+	t_stack	*temp;
 	int		pos;
 	int		rot;
 
@@ -259,15 +230,15 @@ void	ft_rotate_order(t_stack **stack_a, t_stack **stack_b)
 			pos = temp->pos;
 		temp = temp->next;
 	}
-	if (pos < ft_size_lst(stack_a) / 2)
+	if (pos <= ft_size_lst(stack_a) / 2)
 	{
 		while (++rot < pos)
-			ft_moves(stack_a, stack_b, "ra");
+			ft_moves(stack_a, stack_b, 3);
 	}
 	else
 	{
-		rot = 0;
+		rot = 1;
 		while (--rot > pos - ft_size_lst(stack_a))
-			ft_moves(stack_a, stack_b, "rra");
+			ft_moves(stack_a, stack_b, 6);
 	}
 }
