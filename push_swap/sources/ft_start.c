@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 13:34:24 by davigome          #+#    #+#             */
-/*   Updated: 2025/01/03 12:43:42 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/03 14:54:16 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,19 @@ void	ft_more_values(t_nums *nums)
 	t_stack *temp;
 	temp = *stack_b;
 	int cheap;
+	int aux;
 	while (temp)
 	{
 		cheap = ft_the_cheap(stack_b);
-		while (temp->value != cheap)
+		while (temp)
+		{
+			if (temp->value == cheap)
+				break ;
 			temp = temp->next;
+		}
+		aux = temp->value;
+		if (aux != cheap)
+			ft_printf("no son iguales");
 		while (temp->cost_a > 0 && temp->cost_b > 0)
 		{
 			ft_moves(stack_a, stack_b, "rr");
@@ -98,7 +106,7 @@ void	ft_more_values(t_nums *nums)
 		ft_moves(stack_a, stack_b , "pa");
 		ft_target_pos(stack_a,stack_b);
 		ft_calculate_cost(stack_a, stack_b);
-/* 		temp = *stack_a;
+		temp = *stack_a;
 		while(temp)
 		{
 			ft_printf("%i\n",temp->value);
@@ -110,11 +118,11 @@ void	ft_more_values(t_nums *nums)
 		{
 			ft_printf("%i con cost_a %i y cost_b %i y pos %i\n",temp->value, temp->cost_a, temp->cost_b, temp->pos);
 			temp = temp->next;
-		} */
+		}
 		temp = *stack_b;
 	}
 //	ft_rotate_order(stack_a, stack_b);
-	temp = *stack_a;
+	/* temp = *stack_a;
 	while(temp)
 	{
 		ft_printf("%i\n",temp->value);
@@ -126,7 +134,7 @@ void	ft_more_values(t_nums *nums)
 	{
 		ft_printf("%i con cost_a %i y cost_b %i\n",temp->value, temp->cost_a, temp->cost_b);
 		temp = temp->next;
-	}	
+	}	 */
 }
 
 void	ft_values_to_stack_a(t_stack **stack_a, t_nums *nums)

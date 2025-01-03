@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 11:20:47 by davigome          #+#    #+#             */
-/*   Updated: 2025/01/03 10:37:10 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/03 14:43:11 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,7 +220,7 @@ int		ft_the_cheap(t_stack **stack_b)
 	cheap = temp->value;
 	while (temp)
 	{
-		if (abs(temp->cost_a) + abs(temp->cost_b) < prize)
+		if ((abs(temp->cost_a) + abs(temp->cost_b)) < prize)
 		{
 			cheap = temp->value;
 			prize = abs(temp->cost_a) + abs(temp->cost_b);
