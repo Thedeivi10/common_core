@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:18:02 by davigome          #+#    #+#             */
-/*   Updated: 2025/01/03 23:55:34 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/04 12:27:42 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ void				ft_two_values(t_nums *nums);
 void				ft_three_values(t_nums *nums);
 void				ft_select_algorithm(t_nums *nums);
 void				ft_more_values(t_nums *nums);
-void				ft_initialize_stacks(t_stack ***stack_a, t_stack ***stack_b,
-						t_nums *nums);
 
 // FT_START_2.C //
 void				ft_move_cheap_to_stack_a(t_stack **stack_a,

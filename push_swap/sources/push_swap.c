@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:06:55 by davigome          #+#    #+#             */
-/*   Updated: 2025/01/04 08:13:57 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/04 12:52:30 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,11 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		exit(2);
 	}
+	nums->values = NULL;
+	nums->list = NULL;
+	nums->num_of_values = 0;
 	ft_checks(argv, nums);
 	ft_select_algorithm(nums);
+	ft_free_nums(nums);
 	return (0);
 }

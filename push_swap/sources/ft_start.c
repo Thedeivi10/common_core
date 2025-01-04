@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 13:34:24 by davigome          #+#    #+#             */
-/*   Updated: 2025/01/03 23:58:34 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/04 12:50:27 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,24 @@ void	ft_three_values(t_nums *nums)
 	exit(0);
 }
 
-void	ft_initialize_stacks(t_stack ***stack_a, t_stack ***stack_b,
-		t_nums *nums)
-{
-	*stack_a = malloc(sizeof(t_stack *));
-	**stack_a = NULL;
-	*stack_b = malloc(sizeof(t_stack *));
-	**stack_b = NULL;
-	ft_values_to_stack_a(*stack_a, nums);
-	ft_index_to_stack_a(*stack_a, nums);
-}
-
 void	ft_more_values(t_nums *nums)
 {
 	t_stack	**stack_a;
 	t_stack	**stack_b;
 
-	ft_initialize_stacks(&stack_a, &stack_b, nums);
+	stack_a = malloc(sizeof(t_stack *));
+	*stack_a = NULL;
+	stack_b = malloc(sizeof(t_stack *));
+	*stack_b = NULL;
+	ft_values_to_stack_a(stack_a, nums);
+	ft_index_to_stack_a(stack_a, nums);
 	ft_tostackb_vague(stack_a, stack_b, nums);
 	ft_target_pos(stack_a, stack_b);
 	ft_calculate_cost(stack_a, stack_b);
 	ft_move_cheap_to_stack_a(stack_a, stack_b);
 	ft_rotate_order(stack_a, stack_b);
-	ft_free_nums(nums);
 	ft_free_stack(stack_a);
 	ft_free_stack(stack_b);
+	free(stack_a);
+	free(stack_b);
 }

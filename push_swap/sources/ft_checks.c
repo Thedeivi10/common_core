@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:10:03 by davigome          #+#    #+#             */
-/*   Updated: 2025/01/04 08:26:10 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/04 12:45:42 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_alloc_mem_values(char **argv, t_nums *nums)
 	char	**aux_val;
 
 	i = 0;
-	nums->num_of_values = 0;
 	while (argv[++i])
 	{
 		j = -1;

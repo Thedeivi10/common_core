@@ -6,12 +6,11 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/12/18 17:49:39 by davigome          #+#    #+#              #
-#    Updated: 2025/01/03 23:35:21 by davigome         ###   ########.fr        #
+#    Updated: 2025/01/04 13:38:58 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
-BONUS_NAME = push_swap_bonus
 
 CC = gcc -g
 CFLAGS = -Wall  -Wextra -Werror
@@ -29,7 +28,6 @@ RESET = \033[0m
 SRC_DIR			= ./sources
 SRC_BONUS_DIR	= ./sources_bonus
 OBJ_DIR			= ./obj
-OBJ_BONUS_DIR	= ./obj_bonus
 
 SRC_FILES		= push_swap.c \
 					ft_checks.c \
@@ -44,33 +42,20 @@ SRC_FILES		= push_swap.c \
 					ft_moves.c \
 					ft_moves_2.c
 
-SRC_BONUS_FILES = 
-
 OBJS				= $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
-OBJS_BONUS			= $(addprefix $(OBJ_BONUS_DIR)/, $(SRC_BONUS_FILES:.c=.o))
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-$(OBJ_BONUS_DIR)/%.o: $(SRC_BONUS_DIR)/%.c
-	@mkdir -p $(OBJ_BONUS_DIR)
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
 $(NAME): $(LIBFT)/libft.a  $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS)
-	@echo "$(GREEN)Executable for pipex launched successfully!$(RESET)"
-
-$(BONUS_NAME): $(LIBFT)/libft.a   $(OBJS_BONUS)
-	@$(CC) $(CFLAGS) -o $(BONUS_NAME) $(OBJS_BONUS) $(LIBS)
-	@echo "$(GREEN)Bonus for pipex_bonus launched successfully!$(RESET)"
+	@echo "$(GREEN)Executable for push_swap launched successfully!$(RESET)"
 
 $(LIBFT)/libft.a:
 	@$(MAKE) -C $(LIBFT)
 
 all:$(NAME)
-
-bonus: $(BONUS_NAME)
 
 clean:
 	@$(MAKE) -C $(LIBFT) clean
