@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 20:10:03 by davigome          #+#    #+#             */
-/*   Updated: 2025/01/03 23:29:52 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/04 08:26:10 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@ void	ft_alloc_mem_values(char **argv, t_nums *nums)
 		write(2, "Error\n", 6);
 		exit(2);
 	}
+	i = -1;
+	while (++i < nums->num_of_values)
+		nums->values[i] = NULL;
+	nums->values[i] = NULL;
 }
 
 void	ft_cpy_values(char **argv, t_nums *nums)

@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 19:18:02 by davigome          #+#    #+#             */
-/*   Updated: 2025/01/03 23:47:20 by davigome         ###   ########.fr       */
+/*   Updated: 2025/01/03 23:55:34 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void				ft_more_sign(t_nums *nums);
 
 // FT_FREES.C //
 void				ft_free_nums(t_nums *nums);
+void				ft_free_stack(t_stack **stack);
 
 // FT_UTILS.C //
 long long			ft_atoi_long(const char *str);
