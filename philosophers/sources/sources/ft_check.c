@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosophers.c                                     :+:      :+:    :+:   */
+/*   ft_check.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/04 22:14:57 by davigome          #+#    #+#             */
-/*   Updated: 2025/02/12 21:05:43 by davigome         ###   ########.fr       */
+/*   Created: 2025/01/04 23:47:57 by davigome          #+#    #+#             */
+/*   Updated: 2025/02/19 12:39:03 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-int	main(int argc, char **argv)
+void	ft_check(char **argv)
 {
-	if (argc < 5 || argc > 6)
+	int	i;
+	int	j;
+
+	i = 0;
+	while (argv[++i])
 	{
-		write(2, "Error\n", 6);
-		return (-1);
+		j = 0;
+		if (argv[i][0] == '-' || ft_strlen(argv[i]) >= 13)
+		{
+			write(2, "Error\n", 6);
+			exit(1);
+		}
+		while (argv [i][++j])
+		{
+			if (argv [i][j] < '0' || argv[i][j] > '9')
+			{
+				write(2, "Error\n", 6);
+				exit(1);
+			}
+		}
 	}
-	ft_check(argv);
 }
