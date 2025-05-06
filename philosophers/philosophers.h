@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 19:57:21 by davigome          #+#    #+#             */
-/*   Updated: 2025/01/05 00:27:48 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/06 17:42:47 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,39 @@
 # include <sys/time.h>
 # include <pthread.h>
 
+typedef struct s_philo
+{
+	pthread_mutex_t	fork;
+	pthread_t		id;
+	size_t			last_eat;
+	size_t			lunchs;
+	int				name;
+}				t_philo;
+
+typedef struct s_table
+{
+	t_philo			**philosophers;
+	int				flag;
+	size_t			time_eat;
+	size_t			time_sleep;
+	size_t			time_die;
+	size_t			time_start;
+	int				numPhilo;
+	pthread_t		dead;
+	int				init;
+}				t_table;
+
+typedef struct s_args
+{
+	t_table			*table;
+	int				idPhilo;
+}				t_args;
+
 //	FT_CHECK.C //
 void	ft_check(char **argv);
+
+// UTILS.C //
+size_t	ft_strlen(const char *s);
+int		ft_atoi(const char *str);
 
 #endif
