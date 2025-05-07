@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 22:14:57 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/06 18:33:10 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/07 20:00:14 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_init(t_args *args, char **argv, int argc)
 	args->table->time_eat = ft_atoi(argv[3]);
 	args->table->time_sleep = ft_atoi(argv[4]);
 	args->table->philosophers = malloc(sizeof(t_philo) * (args->table->numPhilo + 1));
+	args->table->philosophers[args->table->numPhilo] = NULL;
 	while (++i < args->table->numPhilo)
 	{
 		args->table->philosophers[i] = malloc(sizeof(t_philo));
@@ -37,35 +38,70 @@ void	ft_init(t_args *args, char **argv, int argc)
 	args->table->flag = -1;
 }
 
-void	ft_pair(t_args *args, int i)
+size_t	ft_time(t_args *args)
 {
-	pthread_mutex_lock(&args->table->philosophers[i]->fork);
-	if (args->table->numPhilo == i + 1)
-		pthread_mutex_lock(&args->table->philosophers[0]->fork);
-	else
-		pthread_mutex_lock(&args->table->philosophers[i + 1]->fork);
-	usleep(0.98 * args->table->time_eat);
-	if (args->table->numPhilo == i + 1)
-		pthread_mutex_unlock(&args->table->philosophers[0]->fork);
-	else
-		pthread_mutex_unlock(&args->table->philosophers[i + 1]->fork);
-	usleep(0.98 * args->table->time_sleep);
+	struct timeval	tv;
+	size_t			time;
+
+	gettimeofday(&tv, NULL);
+	time = tv.tv_sec * 1000 + tv.tv_usec / 1000 - args->table->time_start;
+	return (time);
 }
 
-void	ft_impair(t_args *args, int i)
+void ft_pair(t_args *args, int i)
 {
-	if (args->table->philosophers[i + 1])
-		pthread_mutex_lock(&args->table->philosophers[i + 1]->fork);
-	if (args->table->numPhilo == i + 1 && i != 0)
-		pthread_mutex_lock(&args->table->philosophers[0]->fork);
-	pthread_mutex_lock(&args->table->philosophers[i]->fork);
-	usleep(0.98 * args->table->time_eat);
-	if (args->table->philosophers[i + 1])
-		pthread_mutex_unlock(&args->table->philosophers[i + 1]->fork);
-	if (args->table->numPhilo == i + 1 && i != 0)
-		pthread_mutex_unlock(&args->table->philosophers[0]->fork);
-	pthread_mutex_unlock(&args->table->philosophers[i]->fork);
-	usleep(0.98 * args->table->time_sleep);
+	struct timeval tv;
+
+    while (args->table->flag == -1)
+    {
+        pthread_mutex_lock(&args->table->philosophers[i]->fork);
+        printf("%ld %i has taken a fork\n", ft_time(args), args->table->philosophers[i]->name);
+        if (args->table->numPhilo == i + 1)
+            pthread_mutex_lock(&args->table->philosophers[0]->fork);
+        else
+            pthread_mutex_lock(&args->table->philosophers[i + 1]->fork);
+        printf("%ld %i has taken a fork\n", ft_time(args), args->table->philosophers[i]->name);
+        printf("%ld %i is eating\n", ft_time(args), args->table->philosophers[i]->name);
+		gettimeofday(&tv, NULL);
+		args->table->philosophers[i]->last_eat = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+        usleep(0.98 * args->table->time_eat);
+        if (args->table->numPhilo == i + 1)
+            pthread_mutex_unlock(&args->table->philosophers[0]->fork);
+        else
+            pthread_mutex_unlock(&args->table->philosophers[i + 1]->fork);
+        pthread_mutex_unlock(&args->table->philosophers[i]->fork);
+        printf("%ld %i is sleeping\n", ft_time(args), args->table->philosophers[i]->name);
+        usleep(0.98 * args->table->time_sleep);
+        printf("%ld %i is thinking\n", ft_time(args), args->table->philosophers[i]->name);
+    }
+}
+
+void ft_impair(t_args *args, int i)
+{
+	struct timeval tv;
+
+    while (args->table->flag == -1)
+    {
+        if (args->table->numPhilo == i + 1)
+            pthread_mutex_lock(&args->table->philosophers[0]->fork);
+        else
+            pthread_mutex_lock(&args->table->philosophers[i + 1]->fork);
+        printf("%ld %i has taken a fork\n", ft_time(args), args->table->philosophers[i]->name);
+        pthread_mutex_lock(&args->table->philosophers[i]->fork);
+        printf("%ld %i has taken a fork\n", ft_time(args), args->table->philosophers[i]->name);
+        printf("%ld %i is eating\n", ft_time(args), args->table->philosophers[i]->name);
+		gettimeofday(&tv, NULL);
+		args->table->philosophers[i]->last_eat = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+        usleep(0.98 * args->table->time_eat);
+        if (args->table->numPhilo == i + 1)
+            pthread_mutex_unlock(&args->table->philosophers[0]->fork);
+        else
+            pthread_mutex_unlock(&args->table->philosophers[i + 1]->fork);
+        pthread_mutex_unlock(&args->table->philosophers[i]->fork);
+        printf("%ld %i is sleeping\n", ft_time(args), args->table->philosophers[i]->name);
+        usleep(0.98 * args->table->time_sleep);
+        printf("%ld %i is thinking\n", ft_time(args), args->table->philosophers[i]->name);
+    }
 }
 
 void	*ft_philo(void *data)
@@ -81,7 +117,7 @@ void	*ft_philo(void *data)
 	if (i % 2 == 0)
 		ft_pair(args, i);
 	else
-		ft_impair(args, i);
+		ft_impair(args, i);	
 	return (NULL);
 }
 
@@ -89,12 +125,29 @@ void	*ft_dead(void *data)
 {
 	t_args *args;
 	struct	timeval tv;
+	int				i;
 
 	args = (t_args *)data;
+	i = -1;
 	args->table->init = 0;
 	gettimeofday(&tv, NULL);
 	args->table->time_start = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	printf("empieza en t = %ld\n",args->table->time_start);
+	while (args->table->philosophers[++i])
+		args->table->philosophers[i]->last_eat = args->table->time_start;
+	while (args->table->flag == -1)
+	{
+		i = -1;
+		gettimeofday(&tv, NULL);
+		while (args->table->philosophers[++i])
+		{
+			if (args->table->time_die < ((tv.tv_sec * 1000 + tv.tv_usec / 1000) - args->table->philosophers[i]->last_eat))
+			{
+				args->table->flag = 0;
+				printf("%ld %i died\n", ft_time(args), args->table->philosophers[i]->name);
+				break;
+			}
+		}
+	}
 	return (NULL);
 }
 
@@ -111,9 +164,11 @@ void	ft_start(t_args *args)
 	}
 	pthread_create(&args->table->dead, NULL, ft_dead, args);
 	i = -1;
-	while (++i < args->table->numPhilo)
+	while (++i < args->table->numPhilo){
 		pthread_join(args->table->philosophers[i]->id, NULL);
+	}	
 }
+
 //para optimizar el usleep coger y poner usleep 0.95
 int	main(int argc, char **argv)
 {
