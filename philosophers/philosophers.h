@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 19:57:21 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/06 17:42:47 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/08 18:41:50 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_philo
 	pthread_mutex_t	fork;
 	pthread_t		id;
 	long long		last_eat;
-	size_t			lunchs;
+	int				lunchs;
 	int				name;
 }				t_philo;
 

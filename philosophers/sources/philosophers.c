@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 22:14:57 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/07 20:00:14 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/08 18:50:54 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,21 @@ void ft_pair(t_args *args, int i)
         printf("%lld %i is eating\n", ft_time(args), args->table->philosophers[i]->name);
 		gettimeofday(&tv, NULL);
 		args->table->philosophers[i]->last_eat = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-        usleep(0.98 * args->table->time_eat);
+        usleep(0.97 * args->table->time_eat * 1000);
         if (args->table->numPhilo == i + 1)
             pthread_mutex_unlock(&args->table->philosophers[0]->fork);
         else
             pthread_mutex_unlock(&args->table->philosophers[i + 1]->fork);
         pthread_mutex_unlock(&args->table->philosophers[i]->fork);
-		if (--args->table->philosophers[i]->lunchs == 0)
+		if (args->table->flag == 0)
 			break;
         printf("%lld %i is sleeping\n", ft_time(args), args->table->philosophers[i]->name);
-        usleep(0.98 * args->table->time_sleep);
+        usleep(0.97 * args->table->time_sleep * 1000);
+		if (args->table->flag == 0)
+			break;
         printf("%lld %i is thinking\n", ft_time(args), args->table->philosophers[i]->name);
+		if (--args->table->philosophers[i]->lunchs == 0)
+			break;
     }
 }
 
@@ -102,17 +106,21 @@ void ft_impair(t_args *args, int i)
         printf("%lld %i is eating\n", ft_time(args), args->table->philosophers[i]->name);
 		gettimeofday(&tv, NULL);
 		args->table->philosophers[i]->last_eat = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-        usleep(0.98 * args->table->time_eat);
+        usleep(0.97 * args->table->time_eat * 1000);
         if (args->table->numPhilo == i + 1)
             pthread_mutex_unlock(&args->table->philosophers[0]->fork);
         else
             pthread_mutex_unlock(&args->table->philosophers[i + 1]->fork);
         pthread_mutex_unlock(&args->table->philosophers[i]->fork);
-		if (--args->table->philosophers[i]->lunchs == 0)
+		if (args->table->flag == 0)
 			break;
         printf("%lld %i is sleeping\n", ft_time(args), args->table->philosophers[i]->name);
-        usleep(0.98 * args->table->time_sleep);
+        usleep(0.97 * args->table->time_sleep * 1000);
+		if (args->table->flag == 0)
+			break;
         printf("%lld %i is thinking\n", ft_time(args), args->table->philosophers[i]->name);
+		if (--args->table->philosophers[i]->lunchs == 0)
+			break;
     }
 }
 
@@ -140,6 +148,7 @@ void	*ft_dead(void *data)
 	int				i;
 	int				j;
 	long long aux;
+	int				aux_eats;
 
 	args = (t_args *)data;
 	i = -1;
@@ -149,7 +158,7 @@ void	*ft_dead(void *data)
 	args->table->time_start = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	while (args->table->philosophers[++i])
 		args->table->philosophers[i]->last_eat = args->table->time_start;
-	while (args->table->flag == -1)
+	while (args->table->flag == -1 || args->table->eats == -1)
 	{
 		i = -1;
 		gettimeofday(&tv, NULL);
@@ -164,6 +173,7 @@ void	*ft_dead(void *data)
 					pthread_mutex_unlock(&args->table->philosophers[j]->fork);
 				break;
 			}
+			
 		}
 	}
 	return (NULL);
@@ -220,3 +230,4 @@ int	main(int argc, char **argv)
 }
 
 //valgrind --fair-sched=yes --tool=helgrind ./philo 1 200 200 200
+//https://42-evaluation-sheets-hub.vercel.app/Cursus/Philosophers/index.html
