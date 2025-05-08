@@ -38,13 +38,13 @@ void	ft_init(t_args *args, char **argv, int argc)
 	args->table->flag = -1;
 }
 
-size_t	ft_time(t_args *args)
+long long 	ft_time(t_args *args)
 {
 	struct timeval	tv;
-	size_t			time;
+	long long		time;
 
 	gettimeofday(&tv, NULL);
-	time = tv.tv_sec * 1000 + tv.tv_usec / 1000 - args->table->time_start;
+	time = (tv.tv_sec * 1000 + tv.tv_usec / 1000) - args->table->time_start;
 	return (time);
 }
 
@@ -55,13 +55,17 @@ void ft_pair(t_args *args, int i)
     while (args->table->flag == -1)
     {
         pthread_mutex_lock(&args->table->philosophers[i]->fork);
-        printf("%ld %i has taken a fork\n", ft_time(args), args->table->philosophers[i]->name);
+		if (args->table->flag == 0)
+			break;
+        printf("%lld %i has taken a fork\n", ft_time(args), args->table->philosophers[i]->name);
         if (args->table->numPhilo == i + 1)
             pthread_mutex_lock(&args->table->philosophers[0]->fork);
         else
             pthread_mutex_lock(&args->table->philosophers[i + 1]->fork);
-        printf("%ld %i has taken a fork\n", ft_time(args), args->table->philosophers[i]->name);
-        printf("%ld %i is eating\n", ft_time(args), args->table->philosophers[i]->name);
+		if (args->table->flag == 0)
+			break;
+        printf("%lld %i has taken a fork\n", ft_time(args), args->table->philosophers[i]->name);
+        printf("%lld %i is eating\n", ft_time(args), args->table->philosophers[i]->name);
 		gettimeofday(&tv, NULL);
 		args->table->philosophers[i]->last_eat = tv.tv_sec * 1000 + tv.tv_usec / 1000;
         usleep(0.98 * args->table->time_eat);
@@ -70,9 +74,11 @@ void ft_pair(t_args *args, int i)
         else
             pthread_mutex_unlock(&args->table->philosophers[i + 1]->fork);
         pthread_mutex_unlock(&args->table->philosophers[i]->fork);
-        printf("%ld %i is sleeping\n", ft_time(args), args->table->philosophers[i]->name);
+		if (--args->table->philosophers[i]->lunchs == 0)
+			break;
+        printf("%lld %i is sleeping\n", ft_time(args), args->table->philosophers[i]->name);
         usleep(0.98 * args->table->time_sleep);
-        printf("%ld %i is thinking\n", ft_time(args), args->table->philosophers[i]->name);
+        printf("%lld %i is thinking\n", ft_time(args), args->table->philosophers[i]->name);
     }
 }
 
@@ -86,10 +92,14 @@ void ft_impair(t_args *args, int i)
             pthread_mutex_lock(&args->table->philosophers[0]->fork);
         else
             pthread_mutex_lock(&args->table->philosophers[i + 1]->fork);
-        printf("%ld %i has taken a fork\n", ft_time(args), args->table->philosophers[i]->name);
+		if (args->table->flag == 0)
+			break;
+        printf("%lld %i has taken a fork\n", ft_time(args), args->table->philosophers[i]->name);
         pthread_mutex_lock(&args->table->philosophers[i]->fork);
-        printf("%ld %i has taken a fork\n", ft_time(args), args->table->philosophers[i]->name);
-        printf("%ld %i is eating\n", ft_time(args), args->table->philosophers[i]->name);
+		if (args->table->flag == 0)
+			break;
+        printf("%lld %i has taken a fork\n", ft_time(args), args->table->philosophers[i]->name);
+        printf("%lld %i is eating\n", ft_time(args), args->table->philosophers[i]->name);
 		gettimeofday(&tv, NULL);
 		args->table->philosophers[i]->last_eat = tv.tv_sec * 1000 + tv.tv_usec / 1000;
         usleep(0.98 * args->table->time_eat);
@@ -98,9 +108,11 @@ void ft_impair(t_args *args, int i)
         else
             pthread_mutex_unlock(&args->table->philosophers[i + 1]->fork);
         pthread_mutex_unlock(&args->table->philosophers[i]->fork);
-        printf("%ld %i is sleeping\n", ft_time(args), args->table->philosophers[i]->name);
+		if (--args->table->philosophers[i]->lunchs == 0)
+			break;
+        printf("%lld %i is sleeping\n", ft_time(args), args->table->philosophers[i]->name);
         usleep(0.98 * args->table->time_sleep);
-        printf("%ld %i is thinking\n", ft_time(args), args->table->philosophers[i]->name);
+        printf("%lld %i is thinking\n", ft_time(args), args->table->philosophers[i]->name);
     }
 }
 
@@ -126,9 +138,12 @@ void	*ft_dead(void *data)
 	t_args *args;
 	struct	timeval tv;
 	int				i;
+	int				j;
+	long long aux;
 
 	args = (t_args *)data;
 	i = -1;
+	j = -1;
 	args->table->init = 0;
 	gettimeofday(&tv, NULL);
 	args->table->time_start = tv.tv_sec * 1000 + tv.tv_usec / 1000;
@@ -138,12 +153,15 @@ void	*ft_dead(void *data)
 	{
 		i = -1;
 		gettimeofday(&tv, NULL);
+		aux = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 		while (args->table->philosophers[++i])
 		{
-			if (args->table->time_die < ((tv.tv_sec * 1000 + tv.tv_usec / 1000) - args->table->philosophers[i]->last_eat))
+			if (args->table->time_die < (aux - args->table->philosophers[i]->last_eat))
 			{
 				args->table->flag = 0;
-				printf("%ld %i died\n", ft_time(args), args->table->philosophers[i]->name);
+				printf("%lld %i died\n", ft_time(args), args->table->philosophers[i]->name);
+				while (args->table->philosophers[++j])
+					pthread_mutex_unlock(&args->table->philosophers[j]->fork);
 				break;
 			}
 		}
@@ -159,7 +177,6 @@ void	ft_start(t_args *args)
 	while (++i < args->table->numPhilo)
 	{
 		args->table->philosophers[i]->name = i + 1;
-		printf("creando hilo de filosofo %i\n", args->table->philosophers[i]->name);
 		pthread_create(&args->table->philosophers[i]->id, NULL, ft_philo, args);
 	}
 	pthread_create(&args->table->dead, NULL, ft_dead, args);
@@ -167,6 +184,21 @@ void	ft_start(t_args *args)
 	while (++i < args->table->numPhilo){
 		pthread_join(args->table->philosophers[i]->id, NULL);
 	}	
+}
+
+void	ft_free(t_args *args)
+{
+	int	i;
+
+	i = -1;
+	while (args->table->philosophers[++i])
+		pthread_mutex_destroy(&args->table->philosophers[i]->fork);
+	i = -1;
+	while (args->table->philosophers[++i])
+		free(args->table->philosophers[i]);
+	free(args->table->philosophers);
+	free(args->table);
+	free(args);
 }
 
 //para optimizar el usleep coger y poner usleep 0.95
@@ -184,4 +216,7 @@ int	main(int argc, char **argv)
 	ft_check(argv);
 	ft_init(args, argv, argc);
 	ft_start(args);
+	ft_free(args);
 }
+
+//valgrind --fair-sched=yes --tool=helgrind ./philo 1 200 200 200

@@ -22,7 +22,7 @@ typedef struct s_philo
 {
 	pthread_mutex_t	fork;
 	pthread_t		id;
-	size_t			last_eat;
+	long long		last_eat;
 	size_t			lunchs;
 	int				name;
 }				t_philo;
@@ -31,10 +31,10 @@ typedef struct s_table
 {
 	t_philo			**philosophers;
 	int				flag;
-	size_t			time_eat;
-	size_t			time_sleep;
-	size_t			time_die;
-	size_t			time_start;
+	long long		time_eat;
+	long long		time_sleep;
+	long long		time_die;
+	long long		time_start;
 	int				numPhilo;
 	pthread_t		dead;
 	int				init;
