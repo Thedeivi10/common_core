@@ -44,6 +44,7 @@ typedef struct s_args
 {
 	t_table			*table;
 	int				idPhilo;
+	int				eats;
 }				t_args;
 
 //	FT_CHECK.C //

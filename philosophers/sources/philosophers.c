@@ -29,9 +29,12 @@ void	ft_init(t_args *args, char **argv, int argc)
 		args->table->philosophers[i] = malloc(sizeof(t_philo));
 		pthread_mutex_init(&args->table->philosophers[i]->fork, NULL);
 		if (argc == 6)
+		{
 			args->table->philosophers[i]->lunchs = ft_atoi(argv[5]);
+			args->eats = ft_atoi(argv[5]);
+		}
 		else
-			args->table->philosophers[i]->lunchs = -1;
+			args->eats = args->table->philosophers[i]->lunchs = -1;
 	}
 	args->idPhilo = -1;
 	args->table->init = -1;
@@ -52,6 +55,7 @@ void ft_pair(t_args *args, int i)
 {
 	struct timeval tv;
 
+	while (args->table->init == -1);
     while (args->table->flag == -1)
     {
         pthread_mutex_lock(&args->table->philosophers[i]->fork);
@@ -68,7 +72,7 @@ void ft_pair(t_args *args, int i)
         printf("%lld %i is eating\n", ft_time(args), args->table->philosophers[i]->name);
 		gettimeofday(&tv, NULL);
 		args->table->philosophers[i]->last_eat = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-        usleep(0.97 * args->table->time_eat * 1000);
+        usleep(0.95 * args->table->time_eat * 1000);
         if (args->table->numPhilo == i + 1)
             pthread_mutex_unlock(&args->table->philosophers[0]->fork);
         else
@@ -77,7 +81,7 @@ void ft_pair(t_args *args, int i)
 		if (args->table->flag == 0)
 			break;
         printf("%lld %i is sleeping\n", ft_time(args), args->table->philosophers[i]->name);
-        usleep(0.97 * args->table->time_sleep * 1000);
+        usleep(0.95 * args->table->time_sleep * 1000);
 		if (args->table->flag == 0)
 			break;
         printf("%lld %i is thinking\n", ft_time(args), args->table->philosophers[i]->name);
@@ -90,6 +94,7 @@ void ft_impair(t_args *args, int i)
 {
 	struct timeval tv;
 
+	while (args->table->init == -1);
     while (args->table->flag == -1)
     {
         if (args->table->numPhilo == i + 1)
@@ -106,7 +111,7 @@ void ft_impair(t_args *args, int i)
         printf("%lld %i is eating\n", ft_time(args), args->table->philosophers[i]->name);
 		gettimeofday(&tv, NULL);
 		args->table->philosophers[i]->last_eat = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-        usleep(0.97 * args->table->time_eat * 1000);
+        usleep(0.95 * args->table->time_eat * 1000);
         if (args->table->numPhilo == i + 1)
             pthread_mutex_unlock(&args->table->philosophers[0]->fork);
         else
@@ -115,7 +120,7 @@ void ft_impair(t_args *args, int i)
 		if (args->table->flag == 0)
 			break;
         printf("%lld %i is sleeping\n", ft_time(args), args->table->philosophers[i]->name);
-        usleep(0.97 * args->table->time_sleep * 1000);
+        usleep(0.95 * args->table->time_sleep * 1000);
 		if (args->table->flag == 0)
 			break;
         printf("%lld %i is thinking\n", ft_time(args), args->table->philosophers[i]->name);
@@ -143,11 +148,11 @@ void	*ft_philo(void *data)
 
 void	*ft_dead(void *data)
 {
-	t_args *args;
+	t_args			*args;
 	struct	timeval tv;
 	int				i;
 	int				j;
-	long long aux;
+	long long		aux;
 	int				aux_eats;
 
 	args = (t_args *)data;
@@ -158,23 +163,32 @@ void	*ft_dead(void *data)
 	args->table->time_start = tv.tv_sec * 1000 + tv.tv_usec / 1000;
 	while (args->table->philosophers[++i])
 		args->table->philosophers[i]->last_eat = args->table->time_start;
-	while (args->table->flag == -1 || args->table->eats == -1)
+	while (args->table->flag == -1)
 	{
 		i = -1;
 		gettimeofday(&tv, NULL);
 		aux = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+		if (args->eats != -1)
+			aux_eats = args->table->numPhilo;
+		else
+			aux_eats = -1;
 		while (args->table->philosophers[++i])
 		{
 			if (args->table->time_die < (aux - args->table->philosophers[i]->last_eat))
 			{
+				if (args->table->philosophers[i]->lunchs == 0)
+					break;
 				args->table->flag = 0;
 				printf("%lld %i died\n", ft_time(args), args->table->philosophers[i]->name);
 				while (args->table->philosophers[++j])
 					pthread_mutex_unlock(&args->table->philosophers[j]->fork);
 				break;
 			}
-			
+			if (args->table->philosophers[i]->lunchs <= 0 && aux_eats)
+				--aux_eats;
 		}
+		if (aux_eats == 0)
+			break;
 	}
 	return (NULL);
 }
@@ -211,7 +225,6 @@ void	ft_free(t_args *args)
 	free(args);
 }
 
-//para optimizar el usleep coger y poner usleep 0.95
 int	main(int argc, char **argv)
 {
 	t_args	*args;
