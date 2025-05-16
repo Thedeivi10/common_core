@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 12:37:52 by davigome          #+#    #+#             */
-/*   Updated: 2025/02/19 17:36:14 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/16 08:54:46 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,16 @@ size_t	ft_strlen(const char *s)
 	while (s[contador] != '\0')
 		contador++;
 	return (contador);
+}
+
+long long	ft_time(t_args *args)
+{
+	struct timeval	tv;
+	long long		time;
+
+	gettimeofday(&tv, NULL);
+	pthread_mutex_lock(&args->table->mutex_start);
+	time = (tv.tv_sec * 1000 + tv.tv_usec / 1000) - args->table->time_start;
+	pthread_mutex_unlock(&args->table->mutex_start);
+	return (time);
 }

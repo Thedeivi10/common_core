@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/04 19:57:32 by davigome          #+#    #+#              #
-#    Updated: 2025/02/19 12:38:19 by davigome         ###   ########.fr        #
+#    Updated: 2025/05/15 17:55:12 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,9 @@ OBJ_DIR			= ./obj
 SRC_FILES		= philosophers.c \
 					ft_check.c \
 					utils.c \
+					forks.c \
+					philos.c \
+					actions.c \
 
 OBJS				= $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
