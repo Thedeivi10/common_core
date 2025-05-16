@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 19:57:21 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/16 12:32:24 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/16 17:36:32 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_philo
 	pthread_mutex_t	fork;
 	pthread_mutex_t	mutex_lunchs;
 	pthread_t		id;
-	pthread_mutex_t eat;
+	pthread_mutex_t	eat;
 	long long		last_eat;
 	int				lunchs;
 	int				name;
@@ -44,8 +44,8 @@ typedef struct s_table
 	pthread_mutex_t	mutex_flag;
 	pthread_mutex_t	mutex_init;
 	pthread_mutex_t	mutex_start;
-	pthread_mutex_t mutex_printf;
-	pthread_mutex_t id_philo;
+	pthread_mutex_t	mutex_printf;
+	pthread_mutex_t	id_philo;
 }				t_table;
 
 typedef struct s_args
@@ -56,10 +56,10 @@ typedef struct s_args
 }				t_args;
 
 // PHILOSOPHERS.C //
-void	ft_printf(t_args *args, int type, int i);
+void		ft_printf(t_args *args, int type, int i);
 
 //	FT_CHECK.C //
-void	ft_check(char **argv);
+void		ft_check(char **argv);
 
 // UTILS.C //
 size_t		ft_strlen(const char *s);
@@ -67,22 +67,24 @@ int			ft_atoi(const char *str);
 long long	ft_time(t_args *args);
 
 // PHILOS.C //
-void	*ft_philo(void *data);
-void	ft_impair(t_args *args, int i);
-void	ft_pair(t_args *args, int i);
+void		*ft_philo(void *data);
+void		ft_impair(t_args *args, int i);
+void		ft_pair(t_args *args, int i);
 
 // FORKS.C //
-int	take_forks_pair(t_args *args, int i);
-int	take_forks_impair(t_args *args, int i);
-void	release_forks_pair(t_args *args, int i);
-void	release_forks_impair(t_args *args, int i);
-void	ft_unlock_forks(t_args *args);
+int			take_forks_pair(t_args *args, int i);
+int			take_forks_impair(t_args *args, int i);
+void		release_forks_pair(t_args *args, int i);
+void		release_forks_impair(t_args *args, int i);
+void		ft_unlock_forks(t_args *args);
 
 // ACTIONS.C //
-int	should_continue(t_args *args);
-void	eat(t_args *args, int i);
-void	sleep_and_think(t_args *args, int i);
-void	ft_dead_2(t_args *args, struct timeval tv, int i, int *aux_eats);
-void	*ft_dead(void *data);
+int			should_continue(t_args *args);
+void		eat(t_args *args, int i);
+void		sleep_and_think(t_args *args, int i);
+
+// FT_DEAD.C //
+void		ft_dead_2(t_args *args, struct timeval tv, int i, int *aux_eats);
+void		*ft_dead(void *data);
 
 #endif

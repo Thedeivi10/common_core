@@ -5,18 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/04 19:57:32 by davigome          #+#    #+#              #
-#    Updated: 2025/05/16 17:45:04 by davigome         ###   ########.fr        #
+#    Created: 2025/05/16 18:14:56 by davigome          #+#    #+#              #
+#    Updated: 2025/05/16 18:16:41 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 CC = gcc -g -pthread
-CFLAGS = -Wall  -Wextra -Werror
-HELGRIND = valgrind --fair-sched=yes --tool=helgrind ./philo 4 810 200 200 7
-VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./philo 3 810 200 200
-
+CFLAGS = -Wall  -Wextra -Werror -std=c++98
 
 # Colores
 RED = \033[31m

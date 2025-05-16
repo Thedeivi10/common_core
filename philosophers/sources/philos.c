@@ -6,11 +6,40 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 17:46:22 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/16 12:50:01 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/16 17:26:30 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
+
+void	ft_pair_2(t_args *args, int i)
+{
+	while (1)
+	{
+		pthread_mutex_lock(&args->table->mutex_flag);
+		if (args->table->flag != -1)
+		{
+			pthread_mutex_unlock(&args->table->mutex_flag);
+			break ;
+		}
+		pthread_mutex_unlock(&args->table->mutex_flag);
+		if (!take_forks_pair(args, i))
+			break ;
+		eat(args, i);
+		release_forks_pair(args, i);
+		if (!should_continue(args))
+			break ;
+		sleep_and_think(args, i);
+		pthread_mutex_lock(&args->table->philosophers[i]->mutex_lunchs);
+		if (--args->table->philosophers[i]->lunchs == 0)
+		{
+			pthread_mutex_unlock(&args->table->philosophers[i]->mutex_lunchs);
+			break ;
+		}
+		else
+			pthread_mutex_unlock(&args->table->philosophers[i]->mutex_lunchs);
+	}
+}
 
 void	ft_pair(t_args *args, int i)
 {
@@ -20,24 +49,29 @@ void	ft_pair(t_args *args, int i)
 		if (args->table->init != -1)
 		{
 			pthread_mutex_unlock(&args->table->mutex_init);
-			break;
+			break ;
 		}
 		pthread_mutex_unlock(&args->table->mutex_init);
 		usleep(100);
 	}
+	ft_pair_2(args, i);
+}
+
+void	ft_impair_2(t_args *args, int i)
+{
 	while (1)
 	{
 		pthread_mutex_lock(&args->table->mutex_flag);
 		if (args->table->flag != -1)
 		{
 			pthread_mutex_unlock(&args->table->mutex_flag);
-			break;
+			break ;
 		}
 		pthread_mutex_unlock(&args->table->mutex_flag);
-		if (!take_forks_pair(args, i))
+		if (!take_forks_impair(args, i))
 			break ;
 		eat(args, i);
-		release_forks_pair(args, i);
+		release_forks_impair(args, i);
 		if (!should_continue(args))
 			break ;
 		sleep_and_think(args, i);
@@ -60,36 +94,12 @@ void	ft_impair(t_args *args, int i)
 		if (args->table->init != -1)
 		{
 			pthread_mutex_unlock(&args->table->mutex_init);
-			break;
+			break ;
 		}
 		pthread_mutex_unlock(&args->table->mutex_init);
 		usleep(100);
 	}
-	while (1)
-	{
-		pthread_mutex_lock(&args->table->mutex_flag);
-		if (args->table->flag != -1)
-		{
-			pthread_mutex_unlock(&args->table->mutex_flag);
-			break;
-		}
-		pthread_mutex_unlock(&args->table->mutex_flag);
-		if (!take_forks_impair(args, i))
-			break ;
-		eat(args, i);
-		release_forks_impair(args, i);
-		if (!should_continue(args))
-			break ;
-		sleep_and_think(args, i);
-		pthread_mutex_lock(&args->table->philosophers[i]->mutex_lunchs);
-		if (--args->table->philosophers[i]->lunchs == 0)
-		{
-			pthread_mutex_unlock(&args->table->philosophers[i]->mutex_lunchs);
-			break ;
-		}
-		else
-			pthread_mutex_unlock(&args->table->philosophers[i]->mutex_lunchs);
-	}
+	ft_impair_2(args, i);
 }
 
 void	*ft_philo(void *data)
@@ -107,7 +117,7 @@ void	*ft_philo(void *data)
 		if (args->table->init != -1)
 		{
 			pthread_mutex_unlock(&args->table->mutex_init);
-			break;
+			break ;
 		}
 		pthread_mutex_unlock(&args->table->mutex_init);
 		usleep(100);
