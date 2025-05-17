@@ -6,14 +6,14 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 18:14:56 by davigome          #+#    #+#              #
-#    Updated: 2025/05/16 18:16:41 by davigome         ###   ########.fr        #
+#    Updated: 2025/05/17 18:01:42 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = philo
+NAME = PhoneBook
 
-CC = gcc -g -pthread
-CFLAGS = -Wall  -Wextra -Werror -std=c++98
+CC = c++ 
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 
 # Colores
 RED = \033[31m
@@ -22,40 +22,27 @@ YELLOW = \033[33m
 BLUE = \033[34m
 RESET = \033[0m
 
-SRC_DIR			= ./sources
-OBJ_DIR			= ./obj
+SRC_FILES = main.cpp\
+			Contact.cpp\
+			
+OBJ_DIR = ./obj
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.cpp=.o))
 
-SRC_FILES		= philosophers.c \
-					ft_check.c \
-					utils.c \
-					forks.c \
-					philos.c \
-					actions.c \
-					ft_dead.c \
-
-OBJS				= $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
-	@echo "$(GREEN)Executable for philo launched successfully!$(RESET)"
+	@echo "$(GREEN)Executable for PhoneBook compiled successfully!$(RESET)"
 
-all:$(NAME)
-
-valgrind:
-	$(VALGRIND)
-
-helgrind:
-	$(HELGRIND)
+all: $(NAME)
 
 clean:
-	@$(RM) -r $(OBJ_DIR)
+	@rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@$(RM) $(NAME)
+	@rm -f $(NAME)
 
 re: fclean all
 
