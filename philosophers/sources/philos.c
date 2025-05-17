@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 17:46:22 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/16 17:26:30 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/17 13:59:34 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ void	ft_impair(t_args *args, int i)
 		pthread_mutex_unlock(&args->table->mutex_init);
 		usleep(100);
 	}
-	ft_impair_2(args, i);
+	if (args->table->time_die > args->table->time_eat)
+		ft_impair_2(args, i);
 }
 
 void	*ft_philo(void *data)
@@ -122,9 +123,9 @@ void	*ft_philo(void *data)
 		pthread_mutex_unlock(&args->table->mutex_init);
 		usleep(100);
 	}
-	if (i % 2 == 0)
+	if ((i + 1) % 2 == 0)
 		usleep(10);
-	if (i % 2 == 0)
+	if ((i + 1) % 2 == 0)
 		ft_pair(args, i);
 	else
 		ft_impair(args, i);

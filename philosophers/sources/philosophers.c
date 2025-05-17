@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 22:14:57 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/16 16:39:02 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/17 09:29:20 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	ft_start(t_args *args)
 	i = -1;
 	while (++i < args->table->numphilo)
 		pthread_join(args->table->philosophers[i]->id, NULL);
+	pthread_join(args->table->dead, NULL);
 }
 
 void	ft_free(t_args *args)
@@ -84,7 +85,6 @@ void	ft_free(t_args *args)
 	int	i;
 
 	i = -1;
-	pthread_join(args->table->dead, NULL);
 	while (args->table->philosophers[++i])
 	{
 		pthread_mutex_destroy(&args->table->philosophers[i]->fork);

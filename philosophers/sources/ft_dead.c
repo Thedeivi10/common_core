@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:35:15 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/16 17:36:07 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/17 13:57:12 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	*ft_dead(void *data)
 		i = -1;
 		gettimeofday(&tv, NULL);
 		ft_dead_2(args, tv, i, aux_eats);
-		if (*aux_eats == args->table->numphilo)
+		if (*aux_eats == 0)
 			break ;
 	}
 	free(aux_eats);
