@@ -5,31 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 17:18:51 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/18 07:39:28 by davigome         ###   ########.fr       */
+/*   Created: 2025/05/18 21:09:39 by davigome          #+#    #+#             */
+/*   Updated: 2025/05/18 21:09:40 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
-#include "PhoneBook.hpp"
-
-int main() {
-   
-	PhoneBook PhoneBook;
-	std::string aux;
-	
-	while (1)
-	{
-		std::cout << "Say the next action: EXIT, ADD or SEARCH:"<< std::endl;
-		std::getline(std::cin, aux);
-		if (aux == "EXIT")
-			break;
-		else if (aux == "ADD")
-			PhoneBook.addContact();
-		else if (aux == "SEARCH")
-			PhoneBook.searchContacts();
-		else
-			std::cout << "Not valid command" << std::endl;
-	}
-}

@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 17:18:51 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/18 07:39:28 by davigome         ###   ########.fr       */
+/*   Created: 2025/05/18 21:09:57 by davigome          #+#    #+#             */
+/*   Updated: 2025/05/19 07:03:34 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include <string>
-#include "PhoneBook.hpp"
+#ifndef ZOMBIE_HPP
+#define ZOMBIE_HPP
 
-int main() {
-   
-	PhoneBook PhoneBook;
-	std::string aux;
-	
-	while (1)
-	{
-		std::cout << "Say the next action: EXIT, ADD or SEARCH:"<< std::endl;
-		std::getline(std::cin, aux);
-		if (aux == "EXIT")
-			break;
-		else if (aux == "ADD")
-			PhoneBook.addContact();
-		else if (aux == "SEARCH")
-			PhoneBook.searchContacts();
-		else
-			std::cout << "Not valid command" << std::endl;
-	}
-}
+#include <string>
+
+class Zombie{
+	private:
+	std::string name = "Zombieee";
+
+	public:
+	std::string getName();
+	void announce(void);
+	Zombie* newZombie(std::string name);
+	~Zombie();
+};
+
+#endif

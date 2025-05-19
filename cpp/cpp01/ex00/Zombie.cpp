@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/17 17:18:51 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/18 07:39:28 by davigome         ###   ########.fr       */
+/*   Created: 2025/05/18 21:10:10 by davigome          #+#    #+#             */
+/*   Updated: 2025/05/19 07:07:40 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <string>
-#include "PhoneBook.hpp"
+#include <array>
+#include "Zombie.hpp"
 
-int main() {
-   
-	PhoneBook PhoneBook;
-	std::string aux;
-	
-	while (1)
-	{
-		std::cout << "Say the next action: EXIT, ADD or SEARCH:"<< std::endl;
-		std::getline(std::cin, aux);
-		if (aux == "EXIT")
-			break;
-		else if (aux == "ADD")
-			PhoneBook.addContact();
-		else if (aux == "SEARCH")
-			PhoneBook.searchContacts();
-		else
-			std::cout << "Not valid command" << std::endl;
-	}
+std::string Zombie::getName(){
+	return (name);
+}
+
+void Zombie::announce(void){
+	std::cout << getName << ": BraiiiiiiinnnzzzZ..."<< std::endl;
 }
