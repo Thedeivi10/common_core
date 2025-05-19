@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:35:15 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/17 13:57:12 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/19 10:43:15 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,18 @@ void	ft_dead_3(int *aux_eats, t_args *args, struct timeval tv)
 	pthread_mutex_unlock(&args->table->mutex_start);
 }
 
+int	ft_checkEats(t_args *args)
+{
+	int i;
+
+	i = -1;
+
+	while (++i < args->table->numphilo)
+	{
+		
+	}
+}
+
 void	*ft_dead(void *data)
 {
 	t_args			*args;
@@ -89,7 +101,7 @@ void	*ft_dead(void *data)
 		i = -1;
 		gettimeofday(&tv, NULL);
 		ft_dead_2(args, tv, i, aux_eats);
-		if (*aux_eats == 0)
+		if (!ft_checkEats(args))
 			break ;
 	}
 	free(aux_eats);

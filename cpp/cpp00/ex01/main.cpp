@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:18:51 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/18 07:39:28 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/19 11:58:25 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int main() {
 	while (1)
 	{
 		std::cout << "Say the next action: EXIT, ADD or SEARCH:"<< std::endl;
-		std::getline(std::cin, aux);
-		if (aux == "EXIT")
+		if (!std::getline(std::cin, aux) || aux == "EXIT")
 			break;
 		else if (aux == "ADD")
 			PhoneBook.addContact();

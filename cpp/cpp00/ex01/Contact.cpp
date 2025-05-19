@@ -6,19 +6,21 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:49:37 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/17 19:03:39 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/19 12:06:05 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 #include <iostream>
+#include <cstdlib>
 
 void Contact::setFirstName(){
 	std::string input;
 	
 	do{
     std::cout << "First name: " << std::endl;
-	std::getline(std::cin, input);
+	if (!std::getline(std::cin, input))
+		exit(0);
 	if (input.empty())
 			std::cout << "This field cannot be empty. Please try again." << std::endl;
 	} while (input.empty());
@@ -34,7 +36,8 @@ void Contact::setLastName(){
 
 	do{
     std::cout << "Last name: " << std::endl;
-	std::getline(std::cin, input);
+	if (!std::getline(std::cin, input))
+		exit(0);
 	if (input.empty())
 			std::cout << "This field cannot be empty. Please try again." << std::endl;
 	} while (input.empty());
@@ -50,7 +53,8 @@ void Contact::setNickName(){
 
 	do{
     std::cout << "Nick name: " << std::endl;
-	std::getline(std::cin, input);
+	if (!std::getline(std::cin, input))
+		exit(0);
 	if (input.empty())
 			std::cout << "This field cannot be empty. Please try again." << std::endl;
 	} while (input.empty());
@@ -61,15 +65,29 @@ std::string Contact::getNickName() const {
 	return NickName;
 }
 
+int flag = -1;
+
 void Contact::setPhoneNumber(){
 	std::string input;
 
 	do{
     std::cout << "Phone number: " << std::endl;
-	std::getline(std::cin, input);
+	if (!std::getline(std::cin, input))
+		exit(0);
 	if (input.empty())
 			std::cout << "This field cannot be empty. Please try again." << std::endl;
-	} while (input.empty());
+	int i = -1;
+	flag = -1;
+	while (!input.empty() && input[++i])
+	{
+		if (input[i] > '9' || input[i] < '0')
+		{
+			std::cout << "The phone number only has numbers" << std::endl;
+			flag = 0;
+			break;
+		}
+	}
+	} while (input.empty() || flag == 0);
 	PhoneNumber = input;
 }
 
@@ -82,7 +100,8 @@ void Contact::setDarkestSecret(){
 
 	do{
     std::cout << "Darkest secret: " << std::endl;
-	std::getline(std::cin, input);
+	if (!std::getline(std::cin, input))
+		exit(0);
 	if (input.empty())
 			std::cout << "This field cannot be empty. Please try again." << std::endl;
 	} while (input.empty());

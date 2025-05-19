@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/17 17:50:24 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/18 08:33:01 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/19 12:06:20 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
+#include <cstdlib>
 
 PhoneBook::PhoneBook(){
 	contactCount = 0;
@@ -85,7 +86,8 @@ void PhoneBook::searchContacts() const{
 			std::cout << std::setw(10)<< aux << std::endl;
 	}
 	std::cout << "Specify the index of the contact:"<<std::endl;
-	std::getline(std::cin, aux);
+	if(!std::getline(std::cin, aux))
+		exit(0);
 	std::stringstream ss(aux);
 	int i;
 	ss >> i;
