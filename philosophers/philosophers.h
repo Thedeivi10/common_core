@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 19:57:21 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/16 17:36:32 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/19 13:41:37 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ int			take_forks_pair(t_args *args, int i);
 int			take_forks_impair(t_args *args, int i);
 void		release_forks_pair(t_args *args, int i);
 void		release_forks_impair(t_args *args, int i);
-void		ft_unlock_forks(t_args *args);
 
 // ACTIONS.C //
 int			should_continue(t_args *args);
@@ -84,7 +83,7 @@ void		eat(t_args *args, int i);
 void		sleep_and_think(t_args *args, int i);
 
 // FT_DEAD.C //
-void		ft_dead_2(t_args *args, struct timeval tv, int i, int *aux_eats);
+void		ft_dead_2(t_args *args, struct timeval tv, int i);
 void		*ft_dead(void *data);
 
 #endif

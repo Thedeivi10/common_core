@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 23:47:57 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/18 20:54:16 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/19 13:19:23 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ft_check(char **argv)
 	while (argv[++i])
 	{
 		j = -1;
-		if (argv[i][0] == '-' || ft_strlen(argv[i]) >= 11 || ft_atoi(argv[i]) == 0)
+		if (argv[i][0] == '-' || ft_strlen(argv[i]) >= 11
+			|| ft_atoi(argv[i]) == 0)
 		{
 			write(2, "Error\n", 6);
 			exit(1);

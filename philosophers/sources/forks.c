@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/15 17:49:09 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/17 10:03:38 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/19 13:43:48 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,4 @@ void	release_forks_impair(t_args *args, int i)
 	else
 		pthread_mutex_unlock(&args->table->philosophers[i + 1]->fork);
 	pthread_mutex_unlock(&args->table->philosophers[i]->fork);
-}
-
-void	ft_unlock_forks(t_args *args)
-{
-	int	j;
-
-	j = -1;
-	while (args->table->philosophers[++j])
-		pthread_mutex_unlock(&args->table->philosophers[j]->fork);
 }

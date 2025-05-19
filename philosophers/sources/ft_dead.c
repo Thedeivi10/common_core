@@ -6,34 +6,17 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 17:35:15 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/19 10:43:15 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/19 13:20:24 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philosophers.h"
 
-void	ft_dead_4(t_args *args, int *aux_eats)
-{
-	if (args->eats != -1)
-		*aux_eats = args->table->numphilo;
-	else
-		*aux_eats = -1;
-}
-
-void	ft_dead_5(t_args *args, int i, int *aux_eats)
-{
-	pthread_mutex_lock(&args->table->philosophers[i]->mutex_lunchs);
-	if (args->table->philosophers[i]->lunchs <= 0)
-		--(*aux_eats);
-	pthread_mutex_unlock(&args->table->philosophers[i]->mutex_lunchs);
-}
-
-void	ft_dead_2(t_args *args, struct timeval tv, int i, int *aux_eats)
+void	ft_dead_2(t_args *args, struct timeval tv, int i)
 {
 	long long	aux;
 
 	aux = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	ft_dead_4(args, aux_eats);
 	while (args->table->philosophers[++i])
 	{
 		pthread_mutex_lock(&args->table->philosophers[i]->eat);
@@ -51,13 +34,11 @@ void	ft_dead_2(t_args *args, struct timeval tv, int i, int *aux_eats)
 		}
 		else
 			pthread_mutex_unlock(&args->table->philosophers[i]->eat);
-		ft_dead_5(args, i, aux_eats);
 	}
 }
 
-void	ft_dead_3(int *aux_eats, t_args *args, struct timeval tv)
+void	ft_dead_3(t_args *args, struct timeval tv)
 {
-	*aux_eats = -1;
 	pthread_mutex_lock(&args->table->mutex_init);
 	args->table->init = 0;
 	pthread_mutex_unlock(&args->table->mutex_init);
@@ -67,16 +48,22 @@ void	ft_dead_3(int *aux_eats, t_args *args, struct timeval tv)
 	pthread_mutex_unlock(&args->table->mutex_start);
 }
 
-int	ft_checkEats(t_args *args)
+int	ft_checkeats(t_args *args)
 {
-	int i;
+	int	i;
 
 	i = -1;
-
 	while (++i < args->table->numphilo)
 	{
-		
+		pthread_mutex_lock(&args->table->philosophers[i]->mutex_lunchs);
+		if (args->table->philosophers[i]->lunchs > 0)
+		{
+			pthread_mutex_unlock(&args->table->philosophers[i]->mutex_lunchs);
+			return (1);
+		}
+		pthread_mutex_unlock(&args->table->philosophers[i]->mutex_lunchs);
 	}
+	return (0);
 }
 
 void	*ft_dead(void *data)
@@ -84,12 +71,10 @@ void	*ft_dead(void *data)
 	t_args			*args;
 	struct timeval	tv;
 	int				i;
-	int				*aux_eats;
 
 	args = (t_args *)data;
 	i = -1;
-	aux_eats = malloc(sizeof(int));
-	ft_dead_3(aux_eats, args, tv);
+	ft_dead_3(args, tv);
 	while (args->table->philosophers[++i])
 	{
 		pthread_mutex_lock(&args->table->philosophers[i]->eat);
@@ -100,10 +85,10 @@ void	*ft_dead(void *data)
 	{
 		i = -1;
 		gettimeofday(&tv, NULL);
-		ft_dead_2(args, tv, i, aux_eats);
-		if (!ft_checkEats(args))
-			break ;
+		ft_dead_2(args, tv, i);
+		if (args->eats != -1)
+			if (ft_checkeats(args) == 0)
+				break ;
 	}
-	free(aux_eats);
 	return (NULL);
 }

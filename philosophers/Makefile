@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/04 19:57:32 by davigome          #+#    #+#              #
-#    Updated: 2025/05/16 17:45:04 by davigome         ###   ########.fr        #
+#    Updated: 2025/05/19 13:46:08 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = philo
 
 CC = gcc -g -pthread
 CFLAGS = -Wall  -Wextra -Werror
-HELGRIND = valgrind --fair-sched=yes --tool=helgrind ./philo 4 810 200 200 7
+HELGRIND = valgrind --tool=helgrind ./philo 180 810 200 200 7
 VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./philo 3 810 200 200
 
 

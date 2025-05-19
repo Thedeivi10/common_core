@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 22:14:57 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/17 09:29:20 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/19 13:29:16 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,4 +129,3 @@ int	main(int argc, char **argv)
 	ft_start(args);
 	ft_free(args);
 }
-//valgrind --fair-sched=yes --tool=helgrind ./philo 1 200 200 200
