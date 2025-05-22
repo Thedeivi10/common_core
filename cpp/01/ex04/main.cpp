@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 19:22:38 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/22 18:33:17 by davigome         ###   ########.fr       */
+/*   Created: 2025/05/22 19:25:06 by davigome          #+#    #+#             */
+/*   Updated: 2025/05/22 19:30:53 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#include <string>
+#include <iostream>
 
-HumanA::HumanA(std::string _name, Weapon &_weapon) : _name(_name), _weapon(_weapon)
-{
-};
-
-HumanA::~HumanA()
+int main (int argc, char **argv)
 {
 	
-};
-
-void	HumanA::attack()
-{
-	std::cout << this->_name << " attacks with their " << this->_weapon.getType() << std::endl;
 }

@@ -6,11 +6,16 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:21:04 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/20 19:27:10 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/22 19:03:02 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <string>
+#include "HumanA.hpp"
+#include "HumanB.hpp"
+#include "Weapon.hpp"
+
 
 int main()
 {

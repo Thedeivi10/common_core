@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:23:00 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/20 19:31:16 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/22 18:38:15 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	Weapon::setType(std::string type){
 	this->type = type;
 }
 
-Weapon::Weapon(){
-	
+Weapon::Weapon(std::string type){
+	this->type = type;
 }
 
 Weapon::~Weapon(){

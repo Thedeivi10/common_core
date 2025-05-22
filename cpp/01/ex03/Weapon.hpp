@@ -6,9 +6,12 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:23:02 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/20 19:31:52 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/22 19:07:58 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef WEAPON_HPP
+#define WEAPON_HPP
 
 #include <iostream>
 #include <string>
@@ -19,9 +22,11 @@ class Weapon{
 		std::string type;
 
 	public:
-		Weapon();
+		Weapon(std::string type);
 		~Weapon();
 		void	setType(std::string type);
 		const std::string &getType();
 		
 };
+
+#endif

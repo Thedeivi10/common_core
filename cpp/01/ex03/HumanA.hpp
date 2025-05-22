@@ -6,9 +6,12 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:22:48 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/21 08:01:56 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/22 19:09:35 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef HUMANA_HPP
+#define HUMANA_HPP
 
 #include <iostream>
 #include <string>
@@ -18,10 +21,12 @@ class HumanA{
 
 	private:
 
-		std::string name;
-		Weapon weapon;
+		std::string _name;
+		Weapon &_weapon;
 	public:
-	HumanA(std::string weapon);
-	void attack();
-	~HumanA();
+		HumanA(std::string _name, Weapon &_weapon);
+		void attack();
+		~HumanA();
 };
+
+#endif
