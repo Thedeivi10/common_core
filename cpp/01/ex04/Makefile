@@ -6,11 +6,11 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 18:14:56 by davigome          #+#    #+#              #
-#    Updated: 2025/05/22 19:16:10 by davigome         ###   ########.fr        #
+#    Updated: 2025/05/23 09:44:46 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Violence
+NAME = replace
 
 CC = c++ 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
@@ -24,9 +24,6 @@ BLUE = \033[34m
 RESET = \033[0m
 
 SRC_FILES = main.cpp\
-			HumanB.cpp\
-			HumanA.cpp\
-			Weapon.cpp\
 			
 OBJ_DIR = ./obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.cpp=.o))
@@ -37,7 +34,7 @@ $(OBJ_DIR)/%.o: %.cpp
 
 $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
-	@echo "$(GREEN)Executable for Violence compiled successfully!$(RESET)"
+	@echo "$(GREEN)Executable for replace compiled successfully!$(RESET)"
 
 all: $(NAME)
 
