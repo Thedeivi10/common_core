@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 18:14:56 by davigome          #+#    #+#              #
-#    Updated: 2025/05/23 09:44:46 by davigome         ###   ########.fr        #
+#    Updated: 2025/05/23 11:08:32 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ NAME = replace
 
 CC = c++ 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-VALGRIND = valgrind --leak-check=full --show-leak-kinds=all ./Violence
 
 # Colores
 RED = \033[31m
@@ -43,9 +42,6 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-
-valgrind:
-	$(VALGRIND)
 
 re: fclean all
 

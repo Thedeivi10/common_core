@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 18:14:56 by davigome          #+#    #+#              #
-#    Updated: 2025/05/22 19:16:10 by davigome         ###   ########.fr        #
+#    Updated: 2025/05/23 18:58:57 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME = Violence
 CC = c++ 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 VALGRIND = valgrind --leak-check=full --show-leak-kinds=all ./Violence
+HEADERS = HumanA.hpp HumanB.hpp Weapon.hpp
 
 # Colores
 RED = \033[31m
@@ -35,7 +36,7 @@ $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(HEADERS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	@echo "$(GREEN)Executable for Violence compiled successfully!$(RESET)"
 

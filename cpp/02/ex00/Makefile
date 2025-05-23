@@ -6,15 +6,15 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 18:14:56 by davigome          #+#    #+#              #
-#    Updated: 2025/05/23 18:52:56 by davigome         ###   ########.fr        #
+#    Updated: 2025/05/23 18:59:38 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Zombie
+NAME = Harl
 
 CC = c++ 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-HEADERS = Zombie.hpp
+HEADERS = Harl.hpp
 
 # Colores
 RED = \033[31m
@@ -24,8 +24,7 @@ BLUE = \033[34m
 RESET = \033[0m
 
 SRC_FILES = main.cpp\
-			Zombie.cpp\
-			zombieHorde.cpp\
+			Harl.cpp\
 			
 OBJ_DIR = ./obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.cpp=.o))
@@ -36,7 +35,7 @@ $(OBJ_DIR)/%.o: %.cpp
 
 $(NAME): $(OBJS) $(HEADERS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
-	@echo "$(GREEN)Executable for Zombie compiled successfully!$(RESET)"
+	@echo "$(GREEN)Executable for Harl compiled successfully!$(RESET)"
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 18:14:56 by davigome          #+#    #+#              #
-#    Updated: 2025/05/19 17:46:00 by davigome         ###   ########.fr        #
+#    Updated: 2025/05/23 18:52:09 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = Zombie
 
 CC = c++ 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
+HEADERS = Zombie.hpp
 
 # Colores
 RED = \033[31m
@@ -34,7 +35,7 @@ $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(HEADERS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
 	@echo "$(GREEN)Executable for Zombie compiled successfully!$(RESET)"
 

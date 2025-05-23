@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/15 21:33:55 by davigome          #+#    #+#              #
-#    Updated: 2024/11/30 14:10:39 by davigome         ###   ########.fr        #
+#    Updated: 2025/05/23 21:34:40 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ MLX42		= ./MLX42
 LIBFT		= ./libft
 INCLUDES	= -I$(MLX42)/include -I$(LIBFT)/include -Iincludes
 LIBS		= -L$(MLX42)/build -lmlx42 -lglfw -ldl -lm -lpthread -L$(LIBFT) -lft
+#HEADER_BONUS = 	includes/so_long_bonus.h
 
 # Colores
 RED = \033[31m
@@ -69,7 +70,7 @@ $(NAME): $(LIBFT)/libft.a $(MLX42)/build/libmlx42.a $(OBJS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBS)
 	@echo "$(GREEN)Executable for so_long launched successfully!$(RESET)"
 
-$(BONUS_NAME): $(LIBFT)/libft.a  $(MLX42)/build/libmlx42.a $(OBJS_BONUS)
+$(BONUS_NAME): $(LIBFT)/libft.a  $(MLX42)/build/libmlx42.a $(OBJS_BONUS) #$(HEADER_BONUS)
 	@$(CC) $(CFLAGS) -o $(BONUS_NAME) $(OBJS_BONUS) $(LIBS)
 	@echo "$(GREEN)Bonus for so_long launched successfully!$(RESET)"
 
