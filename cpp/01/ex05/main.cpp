@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 11:04:32 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/23 11:52:09 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/24 15:12:05 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int main(void)
 {
 	Harl harl;
 
+	harl.complain("");
 	harl.complain("DEBUG");
 	harl.complain("INFO");
 	harl.complain("WARNING");
