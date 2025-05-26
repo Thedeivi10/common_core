@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 22:39:32 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/24 13:05:51 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/25 08:17:53 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,28 @@ Fixed& Fixed::operator=(const Fixed& fixed)
 void	Fixed::setRawBits(int const raw)
 {
 	this->_value = raw;
+}
+
+Fixed::Fixed (const int _value){
+	std::cout<< "Int constructor called" << std::endl;
+	this->_value = _value << this->_bits;
+}
+
+Fixed::Fixed(const float _value)
+{
+	std::cout << "Float constructor called" << std::endl;
+	this->_value = static_cast<int>(roundf(_value * (1 << _bits)));
+}
+int	Fixed::toInt() const{
+	return this->_value >> this->_bits;
+}
+
+float Fixed::toFloat() const{
+	return this->_value / float(1 << this->_bits);
+}
+
+std::ostream &operator<<(std::ostream &stream, const Fixed &_value)
+{
+	stream << _value.toFloat();
+	return stream;
 }
