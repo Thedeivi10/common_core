@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 22:39:48 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/25 09:01:37 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/26 15:08:09 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ class Fixed{
 	Fixed	operator + (Fixed const &fixed);
 	Fixed	operator - (Fixed const &fixed);
 	Fixed	operator * (Fixed const &fixed);
+	Fixed	operator / (Fixed const &fixed);
 	Fixed	operator ++ ();
 	Fixed	operator ++(int);
 	Fixed	operator --(int);
