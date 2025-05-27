@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/26 17:49:10 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/27 07:27:34 by davigome         ###   ########.fr       */
+/*   Created: 2025/05/27 07:40:52 by davigome          #+#    #+#             */
+/*   Updated: 2025/05/27 07:45:59 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-#define SCAVTRAP_HPP
+#ifndef FRAGTRAP_HPP
+#define FRAGTRAP_HPP
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap{
+class FragTrap : public ClapTrap{
 	public:
-		ScavTrap();
-		ScavTrap(const std::string& _name);
-		ScavTrap(const ScavTrap& src);
-		~ScavTrap();
-
-		using ClapTrap::operator =;
-		void	guardGate();
+		FragTrap();
+		FragTrap(const std::string _name);
+		
+		using operator =;
 };
 
 #endif

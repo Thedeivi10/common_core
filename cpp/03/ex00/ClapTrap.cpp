@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 15:39:54 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/26 18:00:42 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/26 21:47:54 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ ClapTrap::ClapTrap()
 }
 
 ClapTrap::~ClapTrap(){
-	std::cout << "Destructor called for " << this->getName() << std::endl;
+	std::cout << "Default destructor called for ScavTrap."<< std::endl;
 }
 
 std::string	ClapTrap::getName(void) const{

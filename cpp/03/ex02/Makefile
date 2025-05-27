@@ -6,15 +6,15 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 18:14:56 by davigome          #+#    #+#              #
-#    Updated: 2025/05/27 07:35:45 by davigome         ###   ########.fr        #
+#    Updated: 2025/05/27 07:42:11 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ScavTrap
+NAME = FragTrap
 
 CC = c++ 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-HEADERS = ClapTrap.hpp ScavTrap.hpp
+HEADERS = ClapTrap.hpp ScavTrap.hpp FragTrap.hpp
 
 # Colores
 RED = \033[31m
@@ -26,6 +26,7 @@ RESET = \033[0m
 SRC_FILES = main.cpp\
 			ClapTrap.cpp\
 			ScavTrap.cpp\
+			FragTrap.cpp\
 			
 OBJ_DIR = ./obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.cpp=.o))
