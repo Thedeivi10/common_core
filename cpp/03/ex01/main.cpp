@@ -6,21 +6,12 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 15:39:23 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/27 07:34:08 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/27 08:16:47 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 #include <iostream>
-
-/* int main( void )
-{
-	ClapTrap pepe("pepe"), manue("manue");
-
-	pepe.attack("manue");
-	pepe.beRepaired(4);
-	pepe.takeDamage(3);
-} */
 
 int main() {
     std::cout << "----- Creando ScavTrap Alice -----\n";

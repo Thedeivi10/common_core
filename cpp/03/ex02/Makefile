@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 18:14:56 by davigome          #+#    #+#              #
-#    Updated: 2025/05/27 07:42:11 by davigome         ###   ########.fr        #
+#    Updated: 2025/05/27 08:23:16 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ $(OBJ_DIR)/%.o: %.cpp
 
 $(NAME): $(OBJS) $(HEADERS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
-	@echo "$(GREEN)Executable for ScavTrap compiled successfully!$(RESET)"
+	@echo "$(GREEN)Executable for FragTrap compiled successfully!$(RESET)"
 
 all: $(NAME)
 

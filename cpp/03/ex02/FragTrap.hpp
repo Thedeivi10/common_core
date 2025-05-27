@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 07:40:52 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/27 07:45:59 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/27 08:12:04 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,13 @@
 class FragTrap : public ClapTrap{
 	public:
 		FragTrap();
-		FragTrap(const std::string _name);
+		FragTrap(const std::string& _name);
+		FragTrap(const FragTrap& src);
+		~FragTrap();
 		
-		using operator =;
+		using ClapTrap::operator =;
+
+		void highFivesGuys(void) const;
 };
 
 #endif

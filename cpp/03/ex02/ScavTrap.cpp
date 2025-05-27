@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:50:26 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/27 07:25:34 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/27 08:07:19 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ScavTrap::ScavTrap() : ClapTrap()
 {
-	std::cout << "Scavtrap default constructor called" << std::endl;
+	std::cout << "ScavTrap default constructor called" << std::endl;
 	this->setHitPoints(100);
 	this->setEnergyPoints(50);
 	this->setAttackDamage(20);
