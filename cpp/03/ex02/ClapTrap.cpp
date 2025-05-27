@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 15:39:54 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/26 22:01:58 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:12:32 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ ClapTrap::ClapTrap()
 }
 
 ClapTrap::~ClapTrap(){
-	std::cout << "Default destructor called for ScavTrap."<< std::endl;
+	std::cout << "Default destructor called for ClapTrap."<< std::endl;
 }
 
 std::string	ClapTrap::getName(void) const{
@@ -73,7 +73,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& src)
 	else
 	{
 		--this->_energyPoints;
-		std::cout << this->_name << " attacks " << target << std::endl;
+		std::cout << this->_name << " attacks " << target << " and has this points left" << this->_energyPoints << std::endl;
 	}
  }
  
@@ -88,8 +88,9 @@ void ClapTrap::beRepaired(unsigned int amount)
 		std::cout << this->_name << "has not enough energy points" << std::endl;
 	else
 	{
+		--this->_energyPoints;
 		this->_hitPoints += amount;
-		std::cout << this->_name << " has repaired  " << amount << " points." << std::endl;
+		std::cout << this->_name << " has repaired  " << amount << " points" << " and now has this points " << this->getHitPoints() << std::endl;
 	}
 }
 

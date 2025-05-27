@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 22:39:48 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/26 15:08:09 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/27 12:17:43 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ class Fixed{
 	static Fixed &max(Fixed &a, Fixed &b);
 };
 
-std::ostream &operator<<(std::ostream &stream, const Fixed &_value);
+std::ostream &operator<<(std::ostream &stream, const Fixed &fixed);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:50:26 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/27 08:07:19 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/27 17:37:10 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,16 @@ ScavTrap::~ScavTrap()
 void	ScavTrap::guardGate(){
 	std::cout << "ScavTrap " << this->getName() << " has entered in Gate Keeper Mode." << std::endl;
 }
+
+void ScavTrap::attack(const std::string &target)
+ {
+	if (this->getEnergyPoints() == 0)
+		std::cout << this->getName() << "has not enough energy points" << std::endl;
+	else
+	{
+		int i = this->getEnergyPoints();
+		--i;
+		this->setEnergyPoints(i);
+		std::cout << "Scavtrap "<<this->getName() << " attacks " << target << std::endl;
+	}
+ }

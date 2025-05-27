@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:49:10 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/27 07:27:34 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/27 16:22:10 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ class ScavTrap : public ClapTrap{
 
 		using ClapTrap::operator =;
 		void	guardGate();
+		void attack(const std::string &target);
+
 };
 
 #endif
