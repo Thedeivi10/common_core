@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 22:39:32 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/26 15:14:56 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/27 08:47:07 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ Fixed	Fixed::operator * (Fixed const &fixed)
 Fixed	Fixed::operator / (Fixed const &fixed)
 {
 	this->_value = (this->_value << this->_bits) / fixed.getRawBits();
+	return *this;
 } 
 Fixed	Fixed::operator ++ ()
 {
