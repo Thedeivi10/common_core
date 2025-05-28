@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 17:50:26 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/27 17:37:10 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/28 10:17:58 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,11 @@ void	ScavTrap::guardGate(){
 
 void ScavTrap::attack(const std::string &target)
  {
-	if (this->getEnergyPoints() == 0)
-		std::cout << this->getName() << "has not enough energy points" << std::endl;
+	if (this->getEnergyPoints() == 0 || this->getHitPoints() <= 0)
+	{
+		std::cout << "ScavTrap " <<this->getName() << " can't do anything because has not any energy point or hit point" << std::endl;
+		return ;
+	}
 	else
 	{
 		int i = this->getEnergyPoints();

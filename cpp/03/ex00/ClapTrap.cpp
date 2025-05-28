@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 15:39:54 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/27 16:09:59 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/28 10:09:50 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,11 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& src)
  
  void ClapTrap::attack(const std::string &target)
  {
-	if (this->_energyPoints == 0)
-		std::cout << this->_name << "has not enough energy points" << std::endl;
+	if (this->_energyPoints == 0 || this->_hitPoints <= 0)
+	{
+		std::cout << this->_name  << " can't do anything because has not any energy point or hit point" << std::endl;
+		return ;
+	}
 	else
 	{
 		--this->_energyPoints;
@@ -79,13 +82,21 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& src)
  
 void ClapTrap::takeDamage(unsigned int amount)
 {
+	if (this->_energyPoints == 0 || this->_hitPoints <= 0)
+	{
+		std::cout << this->_name  << " can't do anything because has not any energy point or hit point" << std::endl;
+		return ;
+	}
 	this->_hitPoints -= amount;
 	std::cout << this->_name << " has taken " << amount << " damage and has " << this->_hitPoints << " left." << std::endl; 
 }
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->_energyPoints == 0)
-		std::cout << this->_name << "has not enough energy points" << std::endl;
+	if (this->_energyPoints == 0 || this->_hitPoints <= 0)
+	{
+		std::cout << this->_name  << " can't do anything because has not any energy point or hit point" << std::endl;
+		return ;
+	}
 	else
 	{
 		--this->_energyPoints;
