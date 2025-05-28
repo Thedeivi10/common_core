@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 18:14:56 by davigome          #+#    #+#              #
-#    Updated: 2025/05/26 17:23:21 by davigome         ###   ########.fr        #
+#    Updated: 2025/05/28 18:40:32 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = ClapTrap
 
 CC = c++ 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-HEADERS = ClapTrap.hpp
+HEADERS = Animal.hpp Cat.hpp Dog.hpp WrongAnimal.hpp WrongCat.hpp
 
 # Colores
 RED = \033[31m
@@ -24,7 +24,11 @@ BLUE = \033[34m
 RESET = \033[0m
 
 SRC_FILES = main.cpp\
-			ClapTrap.cpp\
+			Animal.cpp\
+			Cat.cpp\
+			Dog.cpp\
+			WrongAnimal.cpp\
+			WrongCat.cpp\
 			
 OBJ_DIR = ./obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.cpp=.o))
