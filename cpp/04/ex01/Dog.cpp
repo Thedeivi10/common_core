@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.hpp                                       :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/28 16:34:32 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/29 05:45:34 by davigome         ###   ########.fr       */
+/*   Created: 2025/05/28 16:01:45 by davigome          #+#    #+#             */
+/*   Updated: 2025/05/28 20:06:50 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Dog.hpp"
 
-#ifndef WRONGCAT_HPP
-#define WRONGCAT_HPP
-#include "WrongAnimal.hpp"
-class WrongCat : public WrongAnimal
+Dog::Dog() : Animal("Dog")
 {
-	public:
-		WrongCat();
-		WrongCat(const WrongCat &WrongCat);
-		~WrongCat();
-		using WrongAnimal::operator=;
-		
-		void makeSound(void) const;
-};
+	std::cout << "Dog constructor called." << std::endl;
+}
 
-#endif
+Dog::Dog(const Dog &dog) : Animal(dog)
+{
+	std::cout << "Dog copy constructor called. " << std::endl;
+}
+
+Dog::~Dog()
+{
+	std::cout << "Dog destructor called" << std::endl;
+}
+
+void	Dog::makeSound(void) const
+{
+	std::cout << "Wouf Wouf" << std::endl;
+}

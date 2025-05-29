@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 15:39:42 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/26 22:01:20 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/29 06:14:26 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <string>
 
 class ClapTrap{
-	private:
+	protected:
 		std::string _name;
 		int	_hitPoints;
 		int _energyPoints;

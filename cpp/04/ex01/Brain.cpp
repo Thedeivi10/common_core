@@ -1,28 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.hpp                                       :+:      :+:    :+:   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/28 16:34:32 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/29 05:45:34 by davigome         ###   ########.fr       */
+/*   Created: 2025/05/29 06:05:43 by davigome          #+#    #+#             */
+/*   Updated: 2025/05/29 06:05:44 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
-#ifndef WRONGCAT_HPP
-#define WRONGCAT_HPP
-#include "WrongAnimal.hpp"
-class WrongCat : public WrongAnimal
-{
-	public:
-		WrongCat();
-		WrongCat(const WrongCat &WrongCat);
-		~WrongCat();
-		using WrongAnimal::operator=;
-		
-		void makeSound(void) const;
-};
-
-#endif
