@@ -6,12 +6,11 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 10:37:29 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/28 21:47:23 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/29 20:39:29 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-#define ANIMAL_HPP
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -30,5 +29,3 @@ class Animal{
 		void setType(std:: string);
 		virtual void	makeSound(void) const;
 };
-
-#endif

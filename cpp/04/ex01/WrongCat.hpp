@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 16:34:32 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/29 05:45:34 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/29 18:43:42 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ class WrongCat : public WrongAnimal
 {
 	public:
 		WrongCat();
-		WrongCat(const WrongCat &WrongCat);
+		WrongCat(const WrongCat &wrongCat);
 		~WrongCat();
 		using WrongAnimal::operator=;
 		

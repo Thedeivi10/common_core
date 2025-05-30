@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/23 22:39:48 by davigome          #+#    #+#             */
-/*   Updated: 2025/05/25 08:17:32 by davigome         ###   ########.fr       */
+/*   Updated: 2025/05/29 17:46:36 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ class Fixed{
 	void	setRawBits(int const raw);
 };
 
-std::ostream &operator<<(std::ostream &stream, const Fixed &_value);
+p0
 
 #endif
