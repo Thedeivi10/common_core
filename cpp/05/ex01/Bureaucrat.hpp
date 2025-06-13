@@ -14,6 +14,7 @@
 #pragma once
 
 #include <iostream>
+#include "Form.hpp"
 
 class Bureaucrat
 {
@@ -41,6 +42,8 @@ class Bureaucrat
 			public:
 				virtual const char* what() const throw();
 		};
+
+		void	signForm(Form &other);
 };
 
 std::ostream& operator<<(std::ostream& stream, const Bureaucrat& b);

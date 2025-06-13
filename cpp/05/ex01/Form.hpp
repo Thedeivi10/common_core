@@ -1,37 +1,33 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 20:50:51 by davigome          #+#    #+#             */
-/*   Updated: 2025/06/13 12:52:35 by davigome         ###   ########.fr       */
+/*   Created: 2025/06/13 16:52:35 by davigome          #+#    #+#             */
+/*   Updated: 2025/06/13 17:09:54 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
+#include "Bureaucrat.hpp"
 
-class Bureaucrat
-{
+class Form{
 	private:
-		const std::string	_name;
-		int			_grade;
+		const std::string _name;
+		bool _isSigned;
+		const int _gradeToSign;
+		const int _gradeToExecute;
+
 	public:
-		Bureaucrat();
-		Bureaucrat(std::string name, int grade);
-		Bureaucrat(const Bureaucrat &other);
-		Bureaucrat &operator=(const Bureaucrat &other);
-		~Bureaucrat();
-
-		const std::string getName() const;
-		int	getGrade() const;
-
-		void	incrementGrade();
-		void	decrementGrade();
+		Form();
+		Form(std::string name, bool isSigned, int gradeToSign, int gradeToExecute);
+		Form(const Form &other);
+		Form &operator=(const Form &other);
+		~Form();
 
 		class GradeTooHighException : public std::exception{
 			public : 
@@ -41,6 +37,9 @@ class Bureaucrat
 			public:
 				virtual const char* what() const throw();
 		};
+
+		void	beSigned(Bureaucrat &other);
+		
 };
 
-std::ostream& operator<<(std::ostream& stream, const Bureaucrat& b);
+std::ostream& operator<<(std::ostream& stream, const Form& b);
