@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:52:35 by davigome          #+#    #+#             */
-/*   Updated: 2025/06/13 17:09:54 by davigome         ###   ########.fr       */
+/*   Updated: 2025/06/13 18:01:56 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ class Form{
 		Form &operator=(const Form &other);
 		~Form();
 
+		const std::string getName() const;
+		const int	getGradeToSign() const;
+		const int	getGradeToExecute() const;
+		const	bool getIsSigned() const;
+		
 		class GradeTooHighException : public std::exception{
 			public : 
 				virtual const char* what() const throw();
