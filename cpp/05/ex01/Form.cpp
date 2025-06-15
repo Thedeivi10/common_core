@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 16:52:53 by davigome          #+#    #+#             */
-/*   Updated: 2025/06/13 22:26:29 by davigome         ###   ########.fr       */
+/*   Updated: 2025/06/15 09:44:24 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,14 @@
 Form::Form() : _name("Default"), _isSigned(false), _gradeToSign(150), _gradeToExecute(150)
 {
 	std::cout << _name << " Form default constructor called." << std::endl;
+}
+
+Form::Form(std::string name, int gradeToSign, int gradeToExecute) : _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
+{
+	if (_gradeToExecute < 1 || _gradeToSign < 1)
+		throw Bureaucrat::GradeTooHighException();
+	else if (_gradeToSign > 150 || _gradeToExecute > 150)
+		throw Bureaucrat::GradeTooLowException();
 }
 
 Form::Form(const Form &other) : _name(other._name) , _isSigned(other._isSigned), _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute)
@@ -41,19 +49,37 @@ const std::string	Form::getName() const
 	return _name;
 }
 
-const int Form::getGradeToSign() const
+int Form::getGradeToSign() const
 {
 	return _gradeToSign;
 }
 
-const int Form::getGradeToExecute() const
+int Form::getGradeToExecute() const
 {
 	return _gradeToExecute;
 }
 
-const bool Form::getIsSigned() const
+bool Form::getIsSigned() const
 {
 	return _isSigned;
+}
+
+const char* Form::GradeTooHighException::what() const throw()
+{
+	return "Grade is too high!";
+}
+
+const char* Form::GradeTooLowException::what() const throw()
+{
+	return "Grade is too low";
+}
+
+void	Form::beSigned(Bureaucrat &other)
+{
+	if (other.getGrade() <= this->getGradeToSign())
+		this->_isSigned = true;
+	else
+		throw Form::GradeTooLowException();
 }
 
 std::ostream& operator<<(std::ostream& stream, const Form& b) {

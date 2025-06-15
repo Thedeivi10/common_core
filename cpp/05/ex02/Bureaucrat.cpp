@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:51:06 by davigome          #+#    #+#             */
-/*   Updated: 2025/06/14 16:34:04 by davigome         ###   ########.fr       */
+/*   Updated: 2025/06/15 11:56:43 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ std::ostream& operator<<(std::ostream& stream, const Bureaucrat& b) {
     return stream;
 }
 
-void	Bureaucrat::signForm(Form &other)
+void	Bureaucrat::signAForm(AForm &other)
 {
 	if (this->_grade <= other.getGradeToSign() && other.getIsSigned() == false)
 	{
@@ -95,5 +95,10 @@ void	Bureaucrat::signForm(Form &other)
 		other.beSigned(*this);
 	}
 	else
-		std::cout << _name << " couldn't sign " << other.getName() << " because the bureaucrat has not enough grade and/or the form is signed." << std::endl;
+		std::cout << _name << " couldn't sign " << other.getName() << " because the bureaucrat has not enough grade and/or the AForm is signed." << std::endl;
+}
+
+void	Bureaucrat::executeForm(AForm const & form)
+{
+	form.execute(*this);
 }

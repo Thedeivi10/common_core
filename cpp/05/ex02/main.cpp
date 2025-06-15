@@ -6,12 +6,12 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:50:29 by davigome          #+#    #+#             */
-/*   Updated: 2025/06/15 09:42:15 by davigome         ###   ########.fr       */
+/*   Updated: 2025/06/15 09:57:20 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <iostream>
 
 void testConstruction() {
@@ -32,16 +32,16 @@ void testConstruction() {
         std::cerr << e.what() << std::endl;
     }
 
-    std::cout << "\n--- Test de construcción de formularios ---" << std::endl;
+    std::cout << "\n--- Test de construcción de AFormularios ---" << std::endl;
     try {
-        Form f1("Form1", 50, 100);
+        AForm f1("AForm1", 50, 100);
         std::cout << f1 << std::endl;
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
 
     try {
-        Form f2("Form2", 0, 50); // Invalido
+        AForm f2("AForm2", 0, 50); // Invalido
     } catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
     }
@@ -78,18 +78,18 @@ void testSignatures() {
     std::cout << "\n--- Test de firmas ---" << std::endl;
     Bureaucrat low("LowRank", 100);
     Bureaucrat high("HighRank", 10);
-    Form f("Permiso", 50, 30);
+    AForm f("Permiso", 50, 30);
 
     std::cout << f << std::endl;
 
-    low.signForm(f); // No debería poder firmar
+    low.signAForm(f); // No debería poder firmar
     std::cout << f << std::endl;
 
-    high.signForm(f); // Debería poder firmar
+    high.signAForm(f); // Debería poder firmar
     std::cout << f << std::endl;
 
     std::cout << "\n--- Intento de firmar ya firmado ---" << std::endl;
-    high.signForm(f); // Debe notificar que ya está firmado
+    high.signAForm(f); // Debe notificar que ya está firmado
 }
 
 int main() {

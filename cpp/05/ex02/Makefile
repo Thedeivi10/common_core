@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 18:14:56 by davigome          #+#    #+#              #
-#    Updated: 2025/06/15 09:42:40 by davigome         ###   ########.fr        #
+#    Updated: 2025/06/15 09:57:20 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = Bureaucrat
 
 CC = c++ 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-HEADERS = Bureaucrat.hpp Form.hpp
+HEADERS = Bureaucrat.hpp AForm.hpp
 
 # Colores
 RED = \033[31m
@@ -25,7 +25,7 @@ RESET = \033[0m
 
 SRC_FILES = main.cpp\
 			Bureaucrat.cpp\
-			Form.cpp\
+			AForm.cpp\
 			
 OBJ_DIR = ./obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.cpp=.o))
