@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/10 20:51:06 by davigome          #+#    #+#             */
-/*   Updated: 2025/06/15 11:56:43 by davigome         ###   ########.fr       */
+/*   Updated: 2025/06/15 18:42:24 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 Bureaucrat::Bureaucrat() : _name("Default") , _grade(150)
 {
-	std::cout << _name <<" Default Bureaucrat constructor called" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
-	std::cout << "Parametric constructor called" << std::endl;
 	if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 	else if (grade > 150)
@@ -29,7 +27,6 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 
 Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &other)
 {
-	std::cout << "Bureaucrat copy assignator called" << std::endl;
 	if (this != &other)
 		this->_grade = other._grade;
 	return *this;
@@ -37,13 +34,11 @@ Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &other)
 
 Bureaucrat::Bureaucrat(const Bureaucrat &other)
 {
-	std::cout << "Bureaucrat copy constructor called" << std::endl;
 	if (this != &other)
 		*this = other;
 }
 Bureaucrat::~Bureaucrat()
 {
-	std::cout << _name <<" Bureaucrat destructor called" << std::endl;
 }
 
 void	Bureaucrat::incrementGrade()
@@ -95,10 +90,10 @@ void	Bureaucrat::signAForm(AForm &other)
 		other.beSigned(*this);
 	}
 	else
-		std::cout << _name << " couldn't sign " << other.getName() << " because the bureaucrat has not enough grade and/or the AForm is signed." << std::endl;
+		std::cerr << _name << " couldn't sign " << other.getName() << " because the bureaucrat has not enough grade and/or the AForm is signed." << std::endl;
 }
 
-void	Bureaucrat::executeForm(AForm const & form)
+void	Bureaucrat::executeForm(AForm const & form) const
 {
 	form.execute(*this);
 }

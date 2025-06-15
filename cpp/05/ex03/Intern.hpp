@@ -1,31 +1,28 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   RobotomyRequestForm.hpp                            :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/15 10:04:14 by davigome          #+#    #+#             */
-/*   Updated: 2025/06/15 16:28:17 by davigome         ###   ########.fr       */
+/*   Created: 2025/06/15 18:14:09 by davigome          #+#    #+#             */
+/*   Updated: 2025/06/15 18:14:38 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
-#include "AForm.hpp"
-#include <iostream>
 
-class RobotomyRequestForm : public AForm
-{
-	private:
-		std::string _target;
+#include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+
+class Intern{
 	public:
-		RobotomyRequestForm();
-		RobotomyRequestForm(std::string target);
-		RobotomyRequestForm(const RobotomyRequestForm& other);
-		RobotomyRequestForm &operator=(const RobotomyRequestForm &other);
-		~RobotomyRequestForm();
+		Intern();
+		Intern(const Intern &other);
+		Intern &operator=(const Intern &other);
+		~Intern();
 
-		std::string getTarget() const;
-
-		void	execute(Bureaucrat const &executor) const;
+		AForm	*makeForm(std::string name, std::string target);
 };

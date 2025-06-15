@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 18:14:56 by davigome          #+#    #+#              #
-#    Updated: 2025/06/15 16:29:28 by davigome         ###   ########.fr        #
+#    Updated: 2025/06/15 18:47:29 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = Bureaucrat
 
 CC = c++ 
 CFLAGS = -Wall -Wextra -Werror -std=c++98
-HEADERS = Bureaucrat.hpp AForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp ShrubberyCreationForm.hpp
+HEADERS = Bureaucrat.hpp AForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp ShrubberyCreationForm.hpp Intern.hpp
 
 # Colores
 RED = \033[31m
@@ -29,6 +29,7 @@ SRC_FILES = main.cpp\
 			RobotomyRequestForm.cpp\
 			PresidentialPardonForm.cpp\
 			ShrubberyCreationForm.cpp\
+			Intern.cpp\
 
 OBJ_DIR = ./obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.cpp=.o))
