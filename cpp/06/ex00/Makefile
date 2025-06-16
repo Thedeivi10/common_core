@@ -6,14 +6,14 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 18:14:56 by davigome          #+#    #+#              #
-#    Updated: 2025/06/16 11:24:21 by davigome         ###   ########.fr        #
+#    Updated: 2025/06/16 13:29:53 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = convert
 
 CC = c++ 
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -g
 HEADERS = ScalarConverter.hpp
 
 # Colores
