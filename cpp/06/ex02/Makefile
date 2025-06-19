@@ -6,15 +6,15 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 18:14:56 by davigome          #+#    #+#              #
-#    Updated: 2025/06/17 08:26:31 by davigome         ###   ########.fr        #
+#    Updated: 2025/06/17 09:06:03 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = serializer
+NAME = base
 
 CC = c++ 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -g -fPIE
-HEADERS = Serializer.hpp
+HEADERS = Base.hpp
 
 # Colores
 RED = \033[31m
@@ -24,7 +24,7 @@ BLUE = \033[34m
 RESET = \033[0m
 
 SRC_FILES = main.cpp\
-			Serializer.cpp
+			Base.cpp
 
 OBJ_DIR = ./obj
 OBJS = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.cpp=.o))
@@ -35,7 +35,7 @@ $(OBJ_DIR)/%.o: %.cpp
 
 $(NAME): $(OBJS) $(HEADERS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
-	@echo "$(GREEN)Executable for serializer compiled successfully!$(RESET)"
+	@echo "$(GREEN)Executable for base compiled successfully!$(RESET)"
 
 all: $(NAME)
 
