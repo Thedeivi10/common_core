@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:14:09 by davigome          #+#    #+#             */
-/*   Updated: 2025/06/24 09:36:28 by davigome         ###   ########.fr       */
+/*   Updated: 2025/06/24 21:29:13 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ class Array
 		T *_array;
 		unsigned int _size;
 	public:
-		Array();
+		Array(){
+		};
 		Array(unsigned int n);
 		Array(const Array &other);
 		Array &operator=(const Array &other);

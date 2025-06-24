@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 18:14:56 by davigome          #+#    #+#              #
-#    Updated: 2025/06/18 12:45:32 by davigome         ###   ########.fr        #
+#    Updated: 2025/06/24 21:27:44 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = iter
 
 CC = c++ 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -g -fPIE
-HEADERS = iter.hpp
+HEADERS = Array.hpp
 
 # Colores
 RED = \033[31m
