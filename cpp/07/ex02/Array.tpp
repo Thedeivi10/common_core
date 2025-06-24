@@ -6,9 +6,12 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 23:25:53 by davigome          #+#    #+#             */
-/*   Updated: 2025/06/20 23:30:28 by davigome         ###   ########.fr       */
+/*   Updated: 2025/06/24 09:36:54 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Array.hpp"
-
+template<typename T>
+Array<T>::Array()
+{
+}
