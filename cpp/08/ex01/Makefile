@@ -6,15 +6,15 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/16 18:14:56 by davigome          #+#    #+#              #
-#    Updated: 2025/06/25 19:40:45 by davigome         ###   ########.fr        #
+#    Updated: 2025/06/26 21:07:43 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = array
+NAME = easyfind
 
 CC = c++ 
 CFLAGS = -Wall -Wextra -Werror -std=c++98 -g -fPIE
-HEADERS = Array.hpp
+HEADERS = easyfind.hpp
 
 # Colores
 RED = \033[31m
@@ -35,7 +35,7 @@ $(OBJ_DIR)/%.o: %.cpp
 
 $(NAME): $(OBJS) $(HEADERS)
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
-	@echo "$(GREEN)Executable for array compiled successfully!$(RESET)"
+	@echo "$(GREEN)Executable for easyfind compiled successfully!$(RESET)"
 
 all: $(NAME)
 
