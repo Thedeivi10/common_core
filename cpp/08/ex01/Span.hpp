@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 09:18:01 by davigome          #+#    #+#             */
-/*   Updated: 2025/06/27 09:47:07 by davigome         ###   ########.fr       */
+/*   Updated: 2025/06/28 11:46:13 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ class Span
 		
 
 		void addNumber(int n);
+		template <typename  T>
+		void addNumber(T begin, T end);
 		int shortestSpan();
 		int longestSpan();
 
