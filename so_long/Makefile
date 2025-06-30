@@ -6,7 +6,7 @@
 #    By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/15 21:33:55 by davigome          #+#    #+#              #
-#    Updated: 2025/05/23 21:34:40 by davigome         ###   ########.fr        #
+#    Updated: 2025/06/30 16:22:43 by davigome         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ BONUS_NAME	= so_long_bonus
 
 CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra -g
+MAKEFLAGS += --no-print-directory
 MLX42		= ./MLX42
 LIBFT		= ./libft
 INCLUDES	= -I$(MLX42)/include -I$(LIBFT)/include -Iincludes
@@ -79,8 +80,7 @@ $(LIBFT)/libft.a:
 
 $(MLX42)/build/libmlx42.a:
 	@echo "$(YELLOW)Building MLX42 library...$(RESET)"
-	@cmake -S $(MLX42) -B $(MLX42)/build
-	@cmake --build $(MLX42)/build -j4
+	@make -C $(MLX42)/build
 	@echo "$(GREEN)MLX42 library built successfully!$(RESET)"
 
 all:$(NAME)
@@ -90,7 +90,7 @@ bonus: $(BONUS_NAME)
 clean:
 	@$(MAKE) -C $(LIBFT) clean
 	@$(RM) -r $(OBJ_DIR) $(OBJ_BONUS_DIR)
-	@$(RM) -r $(MLX42)/build
+	@$(MAKE) -C $(MLX42)/build clean 
 
 fclean: clean
 	@$(RM) $(NAME) $(BONUS_NAME)

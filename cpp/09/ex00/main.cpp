@@ -5,36 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 21:35:20 by davigome          #+#    #+#             */
-/*   Updated: 2025/06/29 10:14:42 by davigome         ###   ########.fr       */
+/*   Created: 2025/06/30 12:41:38 by davigome          #+#    #+#             */
+/*   Updated: 2025/06/30 19:16:42 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "MutantStack.hpp"
+#include "BitcoinExchange.hpp"
 
-int main()
+int main(int argc, char **argv)
 {
-	MutantStack<int> mstack;
-	mstack.push(5);
-	mstack.push(17);
-	std::cout << mstack.top() << std::endl;
-	mstack.pop();
-	std::cout << mstack.size() << std::endl;
-	mstack.push(3);
-	mstack.push(5);
-	mstack.push(737);
-	//[...]
-	mstack.push(0);
-	MutantStack<int>::iterator it = mstack.begin();
-	MutantStack<int>::iterator ite = mstack.end();
-	++it;
-	--it;
-	while (it != ite)
+	if (argc != 2)
 	{
-	std::cout << *it << std::endl;
-	++it;
+		std::cerr << "Error: could not open file." << std::endl;
+		return (1);
 	}
-	std::stack<int> s(mstack);
+	try{
+		std::string input(argv[1]);
+		BitcoinExchange exchange(input);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << std::endl;
+		return 1;
+	}
 	return 0;
 }

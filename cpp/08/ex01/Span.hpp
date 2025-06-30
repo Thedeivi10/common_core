@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 09:18:01 by davigome          #+#    #+#             */
-/*   Updated: 2025/06/28 12:39:37 by davigome         ###   ########.fr       */
+/*   Updated: 2025/06/29 09:59:19 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ class Span
 		class NotEnoughException : public std::exception {
 			virtual const char*  what() const throw();	
 		};
+		
 };

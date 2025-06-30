@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.hpp                                       :+:      :+:    :+:   */
+/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/26 21:08:21 by davigome          #+#    #+#             */
-/*   Updated: 2025/06/29 09:45:27 by davigome         ###   ########.fr       */
+/*   Created: 2025/06/30 12:42:09 by davigome          #+#    #+#             */
+/*   Updated: 2025/06/30 19:33:56 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,24 @@
 #include <iostream>
 #include <algorithm>
 #include <exception>
+#include <map>
+#include <fstream>
+#include <sstream>
+#include <string>
 
-class NotFoundException : public std::exception {
-public:
-    virtual const char* what() const throw(){
-        return "Value not found";
-    }
-};
-
-template <typename T>
-typename T::iterator easyfind(T &container, int value)
+class BitcoinExchange
 {
-	typename T::iterator it = std::find(container.begin(), container.end(), value);
-	if (it == container.end())
-		throw NotFoundException();
-	return it;
-}
+	private:
+	std::map<std::string,double> _input;
+	std::map<std::string,double> _data;
+
+	BitcoinExchange(BitcoinExchange const &other);
+	BitcoinExchange &operator=(BitcoinExchange const &other);
+	BitcoinExchange();
+
+	public:
+		BitcoinExchange(std::string &inputTxt);
+		~BitcoinExchange();
+
+		void parseInput(std::string &inputTxt);
+};

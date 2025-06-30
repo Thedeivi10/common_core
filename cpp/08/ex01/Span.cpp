@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 09:17:37 by davigome          #+#    #+#             */
-/*   Updated: 2025/06/28 12:51:56 by davigome         ###   ########.fr       */
+/*   Updated: 2025/06/29 10:01:08 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void Span::addNumber(int n)
 void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end)
 {
 	if (this->_vector.size() + std::distance(begin, end) > this->_size)
-		throw FullException();
+		throw std::out_of_range("Cannot acomodate the given range of numbers");
 	this->_vector.insert(this->_vector.end(), begin, end);
 }
 
