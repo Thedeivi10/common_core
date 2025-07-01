@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 12:42:09 by davigome          #+#    #+#             */
-/*   Updated: 2025/06/30 19:33:56 by davigome         ###   ########.fr       */
+/*   Updated: 2025/07/01 08:48:55 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <cerrno>
 
 class BitcoinExchange
 {
 	private:
-	std::map<std::string,double> _input;
-	std::map<std::string,double> _data;
+	std::map<std::string,float> _data;
 
 	BitcoinExchange(BitcoinExchange const &other);
 	BitcoinExchange &operator=(BitcoinExchange const &other);
@@ -35,4 +35,5 @@ class BitcoinExchange
 		~BitcoinExchange();
 
 		void parseInput(std::string &inputTxt);
+		void execute(std::string line, std::string date, std::string btcs);
 };

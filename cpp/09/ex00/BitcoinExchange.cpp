@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 12:42:36 by davigome          #+#    #+#             */
-/*   Updated: 2025/06/30 20:58:05 by davigome         ###   ########.fr       */
+/*   Updated: 2025/07/01 08:52:34 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 BitcoinExchange::BitcoinExchange()
 {}
 
-BitcoinExchange::BitcoinExchange(BitcoinExchange const &other) : _input(other._input), _data(other._data)
+BitcoinExchange::BitcoinExchange(BitcoinExchange const &other) : _data(other._data)
 {}
 
 
@@ -24,7 +24,6 @@ BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &other)
 	if (this != &other)
 	{
 		this->_data = other._data;
-		this->_input = other._input;
 	}
 	return *this;
 }
@@ -66,11 +65,57 @@ static bool checkDate(std::string date, std::string line)
 		|| (date[5] == '1' && date[6] == '2' && date[8] == '3' && date[9] > '1'))
 		return badInput(line);
 	std::string year = date.substr(0, 4);
+	int bi = 0;
+	errno = 0;
+	char *endptr = NULL;
+
+	long val = std::strtol(year.c_str(), &endptr, 10);
+	if (val % 4 == 0)
+	{
+		if (val % 100 != 0)
+		{
+			bi = 1;
+		}else if (val % 400 == 0)
+			bi = 1;
+	}
+	if (date[5] == '0' && date[6] == '2' && date[8] == '2' && date[9] == '9' && bi == 0)
+		return badInput(line);
+	return true;
+}
+
+static bool checkBtcs(std::string btcs, std::string line)
+{
 	char *endptr = NULL;
 	errno = 0;
-	float val = std::strtof(year.c_str(), &endptr);
-	if ()
+	float val = std::strtof(btcs.c_str(), &endptr);
+	if (*endptr != '\0' || errno == ERANGE)
+		return badInput(line);
+	if (val > INT32_MAX)
+	{
+		std::cerr << "Error: too large a number." << std::endl;
+		return false;
+	}
+	if (val < 0.0)
+	{
+		std::cerr << "Error: not a posistive number." << std::endl;
+		return false;
+	}
 	return true;
+}
+
+void BitcoinExchange::execute(std::string line, std::string date, std::string btcs)
+{
+	float coins;
+	float value;
+
+	char *endptr = NULL;
+	errno = 0;
+	coins = std::strtof(btcs.c_str(), &endptr);
+	std::map<std::string, float>::iterator it = this->_data.lower_bound(date);
+	if (it != this->_data.end() && it->first == date)
+	{
+		
+	}
 }
 
 void BitcoinExchange::parseInput(std::string &inputTxt)
@@ -96,8 +141,16 @@ void BitcoinExchange::parseInput(std::string &inputTxt)
 			badInput(line);
 			continue;
 		}
-		if(!checkDate(date, line))
+		if (!checkDate(date, line))
 			continue;
+		if (pipe != "|")
+		{
+			badInput(line);
+			continue;
+		}
+		if (!checkBtcs(btcs, line))
+			continue;
+		
 	}
 	file.close();
 }
