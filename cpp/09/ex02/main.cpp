@@ -5,22 +5,45 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 12:41:38 by davigome          #+#    #+#             */
-/*   Updated: 2025/07/01 17:05:54 by davigome         ###   ########.fr       */
+/*   Created: 2025/07/01 12:16:48 by davigome          #+#    #+#             */
+/*   Updated: 2025/07/01 21:27:04 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include "BitcoinExchange.hpp"
+#include "PmergeMe.hpp"
 
 int main(int argc, char **argv)
 {
-	if (argc != 2)
+	std::string nums;
+	if (argc < 2)
 	{
-		std::cerr << "Error: could not open file." << std::endl;
-		return (1);
+		std::cerr << "Error" << std::endl;
+		return 1;
 	}
-	std::string input(argv[1]);
-	BitcoinExchange exchange(input);
+
+	for (int i = 1; i < argc; i++)
+	{
+		std::istringstream iss(argv[i]);
+		std::string token;
+		if (!(iss >> token))
+		{
+			std::cerr << "Error" << std::endl;
+			return 1;
+		}
+		nums += argv[i];
+		if (i < argc - 1)
+			nums += " ";
+	}
+	try{
+		PmergeMe merge(nums);
+		merge.mergeDeque();
+		merge.showUnsorted();
+		merge.sorted();
+	}catch(std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+		return 1;
+	}
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 12:42:36 by davigome          #+#    #+#             */
-/*   Updated: 2025/07/01 08:52:34 by davigome         ###   ########.fr       */
+/*   Updated: 2025/07/01 09:53:42 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,14 @@ static bool checkBtcs(std::string btcs, std::string line)
 	float val = std::strtof(btcs.c_str(), &endptr);
 	if (*endptr != '\0' || errno == ERANGE)
 		return badInput(line);
-	if (val > INT32_MAX)
+	if (val > 2147483647.0)
 	{
 		std::cerr << "Error: too large a number." << std::endl;
 		return false;
 	}
 	if (val < 0.0)
 	{
-		std::cerr << "Error: not a posistive number." << std::endl;
+		std::cerr << "Error: not a positive number." << std::endl;
 		return false;
 	}
 	return true;
@@ -114,7 +114,18 @@ void BitcoinExchange::execute(std::string line, std::string date, std::string bt
 	std::map<std::string, float>::iterator it = this->_data.lower_bound(date);
 	if (it != this->_data.end() && it->first == date)
 	{
-		
+		value = coins * it->second;
+		std::cout << date << " => " << btcs << " = "<< value << std::endl;
+	}
+	else if (it == this->_data.begin())
+	{
+		badInput(line);
+	}
+	else
+	{
+		--it;
+		value = coins * it->second;
+		std::cout << date << " => " << btcs << " = "<< value << std::endl;
 	}
 }
 
@@ -135,7 +146,21 @@ void BitcoinExchange::parseInput(std::string &inputTxt)
 	while (getline(file, line))
 	{
 		std::istringstream iss(line);
-		iss >> std::ws >> date >> std::ws >> pipe >> std::ws >> btcs;
+		if (!(iss >> date))
+		{
+			badInput(line);
+			continue;
+		}
+		if (!(iss >> pipe))
+		{
+			badInput(line);
+			continue;
+		}
+		if (!(iss >> btcs))
+		{
+			badInput(line);
+			continue;
+		}
 		if (iss >> err)
 		{
 			badInput(line);
@@ -150,7 +175,7 @@ void BitcoinExchange::parseInput(std::string &inputTxt)
 		}
 		if (!checkBtcs(btcs, line))
 			continue;
-		
+		execute(line, date, btcs);
 	}
 	file.close();
 }

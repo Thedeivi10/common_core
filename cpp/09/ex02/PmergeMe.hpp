@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 12:42:09 by davigome          #+#    #+#             */
-/*   Updated: 2025/07/01 09:35:03 by davigome         ###   ########.fr       */
+/*   Created: 2025/07/01 12:16:41 by davigome          #+#    #+#             */
+/*   Updated: 2025/07/01 21:27:15 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,29 @@
 #include <iostream>
 #include <algorithm>
 #include <exception>
-#include <map>
+#include <deque>
+#include <vector>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <cerrno>
 #include <climits>
 
-class BitcoinExchange
+class PmergeMe
 {
 	private:
-	std::map<std::string,float> _data;
+		std::deque<long int> _deque;
+		std::vector<long int> _vector;
 
-	BitcoinExchange(BitcoinExchange const &other);
-	BitcoinExchange &operator=(BitcoinExchange const &other);
-	BitcoinExchange();
-
+		std::string _arg;
 	public:
-		BitcoinExchange(std::string &inputTxt);
-		~BitcoinExchange();
+		PmergeMe();
+		PmergeMe(PmergeMe const &other);
+		PmergeMe &operator=(PmergeMe const &other);
+		~PmergeMe();
 
-		void parseInput(std::string &inputTxt);
-		void execute(std::string line, std::string date, std::string btcs);
+		PmergeMe(std::string arg);
+		void mergeDeque();
+		void showUnsorted();
+		void sorted();
 };

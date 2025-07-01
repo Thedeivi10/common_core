@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
+/*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/30 12:42:09 by davigome          #+#    #+#             */
-/*   Updated: 2025/07/01 09:35:03 by davigome         ###   ########.fr       */
+/*   Created: 2025/07/01 12:16:03 by davigome          #+#    #+#             */
+/*   Updated: 2025/07/01 18:57:53 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,25 @@
 #include <iostream>
 #include <algorithm>
 #include <exception>
-#include <map>
+#include <stack>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <cerrno>
 #include <climits>
 
-class BitcoinExchange
+class RPN
 {
 	private:
-	std::map<std::string,float> _data;
-
-	BitcoinExchange(BitcoinExchange const &other);
-	BitcoinExchange &operator=(BitcoinExchange const &other);
-	BitcoinExchange();
-
+		std::stack<long int> _stack;
+		std::string _arg;
+		
+		RPN();
+		RPN(RPN const &other);
+		RPN &operator=(RPN const &other);
 	public:
-		BitcoinExchange(std::string &inputTxt);
-		~BitcoinExchange();
-
-		void parseInput(std::string &inputTxt);
-		void execute(std::string line, std::string date, std::string btcs);
+		
+		RPN(std::string arg);
+		~RPN();
+		void calculator();		
 };
