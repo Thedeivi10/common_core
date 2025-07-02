@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:16:27 by davigome          #+#    #+#             */
-/*   Updated: 2025/07/01 21:36:44 by davigome         ###   ########.fr       */
+/*   Updated: 2025/07/01 22:27:20 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,16 @@ void PmergeMe::showUnsorted()
 
 void PmergeMe::sorted()
 {
-	
+	std::deque<long int> aux;
+	aux = this->_deque;
+	std::sort(aux.begin(), aux.end());
+	std::cout << "After:	 ";
+	std::cout << aux[0];
+	for (size_t i = 1; i < aux.size(); i++)
+	{
+		std::cout << " " << aux[i];
+	}
+	std::cout << std::endl;
 }
 
 void PmergeMe::mergeDeque()
