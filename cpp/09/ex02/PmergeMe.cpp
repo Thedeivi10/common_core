@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:16:27 by davigome          #+#    #+#             */
-/*   Updated: 2025/07/02 22:24:47 by davigome         ###   ########.fr       */
+/*   Updated: 2025/07/02 23:30:34 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,17 +120,20 @@ static std::deque<long int> insertionOrderDeque(size_t size)
 	return order;
 }
 
-void PmergeMe::fordJhonsonDeque(std::deque<long int> deque)
+void PmergeMe::fordJhonsonDeque(std::deque<long int> &deque)
 {
 	std::deque<long int> a;
 	std::deque<long int> b;
 
 	if (deque.size() <= 1)
 		return ;
+	long int struggle = -1;
+	
 	for(size_t i = 0; i + 1 < deque.size(); i+=2)
 	{
 		long int first = deque[i];
 		long int second = deque[i + 1];
+		
 		if (first > second)
 		{
 			a.push_back(first);
@@ -141,11 +144,9 @@ void PmergeMe::fordJhonsonDeque(std::deque<long int> deque)
 			b.push_back(first);
 		}
 	}
-	int struggle = -1;
 	if (deque.size() % 2 != 0)
 	{
 		struggle = deque.back();
-		deque.pop_back();
 	}
 	fordJhonsonDeque(a);
 	std::deque<long int> order = insertionOrderDeque(b.size());

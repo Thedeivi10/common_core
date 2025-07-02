@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:16:41 by davigome          #+#    #+#             */
-/*   Updated: 2025/07/02 21:26:08 by davigome         ###   ########.fr       */
+/*   Updated: 2025/07/02 23:21:26 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ class PmergeMe
 		void mergeDeque();
 		void sorted();
 		void pairsOrderDeque();
-		void fordJhonsonDeque(std::deque<long int>);
+		void fordJhonsonDeque(std::deque<long int> &deque);
 };
 void showUnsorted(std::string arg);
