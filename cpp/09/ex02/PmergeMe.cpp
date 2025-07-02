@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:16:27 by davigome          #+#    #+#             */
-/*   Updated: 2025/07/01 22:27:20 by davigome         ###   ########.fr       */
+/*   Updated: 2025/07/02 22:24:47 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ static long int parseInt(std::string token)
 	return val;
 }
 
-void PmergeMe::showUnsorted()
+void showUnsorted(std::string arg)
 {
-	std::istringstream iss(this->_arg);
+	std::istringstream iss(arg);
 	std::string token;
 	std::cout << "Before:  ";
 	iss >> token;
@@ -83,6 +83,86 @@ void PmergeMe::sorted()
 	std::cout << std::endl;
 }
 
+void PmergeMe::pairsOrderDeque()
+{
+	for (size_t i = 0; i < _deque.size(); i++)
+	{
+		if (_deque[i] > _deque[i + 1])
+		{
+			long int aux = _deque[i];
+			_deque[i] = _deque[i + 1];
+			_deque[i + 1 ] = aux;
+		}
+		i += 1;
+	}
+}
+
+static std::deque<long int> insertionOrderDeque(size_t size)
+{
+	std::deque<long int> order;
+	int j0 = 0;
+	int j1 = 1;
+	while ((size_t)j1 < size)
+	{
+		if (std::find(order.begin(), order.end(), j1) == order.end())
+		{
+			order.push_back(j1);
+			if (j0 == 0)
+				order.push_back(0);
+			int aux = j1;
+			while(--aux > j0)
+				order.push_back(aux);
+		}
+		int next = j1 + 2 * j0;
+		j0 = j1;
+		j1 = next;
+	}
+	return order;
+}
+
+void PmergeMe::fordJhonsonDeque(std::deque<long int> deque)
+{
+	std::deque<long int> a;
+	std::deque<long int> b;
+
+	if (deque.size() <= 1)
+		return ;
+	for(size_t i = 0; i + 1 < deque.size(); i+=2)
+	{
+		long int first = deque[i];
+		long int second = deque[i + 1];
+		if (first > second)
+		{
+			a.push_back(first);
+			b.push_back(second);
+		}else
+		{
+			a.push_back(second);
+			b.push_back(first);
+		}
+	}
+	int struggle = -1;
+	if (deque.size() % 2 != 0)
+	{
+		struggle = deque.back();
+		deque.pop_back();
+	}
+	fordJhonsonDeque(a);
+	std::deque<long int> order = insertionOrderDeque(b.size());
+	for (size_t i = 0; i < order.size(); ++i)
+	{
+		int index = order[i];
+		std::deque<long int>::iterator pos = std::lower_bound(a.begin(), a.end(), b[index]);
+		a.insert(pos, b[index]);
+	}
+	if (struggle != -1)
+	{
+		std::deque<long int>::iterator pos = std::lower_bound(a.begin(), a.end(), struggle);
+		a.insert(pos, struggle);
+	}
+	deque = a;
+}
+
 void PmergeMe::mergeDeque()
 {
 	std::istringstream iss(this->_arg);
@@ -96,9 +176,12 @@ void PmergeMe::mergeDeque()
 	}
 	if (this->_deque.size() < 2)
 		error();
-	/* std::deque<long int>::iterator it;
+	pairsOrderDeque();
+	fordJhonsonDeque(this->_deque);
+	std::deque<long int>::iterator it;
 	 for (it = this->_deque.begin(); it != this->_deque.end(); ++it)
     {
-        std::cout << *it << std::endl;
-    } */
+        std::cout << *it << " ";
+    }
+	std::cout << std::endl;
 }
