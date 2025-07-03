@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:16:27 by davigome          #+#    #+#             */
-/*   Updated: 2025/07/02 23:30:34 by davigome         ###   ########.fr       */
+/*   Updated: 2025/07/03 16:59:03 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,12 @@ void PmergeMe::pairsOrderDeque()
 	}
 }
 
-static std::deque<long int> insertionOrderDeque(size_t size)
+/* static std::deque<long int> insertionOrderDeque(size_t size)
 {
 	std::deque<long int> order;
 	int j0 = 0;
 	int j1 = 1;
-	while ((size_t)j1 < size)
+	while (static_cast<size_t>(j1) < size)
 	{
 		if (std::find(order.begin(), order.end(), j1) == order.end())
 		{
@@ -118,7 +118,47 @@ static std::deque<long int> insertionOrderDeque(size_t size)
 		j1 = next;
 	}
 	return order;
-}
+} */
+
+/* static std::deque<long int> insertionOrderDeque(size_t size)
+{
+    std::deque<long int> order;
+    
+    // Generar números de Jacobsthal: 1, 1, 3, 5, 11, 21, 43...
+    std::vector<size_t> jacobsthal;
+    jacobsthal.push_back(1);
+    if (size > 1) jacobsthal.push_back(1);
+    
+    while (jacobsthal.back() < size) {
+        size_t next = jacobsthal[jacobsthal.size()-1] + 2 * jacobsthal[jacobsthal.size()-2];
+        jacobsthal.push_back(next);
+    }
+    
+    // Crear orden de inserción basado en Jacobsthal
+    std::vector<bool> inserted(size, false);
+    
+    for (size_t i = 1; i < jacobsthal.size() && jacobsthal[i] <= size; ++i) {
+        size_t limit = std::min(jacobsthal[i], size);
+        size_t start = (i > 1) ? jacobsthal[i-1] : 0;
+        
+        // Insertar en orden descendente desde limit hasta start+1
+        for (size_t j = limit; j > start && j > 0; --j) {
+            if (j <= size && !inserted[j-1]) {
+                order.push_back(j-1); // Convertir a índice base 0
+                inserted[j-1] = true;
+            }
+        }
+    }
+    
+    // Insertar elementos restantes
+    for (size_t i = 0; i < size; ++i) {
+        if (!inserted[i]) {
+            order.push_back(i);
+        }
+    }
+    
+    return order;
+} */
 
 void PmergeMe::fordJhonsonDeque(std::deque<long int> &deque)
 {
@@ -150,18 +190,28 @@ void PmergeMe::fordJhonsonDeque(std::deque<long int> &deque)
 	}
 	fordJhonsonDeque(a);
 	std::deque<long int> order = insertionOrderDeque(b.size());
+	std::cout << "Index of jacostals : ";
 	for (size_t i = 0; i < order.size(); ++i)
 	{
 		int index = order[i];
+		std::cout << index << " ";
 		std::deque<long int>::iterator pos = std::lower_bound(a.begin(), a.end(), b[index]);
 		a.insert(pos, b[index]);
 	}
+	std::cout <<std::endl;
 	if (struggle != -1)
 	{
 		std::deque<long int>::iterator pos = std::lower_bound(a.begin(), a.end(), struggle);
 		a.insert(pos, struggle);
 	}
 	deque = a;
+	std::cout << "A vector before insertion : ";
+	std::deque<long int>::iterator it;
+	 for (it = a.begin(); it != a.end(); ++it)
+    {
+        std::cout << *it << " ";
+    }
+	std::cout << std::endl;
 }
 
 void PmergeMe::mergeDeque()
@@ -179,10 +229,10 @@ void PmergeMe::mergeDeque()
 		error();
 	pairsOrderDeque();
 	fordJhonsonDeque(this->_deque);
-	std::deque<long int>::iterator it;
+	/* std::deque<long int>::iterator it;
 	 for (it = this->_deque.begin(); it != this->_deque.end(); ++it)
     {
         std::cout << *it << " ";
     }
-	std::cout << std::endl;
+	std::cout << std::endl; */
 }
