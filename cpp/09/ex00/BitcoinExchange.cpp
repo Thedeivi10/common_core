@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 12:42:36 by davigome          #+#    #+#             */
-/*   Updated: 2025/07/01 09:53:42 by davigome         ###   ########.fr       */
+/*   Updated: 2025/07/04 16:13:42 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static bool checkBtcs(std::string btcs, std::string line)
 	float val = std::strtof(btcs.c_str(), &endptr);
 	if (*endptr != '\0' || errno == ERANGE)
 		return badInput(line);
-	if (val > 2147483647.0)
+	if (val > 1000.0)
 	{
 		std::cerr << "Error: too large a number." << std::endl;
 		return false;

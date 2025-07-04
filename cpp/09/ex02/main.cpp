@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:16:48 by davigome          #+#    #+#             */
-/*   Updated: 2025/07/02 17:31:43 by davigome         ###   ########.fr       */
+/*   Updated: 2025/07/04 10:21:20 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ int main(int argc, char **argv)
 		PmergeMe merge(nums);
 
 		merge.mergeDeque();
-		/* showUnsorted(nums);
-		merge.sorted(); */
+		merge.mergeVector();
+		merge.showUnsorted(nums);
+		merge.sorted();
+		merge.showDequeTime();
+		merge.showVectorTime();
 	}catch(std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;

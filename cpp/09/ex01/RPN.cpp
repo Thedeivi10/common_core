@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:15:51 by davigome          #+#    #+#             */
-/*   Updated: 2025/07/01 19:10:12 by davigome         ###   ########.fr       */
+/*   Updated: 2025/07/04 13:55:27 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void RPN::calculator()
 				aux1 = aux2 + aux1;
 			}else if (token == "/")
 			{
+				if (aux1 == 0)
+					return error();
 				aux1 = aux2 / aux1;
 			}else if (token == "*")
 			{
