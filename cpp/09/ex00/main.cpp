@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/30 12:41:38 by davigome          #+#    #+#             */
-/*   Updated: 2025/07/01 17:05:54 by davigome         ###   ########.fr       */
+/*   Updated: 2025/07/10 08:35:12 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,13 @@ int main(int argc, char **argv)
 		std::cerr << "Error: could not open file." << std::endl;
 		return (1);
 	}
-	std::string input(argv[1]);
-	BitcoinExchange exchange(input);
+	try {
+		std::string input(argv[1]);
+		BitcoinExchange exchange(input);
+	}catch(std::exception &e)
+	{
+		std::cerr << e.what() << std::endl;
+		return (1);
+	}
 	return 0;
 }

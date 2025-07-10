@@ -6,7 +6,7 @@
 /*   By: davigome <davigome@studen.42malaga.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 12:15:38 by davigome          #+#    #+#             */
-/*   Updated: 2025/07/01 17:47:13 by davigome         ###   ########.fr       */
+/*   Updated: 2025/07/10 08:35:48 by davigome         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int main(int argc,  char **argv)
 	}catch(std::exception &e)
 	{
 		std::cerr << e.what() << std::endl;
+		return (1);
 	}
 	return 0;
 }
