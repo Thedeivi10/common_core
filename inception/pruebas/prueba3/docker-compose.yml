@@ -1,0 +1,39 @@
+#se deja por motivos historicos
+version: "3.8"
+#definir las imagenes o contenedores que se van a usar
+services: #nombres qye luego nos van a servirpara comunicar entre ellos app,api,db
+  app: 
+    build: ./frontend
+    ports:
+      - 80:5173
+    volumes:
+      - ./frontend/src:/app/src
+  api:
+    build: ./backend
+    ports:
+      - 3000:3000
+    environment:
+      DB_URL: mongodb://db/gamify
+    volumes:
+      - ./backend/app:/app/app #anonimo
+    depends_on:
+      - db
+  api-tests:
+    image: prueba3-api
+    environment:
+      DB_URL: mongodb://db/gamifytest
+    volumes:
+      - ./backend/app:/app/app #anonimo
+      - ./backend/tests:/app/tests
+    depends_on:
+      - db
+    command: npm test
+  db:
+    image: mongo:5.0.19-focal #para usar imagen y descargarla
+    ports:
+      - 27017:27017 #mapeo puertos y pongo maquina:container
+    volumes:
+      - gamify:/data/db #nombrado
+#defino volumenes
+volumes:
+  gamify:

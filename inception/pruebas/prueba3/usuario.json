@@ -1,0 +1,11 @@
+{
+	"nombre" : "davi",
+	"apellido" : "Schurmann",
+	"edad" : 23,
+	"activo": true,
+	"etiquetas": ["Instructor", "Desarrollador"],
+	"direccion": {
+		"calle": "Queen st",
+		"numero": 503
+	}
+}
