@@ -1,6 +1,0 @@
-
-
-
-volumes:
-  mairadb-volume:
-    name: mariadb-volume
