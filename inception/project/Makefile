@@ -5,10 +5,10 @@ NAME = inception
 
 all:
 	@printf "Running inception.\n" 
-	docker compose -f $(COMPOSE_PATH) up -d --build
+	docker-compose -f $(COMPOSE_PATH) up -d --build
 
 down:
-	docker compose -f $(COMPOSE_PATH) down
+	docker-compose -f $(COMPOSE_PATH) down
 
 clean:
 	@printf "Cleaning the configuration of inception.\n"
