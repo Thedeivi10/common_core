@@ -9,11 +9,5 @@ RUN openssl req -subj "/C=SP/ST=Malaga/L=Malaga/O=42 Malaga/OU=davigome/CN=davig
     -keyout /etc/nginx/ssl/davigome.42.fr.key -out /etc/nginx/ssl/davigome.42.fr.crt
 
 
-COPY index.html /var/www/html/index.html
-COPY style.css /var/www/html/style.css
-
 EXPOSE 443
 CMD ["nginx", "-g", "daemon off;"]
-
-#COPY tools/davigome.42.fr.crt /etc/nginx/ssl/davigome.42.fr.crt
-#COPY tools/davigome.42.fr.key /etc/nginx/ssl/davigome.42.fr.key

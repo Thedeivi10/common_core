@@ -1,31 +1,32 @@
-
-COMPOSE_PATH = srcs/docker-compose.yml
-
 NAME = inception
 
 all:
-	@printf "Running inception.\n" 
-	docker-compose -f $(COMPOSE_PATH) up -d --build
+	@mkdir -p /home/${USER}/data
+	@mkdir -p /home/${USER}/data/mariadb
+	@mkdir -p /home/${USER}/data/wordpress
+	@printf "Building and setting configuration for ${NAME}...\n"
+	@docker-compose -f srcs/docker-compose.yml --env-file srcs/.env up -d --build
 
 down:
-	docker-compose -f $(COMPOSE_PATH) down
+	@printf "Stopping ${NAME}...\n"
+	@docker-compose -f srcs/docker-compose.yml down
 
-clean:
-	@printf "Cleaning the configuration of inception.\n"
-	@docker compose -f $(COMPOSE_PATH) down --volumes --rmi all || true
+clean: down
+	@printf "Stopping and cleaning up all docker configurations of ${NAME}...\n"
+	@docker system prune -a
 
 fclean:
-	@printf "Complete cleanup of all docker configurations\n"
-	@docker compose -f $(COMPOSE_PATH) down --volumes --rmi all || true
-	@docker stop $$(docker ps -qa) || true
-	@docker rm $$(docker ps -qa) || true
-	@docker rmi -f $$(docker images -qa) || true
-	@docker volume rm $$(docker volume ls -q) || true
-	@docker network rm $$(docker network ls -q) 2>/dev/null || true
+	@printf "Cleaning all configuration of ${NAME} and both volumes and host data...\n"
+	@if [ -n "$$(docker ps -qa)" ]; then docker stop $$(docker ps -qa); fi
+	@docker system prune --all --force --volumes
+	@docker network prune --force
+	@docker volume prune --force
+	@docker image prune --all --force
+	@docker container prune --force
+	@docker builder prune --all --force
+	@if [ -n "$$(docker volume ls -q)" ]; then docker volume rm $$(docker volume ls -q); fi
+	@if [ -d "/home/${USER}/data" ]; then sudo rm -rf /home/${USER}/data; fi
 
-re: fclean all
+re:	clean all
 
-ps:
-	docker compose -f $(COMPOSE_PATH) ps
-
-.PHONE: all clean fclean re ps
+.PHONY	: all build down re clean fclean
