@@ -59,10 +59,10 @@ if ! wp core is-installed --allow-root --path="/var/www/html"; then
     echo "Running WordPress core installation..."
     wp core install --allow-root \
         --url="https://$DOMAIN_NAME" \
-        --title="pgomez-r inception" \
+        --title="davigome inception" \
         --admin_user="$DB_USER" \
         --admin_password="$DB_PASS" \
-        --admin_email="pedrogruz.11@gmail.com" \
+        --admin_email="d.gomezlanderolopez@gmail.com" \
         --path="/var/www/html"
     if [ $? -ne 0 ]; then
         echo "Error: wp core install failed."
